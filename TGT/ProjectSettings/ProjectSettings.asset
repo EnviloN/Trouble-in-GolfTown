@@ -573,7 +573,15 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
+<<<<<<< HEAD
+  scriptingDefineSymbols:
+    1: CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: MOBILE_INPUT
+=======
   scriptingDefineSymbols: {}
+>>>>>>> a52f6c41042b42e44f9ab964b1ed9da356a3e3af
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
