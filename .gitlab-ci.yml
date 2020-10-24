@@ -1,4 +1,5 @@
 stages:
+  - activate
   - build_and_test
   - deploy
 
@@ -24,36 +25,35 @@ image: gableroux/unity3d:$UNITY_VERSION
 # run this job when you need to request a license
 # you may need to follow activation steps from documentation
 get-activation-file:
-  stage: build_and_test
+  stage: activate
   script:
     - chmod +x ./ci/get_activation_file.sh && ./ci/get_activation_file.sh
   artifacts:
     paths:
       - $UNITY_ACTIVATION_FILE
-    expire_in: 10 min # Expiring this as artifacts may contain sensitive data and should not be kept public
-  when: manual
+    expire_in: 20 min # Expiring this as artifacts may contain sensitive data and should not be kept public
 
-.test: &test
-  stage: build_and_test
-  <<: *unity_before_script
-  <<: *cache
-  script:
-    - chmod +x ./ci/test.sh && ./ci/test.sh
-  artifacts:
-    paths:
-      - $(pwd)/$TEST_PLATFORM-results.xml
-      - $(pwd)/$TEST_PLATFORM-coverage/
-  coverage: /<Linecoverage>(.*?)</Linecoverage>/
+# .test: &test
+#   stage: build_and_test
+#   <<: *unity_before_script
+#   <<: *cache
+#   script:
+#     - chmod +x ./ci/test.sh && ./ci/test.sh
+#   artifacts:
+#     paths:
+#       - $(pwd)/$TEST_PLATFORM-results.xml
+#       - $(pwd)/$TEST_PLATFORM-coverage/
+#   coverage: /<Linecoverage>(.*?)</Linecoverage>/
 
-test-playmode:
-  <<: *test
-  variables:
-    TEST_PLATFORM: playmode
+# test-playmode:
+#   <<: *test
+#   variables:
+#     TEST_PLATFORM: playmode
 
-test-editmode:
-  <<: *test
-  variables:
-    TEST_PLATFORM: editmode
+# test-editmode:
+#   <<: *test
+#   variables:
+#     TEST_PLATFORM: editmode
 
 .build: &build
   stage: build_and_test
