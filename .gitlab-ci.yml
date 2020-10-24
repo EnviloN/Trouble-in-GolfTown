@@ -1,0 +1,169 @@
+stages:
+  - build_and_test
+  - deploy
+
+# If you are looking for a place where to add 'UNITY_LICENSE_FILE' and other secrets, please visit your project's gitlab page:
+# settings > CI/CD > Variables instead
+variables:
+  BUILD_NAME: TroubleInGolfTown
+  UNITY_ACTIVATION_FILE: ./unity3d.alf
+  UNITY_VERSION: 2019.4.11f1
+
+image: gableroux/unity3d:$UNITY_VERSION
+
+.unity_before_script: &unity_before_script
+  before_script:
+    - chmod +x ./ci/before_script.sh && ./ci/before_script.sh
+
+.cache: &cache
+  cache:
+    key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$TEST_PLATFORM"
+    paths:
+      - Library/
+
+.license: &license
+  rules:
+    - if: '$UNITY_LICENSE_CONTENT != null'
+      when: always
+
+# run this job when you need to request a license
+# you may need to follow activation steps from documentation
+get-activation-file:
+  rules:
+    - if: '$UNITY_LICENSE_CONTENT == null'
+      when: manual
+  stage: build_and_test
+  script:
+    - chmod +x ./ci/get_activation_file.sh && ./ci/get_activation_file.sh
+  artifacts:
+    paths:
+      - $UNITY_ACTIVATION_FILE
+    expire_in: 10 min # Expiring this as artifacts may contain sensitive data and should not be kept public
+
+.test: &test
+  stage: build_and_test
+  <<: *unity_before_script
+  <<: *cache
+  <<: *license
+  script:
+    - chmod +x ./ci/test.sh && ./ci/test.sh
+  artifacts:
+    paths:
+      - $(pwd)/$TEST_PLATFORM-results.xml
+      - $(pwd)/$TEST_PLATFORM-coverage/
+  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
+  # you may need to remove or replace these to fit your need if you are using your own runners
+  tags:
+    - tgt-mini-vr-golfers
+  coverage: /<Linecoverage>(.*?)</Linecoverage>/
+
+test-playmode:
+  <<: *test
+  variables:
+    TEST_PLATFORM: playmode
+
+test-editmode:
+  <<: *test
+  variables:
+    TEST_PLATFORM: editmode
+
+.build: &build
+  stage: build_and_test
+  <<: *unity_before_script
+  <<: *cache
+  <<: *license
+  script:
+    - chmod +x ./ci/build.sh && ./ci/build.sh
+  artifacts:
+    paths:
+      - ./Builds/
+  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
+  # you may need to remove or replace these to fit your need if you are using your own runners
+  tags:
+    - tgt-mini-vr-golfers
+
+# build-StandaloneLinux64:
+#   <<: *build
+#   variables:
+#     BUILD_TARGET: StandaloneLinux64
+
+# build-StandaloneLinux64-il2cpp:
+#   <<: *build
+#   image: gableroux/unity3d:$UNITY_VERSION-linux-il2cpp
+#   variables:
+#     BUILD_TARGET: StandaloneLinux64
+#     SCRIPTING_BACKEND: IL2CPP
+#     # https://forum.unity.com/threads/linux-il2cpp-linux-sysroot-not-specified-or-does-not-exist.854008/
+#     IL2CPP_ADDITIONAL_ARGS: "--sysroot-path=/ --tool-chain-path=/"
+
+# build-StandaloneOSX:
+#   <<: *build
+#   image: gableroux/unity3d:$UNITY_VERSION-mac
+#   variables:
+#     BUILD_TARGET: StandaloneOSX
+
+#Note: build target names changed in recent versions, use this for versions < 2017.2:
+# build-StandaloneOSXUniversal:
+#   <<: *build
+#   variables:
+#     BUILD_TARGET: StandaloneOSXUniversal
+
+build-StandaloneWindows64:
+  <<: *build
+  image: gableroux/unity3d:$UNITY_VERSION-windows
+  variables:
+    BUILD_TARGET: StandaloneWindows64
+
+build-WebGL:
+  <<: *build
+  image: gableroux/unity3d:$UNITY_VERSION-webgl
+  variables:
+    BUILD_TARGET: WebGL
+
+# build-android:
+#   <<: *build
+#   image: gableroux/unity3d:$UNITY_VERSION-android
+#   variables:
+#     BUILD_TARGET: Android
+#     BUNDLE_VERSION_CODE: $CI_PIPELINE_IID
+#     BUILD_APP_BUNDLE: "false"
+
+#deploy-android:
+#  stage: deploy
+#  image: ruby
+#  script: 
+#    - cd ./Builds/Android
+#    - echo $GPC_TOKEN > gpc_token.json
+#    - gem install bundler
+#    - bundle install
+#    - fastlane supply --aab $BUILD_NAME.aab --track internal --package_name com.youcompany.yourgame --json_key ./gpc_token.json
+#  needs: ["build-android"]
+
+# build-ios-xcode:
+#   <<: *build
+#   image: gableroux/unity3d:$UNITY_VERSION-ios
+#   variables:
+#     BUILD_TARGET: iOS
+
+#build-and-deploy-ios:
+#  stage: deploy
+#  script:
+#    - cd ./Builds/iOS/$BUILD_NAME
+#    - pod install
+#    - fastlane ios beta
+#  tags:
+#    - ios
+#    - mac
+#  needs: ["build-ios-xcode"]
+
+pages:
+  image: alpine:latest
+  stage: deploy
+  script:
+    - mv "./Builds/WebGL/${BUILD_NAME}" public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
