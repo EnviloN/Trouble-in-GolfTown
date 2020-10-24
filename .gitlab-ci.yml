@@ -31,6 +31,7 @@ get-activation-file:
     paths:
       - $UNITY_ACTIVATION_FILE
     expire_in: 10 min # Expiring this as artifacts may contain sensitive data and should not be kept public
+  when: manual
 
 .test: &test
   stage: build_and_test
@@ -42,10 +43,6 @@ get-activation-file:
     paths:
       - $(pwd)/$TEST_PLATFORM-results.xml
       - $(pwd)/$TEST_PLATFORM-coverage/
-  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
-  # you may need to remove or replace these to fit your need if you are using your own runners
-  tags:
-    - tgt-mini-vr-golfers
   coverage: /<Linecoverage>(.*?)</Linecoverage>/
 
 test-playmode:
@@ -67,10 +64,6 @@ test-editmode:
   artifacts:
     paths:
       - ./Builds/
-  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
-  # you may need to remove or replace these to fit your need if you are using your own runners
-  tags:
-    - tgt-mini-vr-golfers
 
 # build-StandaloneLinux64:
 #   <<: *build
