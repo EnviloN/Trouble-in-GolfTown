@@ -94,25 +94,27 @@ get-activation-file:
 #   variables:
 #     BUILD_TARGET: StandaloneOSXUniversal
 
-build-StandaloneWindows64:
-  <<: *build
-  image: gableroux/unity3d:$UNITY_VERSION-windows
-  variables:
-    BUILD_TARGET: StandaloneWindows64
-
-build-WebGL:
-  <<: *build
-  image: gableroux/unity3d:$UNITY_VERSION-webgl
-  variables:
-    BUILD_TARGET: WebGL
-
-# build-android:
+# Failing...
+# build-StandaloneWindows64:
 #   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-android
+#   image: gableroux/unity3d:$UNITY_VERSION-windows
 #   variables:
-#     BUILD_TARGET: Android
-#     BUNDLE_VERSION_CODE: $CI_PIPELINE_IID
-#     BUILD_APP_BUNDLE: "false"
+#     BUILD_TARGET: StandaloneWindows64
+
+# Failing...
+# build-WebGL:
+#   <<: *build
+#   image: gableroux/unity3d:$UNITY_VERSION-webgl
+#   variables:
+#     BUILD_TARGET: WebGL
+
+build-android:
+  <<: *build
+  image: gableroux/unity3d:$UNITY_VERSION-android
+  variables:
+    BUILD_TARGET: Android
+    BUNDLE_VERSION_CODE: $CI_PIPELINE_IID
+    BUILD_APP_BUNDLE: "false"
 
 #deploy-android:
 #  stage: deploy
