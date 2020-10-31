@@ -1,4 +1,4 @@
 [Go Up](scenes.md)
 
-# Chudch
+# Church
 [TODO]
