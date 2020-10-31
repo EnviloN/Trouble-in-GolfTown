@@ -5,6 +5,6 @@
 #### Pages:
 - [Golf Town](golf_town.md)
 - [Saloon](saloon.md)
-- [Church](chudch.md)
+- [Church](church.md)
 
 [TODO]

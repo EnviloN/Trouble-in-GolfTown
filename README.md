@@ -23,7 +23,7 @@ A small VR minigolf adventure that takes place in a small western town by the se
 - [Scenes](./doc/scenes.md)
     - [Golf Town](./doc/golf_town.md)
     - [Saloon](./doc/saloon.md)
-    - [Church](./doc/chudch.md)
+    - [Church](./doc/church.md)
 - [Characters](./doc/characters.md)
     - [Main characters](./doc/main_characters.md)
     - [Other NPCs](./doc/other_npcs.md)
@@ -47,25 +47,3 @@ The town is built on a coast. North of the town is a canyon with a railroad. The
 
 ### Saloon
 Place where townfolks meet to gamble and drink. There is a barman behind the bar that offers main quests to the player.
-
-
-#### Characters:
-- **Barman**:
-    - wants to stop the oil magnate
-    - main quests
-- **Saloon lady**:
-    - some dialogues
-    - polishes golf clubs
-- Townfolks:
-    - play poker
-    - drink alcohol
-
-
-## Story
-
-### Prologue
-The player just got off a boat at the dock near the town. The main protagonist wanted to spend the rest of their life here playing minigolf. The ferryman tells them that the minigolf will soon be over as a wealthy oil magnate will buy the town and build oil pumps everywhere. The ferryman wishes good luck to the player and leaves them. 
-
-#### Characters:
-- **Ferryman**:
-    Stands by the pier where he just dropped the player off the boat. Tells the player more about the Golf Town and the upcoming trouble. Sends us to see the barman at the saloon. -->
