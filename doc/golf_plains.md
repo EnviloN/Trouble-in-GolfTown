@@ -31,6 +31,13 @@ You can read more about the Golf Town on [this page](golf_town.md).
 ![](./img/golf_plains/dock3.png)
 
 ## Cemetery
+![](./img/golf_plains/cemetery1.png)
+
+![](./img/golf_plains/cemetery2.png)
+
+![](./img/golf_plains/cemetery3.png)
+
+![](./img/golf_plains/cemetery4.png)
 
 ## Train Station
 
@@ -53,4 +60,12 @@ You can read more about the Golf Town on [this page](golf_town.md).
 
 ## Coast Side Minigolf Courses
 
+![](./img/golf_plains/coast_minigolf1.png)
+
+![](./img/golf_plains/coast_minigolf2.png)
+
 ## Minigolf Island
+
+![](./img/golf_plains/minigolf_island1.png)
+
+![](./img/golf_plains/minigolf_island2.png)
