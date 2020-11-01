@@ -1,4 +1,4 @@
-[Go Up](scenes.md)
+[Go Up](golf_plains.md)
 
 # Golf Town
 [TODO]
