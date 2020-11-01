@@ -3,13 +3,13 @@
 # Church
 The religious spirit of the residents of Golf Town has weakened since the discovery of minigolf. However, some of the townfolks still keep searching for answers here and seek the blessing for their upcoming minigolf tournaments.
 
-![](./img/church_interior2.png)
+![](./img/interiors/church_interior2.png)
 
 
 During these harsh times, the religion shares this place with [Dr. Quinn](./main_chharacters.md)'s temporary infirmary, who is still missing the proper funding to build a town hospital.
 
 
-![](./img/church_interior1.png)
+![](./img/interiors/church_interior1.png)
 
 ## Infirmary section
 
