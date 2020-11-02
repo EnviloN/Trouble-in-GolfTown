@@ -37,14 +37,14 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 1101166383}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.44657946, g: 0.49641472, b: 0.5748201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -946,13 +946,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301838753}
-  m_LocalRotation: {x: 0.20581402, y: 0.6969522, z: -0.15752226, w: -0.66864413}
-  m_LocalPosition: {x: -727.3, y: 147.9, z: -790.6}
+  m_LocalRotation: {x: 0.057955995, y: 0.82133216, z: -0.36990577, w: -0.43037704}
+  m_LocalPosition: {x: -537, y: 96, z: -657}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1319191168}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -3.1910002, y: 266.773, z: 29.888}
+  m_LocalEulerAnglesHint: {x: 33.9, y: 244.61, z: 29.888}
 --- !u!114 &301838755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,7 +977,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9811321, g: 0.71752733, b: 0.28693485, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3159,7 +3159,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1964704263138806, guid: e3d9a5b7a19f9684d9b63308cdfa95bd, type: 3}
       propertyPath: m_Name
-      value: Character_Gunman_ref
+      value: Hunter Larry
       objectReference: {fileID: 0}
     - target: {fileID: 4201403797357164, guid: e3d9a5b7a19f9684d9b63308cdfa95bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3191,7 +3191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4201403797357164, guid: e3d9a5b7a19f9684d9b63308cdfa95bd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4201403797357164, guid: e3d9a5b7a19f9684d9b63308cdfa95bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3205,6 +3205,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95082879787689830, guid: e3d9a5b7a19f9684d9b63308cdfa95bd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 52d0a4f58b484f949a5be04001636934, type: 2}
+    - target: {fileID: 137264071917788478, guid: e3d9a5b7a19f9684d9b63308cdfa95bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a15da839caab97b4f9cd9586f4ff31e6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d9a5b7a19f9684d9b63308cdfa95bd, type: 3}
 --- !u!4 &1042647138 stripped
@@ -3268,7 +3278,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9811321, g: 0.7990256, b: 0.53684586, a: 1}
+  m_Color: {r: 0.9528302, g: 0.77049726, b: 0.49439302, a: 1}
   m_Intensity: 1.9
   m_Range: 10
   m_SpotAngle: 30
@@ -4189,8 +4199,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358701946}
-  m_LocalRotation: {x: -0, y: 0.46870092, z: -0, w: -0.8833569}
-  m_LocalPosition: {x: 92.5, y: -1.210001, z: 351.02002}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000016292068}
+  m_LocalPosition: {x: 254.64062, y: 3.9300003, z: 281.0849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 973141235}
@@ -4399,8 +4409,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521397775}
-  m_LocalRotation: {x: 0.3525046, y: 0.0996914, z: 0.037728608, w: -0.9297197}
-  m_LocalPosition: {x: 0.28680846, y: -6.431099, z: -0.3009021}
+  m_LocalRotation: {x: -0.0511775, y: 0.3176367, z: 0.017140748, w: 0.94667524}
+  m_LocalPosition: {x: 0.6179565, y: -17.3448, z: -0.9593542}
   m_LocalScale: {x: 0.010000001, y: 0.07570594, z: 0.011262404}
   m_Children: []
   m_Father: {fileID: 316163562}
