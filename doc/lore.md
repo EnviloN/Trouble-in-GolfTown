@@ -1,0 +1,4 @@
+[Go Up](story.md)
+
+# Lore
+The town itself was found a long time ago, and ever since was a symbol of peace and calm to any visitor. The people of the town were always peaceful and caring. Since the city residents discovered a game known as minigolf, everything else seems to freeze in time. Everybody stopped to be interested in all the wild west stuff and started to play minigolf. City seemingly thrived from all the minigolf tournaments and events until the age of the oil mining boom. Since then, many oil magnates started offering vast amounts of money to the town's residents to buy out the land for oil mining, the town's mood and willingness to play minigolf deteriorated. Everybody is just waiting until someone accepts one of the generous offers, and there won't be anywhere to play minigolf. 
