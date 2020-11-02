@@ -1,5 +1,10 @@
 # Trouble in Golf Town
+
+![](./doc/img/golf_plains/golf_plains.png)
+
 A small VR minigolf adventure that takes place in a small western town by the sea. The town lives with minigolf, and folks all around the town love the game. Unfortunately, a reserve of oil was found underneath the town. A rich oil magnate wants to transform the lovely minigolf town into an oil city. The townsfolk are angry about it, and to stop the oil magnate, they will use what they know the best -- minigolf.
+
+![](./doc/img/golf_town/golf_town_south.png)
 
 ## Team
 - **Team name:** Mini VR Golfers
@@ -11,6 +16,14 @@ A small VR minigolf adventure that takes place in a small western town by the se
     - Jan Picka
     - Dominik Fryc
 
+    
+## VHS Documentation
+
+- [Milestone 1: Static world](./doc/vhs/static_world.md)
+- Milestone 2: Dynamic world
+- Milestone 3: Complex world with a story
+
+
 ## Documentation
 - [Story](./doc/story.md)
     - [Lore](./doc/lore.md)
@@ -21,7 +34,8 @@ A small VR minigolf adventure that takes place in a small western town by the se
         - [Original assets](./doc/original_assets.md)
     - [Animations](./doc/animations.md)
 - [Scenes](./doc/scenes.md)
-    - [Golf Town](./doc/golf_town.md)
+    - [Golf Plains](./doc/golf_plains.md)
+        - [Golf Town](./doc/golf_town.md)
     - [Saloon](./doc/saloon.md)
     - [Church](./doc/church.md)
 - [Characters](./doc/characters.md)
