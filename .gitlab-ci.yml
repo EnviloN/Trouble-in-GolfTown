@@ -1,6 +1,6 @@
 stages:
   - activate
-  - build_and_test
+  - build
   - deploy
 
 # If you are looking for a place where to add 'UNITY_LICENSE_FILE' and other secrets, please visit your project's gitlab page:
@@ -9,8 +9,10 @@ variables:
   BUILD_NAME: TroubleInGolfTown
   UNITY_ACTIVATION_FILE: ./unity3d.alf
   UNITY_VERSION: 2019.4.11f1
+  IMAGE: unityci/editor # https://hub.docker.com/r/unityci/editor
+  IMAGE_VERSION: "0.5" # https://github.com/Unity-CI/docker/releases
 
-image: gableroux/unity3d:$UNITY_VERSION
+image: $IMAGE:$UNITY_VERSION-base-$IMAGE_VERSION
 
 .unity_before_script: &unity_before_script
   before_script:
@@ -34,30 +36,8 @@ get-activation-file:
     expire_in: 20 min # Expiring this as artifacts may contain sensitive data and should not be kept public
   when: manual
 
-# .test: &test
-#   stage: build_and_test
-#   <<: *unity_before_script
-#   <<: *cache
-#   script:
-#     - chmod +x ./ci/test.sh && ./ci/test.sh
-#   artifacts:
-#     paths:
-#       - $(pwd)/$TEST_PLATFORM-results.xml
-#       - $(pwd)/$TEST_PLATFORM-coverage/
-#   coverage: /<Linecoverage>(.*?)</Linecoverage>/
-
-# test-playmode:
-#   <<: *test
-#   variables:
-#     TEST_PLATFORM: playmode
-
-# test-editmode:
-#   <<: *test
-#   variables:
-#     TEST_PLATFORM: editmode
-
 .build: &build
-  stage: build_and_test
+  stage: build
   <<: *unity_before_script
   <<: *cache
   script:
@@ -68,47 +48,21 @@ get-activation-file:
   tags:
     - pickaja3-home-runner
 
-# build-StandaloneLinux64:
-#   <<: *build
-#   variables:
-#     BUILD_TARGET: StandaloneLinux64
-
-# build-StandaloneLinux64-il2cpp:
-#   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-linux-il2cpp
-#   variables:
-#     BUILD_TARGET: StandaloneLinux64
-#     SCRIPTING_BACKEND: IL2CPP
-#     # https://forum.unity.com/threads/linux-il2cpp-linux-sysroot-not-specified-or-does-not-exist.854008/
-#     IL2CPP_ADDITIONAL_ARGS: "--sysroot-path=/ --tool-chain-path=/"
-
-# build-StandaloneOSX:
-#   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-mac
-#   variables:
-#     BUILD_TARGET: StandaloneOSX
-
-#Note: build target names changed in recent versions, use this for versions < 2017.2:
-# build-StandaloneOSXUniversal:
-#   <<: *build
-#   variables:
-#     BUILD_TARGET: StandaloneOSXUniversal
-
 build-StandaloneWindows64:
   <<: *build
-  image: gableroux/unity3d:$UNITY_VERSION-windows
+  image: $IMAGE:$UNITY_VERSION-windows-mono-$IMAGE_VERSION
   variables:
     BUILD_TARGET: StandaloneWindows64
 
 # build-WebGL:
 #   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-webgl
+#   image: $IMAGE:$UNITY_VERSION-webgl-$IMAGE_VERSION
 #   variables:
 #     BUILD_TARGET: WebGL
 
 # build-android:
 #   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-android
+#   image: $IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
 #   variables:
 #     BUILD_TARGET: Android
 #     BUNDLE_VERSION_CODE: $CI_PIPELINE_IID
@@ -125,31 +79,13 @@ build-StandaloneWindows64:
 #    - fastlane supply --aab $BUILD_NAME.aab --track internal --package_name com.youcompany.yourgame --json_key ./gpc_token.json
 #  needs: ["build-android"]
 
-# build-ios-xcode:
-#   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-ios
-#   variables:
-#     BUILD_TARGET: iOS
-
-#build-and-deploy-ios:
-#  stage: deploy
-#  script:
-#    - cd ./Builds/iOS/$BUILD_NAME
-#    - pod install
-#    - fastlane ios beta
-#  tags:
-#    - ios
-#    - mac
-#  needs: ["build-ios-xcode"]
-
-pages:
-  image: alpine:latest
-  stage: deploy
-  script:
-    - mv "./Builds/WebGL/${BUILD_NAME}" public
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-
+# pages:
+#   image: alpine:latest
+#   stage: deploy
+#   script:
+#     - mv "./Builds/WebGL/${BUILD_NAME}" public
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - master
