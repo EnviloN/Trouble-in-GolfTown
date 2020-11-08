@@ -65,8 +65,8 @@ get-activation-file:
   artifacts:
     paths:
       - ./Builds/
-  tags:
-    - pickaja3-home-runner
+  # tags:
+  #   - pickaja3-home-runner
 
 # build-StandaloneLinux64:
 #   <<: *build
