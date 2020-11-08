@@ -35,6 +35,8 @@ get-activation-file:
       - $UNITY_ACTIVATION_FILE
     expire_in: 20 min # Expiring this as artifacts may contain sensitive data and should not be kept public
   when: manual
+  tags:
+    - pickaja3-home-runner
 
 .build: &build
   stage: build
