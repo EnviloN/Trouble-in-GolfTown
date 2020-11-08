@@ -5,7 +5,7 @@ set -x
 
 echo "Building for $BUILD_TARGET"
 
-export BUILD_PATH=./Builds/$BUILD_TARGET/
+export BUILD_PATH=./Builds/
 mkdir -p $BUILD_PATH
 
 ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' /opt/Unity/Editor/Unity} \
@@ -30,6 +30,10 @@ elif [ $UNITY_EXIT_CODE -eq 3 ]; then
 else
   echo "Unexpected exit code $UNITY_EXIT_CODE";
 fi
+
+pwd
+
+ls -acl .
 
 ls -la $BUILD_PATH
 [ -n "$(ls -A $BUILD_PATH)" ] # fail job if build folder is empty
