@@ -94,19 +94,17 @@ get-activation-file:
 #   variables:
 #     BUILD_TARGET: StandaloneOSXUniversal
 
-# Failing...
-# build-StandaloneWindows64:
-#   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-windows
-#   variables:
-#     BUILD_TARGET: StandaloneWindows64
+build-StandaloneWindows64:
+  <<: *build
+  image: gableroux/unity3d:$UNITY_VERSION-windows
+  variables:
+    BUILD_TARGET: StandaloneWindows64
 
-# Failing...
-# build-WebGL:
-#   <<: *build
-#   image: gableroux/unity3d:$UNITY_VERSION-webgl
-#   variables:
-#     BUILD_TARGET: WebGL
+build-WebGL:
+  <<: *build
+  image: gableroux/unity3d:$UNITY_VERSION-webgl
+  variables:
+    BUILD_TARGET: WebGL
 
 build-android:
   <<: *build

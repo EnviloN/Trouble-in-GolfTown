@@ -1,7 +1,9 @@
 using UnityEditor;
+using UnityEngine;
 using System.Linq;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 static class BuildCommand
 {
@@ -30,7 +32,7 @@ static class BuildCommand
     static string[] GetEnabledScenes()
     {
         CollectScenes();
-        
+
         return (
             from scene in EditorBuildSettings.scenes
             where scene.enabled
@@ -48,7 +50,7 @@ static class BuildCommand
 
 
         DirectoryInfo d = new DirectoryInfo(@MainFolder);
-        FileInfo[] Files = d.GetFiles("*.unity").Except(d.GetFiles("TestScene.unity")[0]); //Getting unity files
+        FileInfo[] Files = d.GetFiles("*.unity"); //Getting unity files
 
         foreach (FileInfo file in Files)
         {
