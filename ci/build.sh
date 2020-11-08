@@ -9,7 +9,7 @@ export BUILD_PATH=./Builds/
 mkdir -p $BUILD_PATH
 
 ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' unity-editor} \
-  -projectPath $(pwd) \
+  -projectPath $(pwd)/TGT \
   -quit \
   -batchmode \
   -nographics \
