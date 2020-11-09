@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8600545125102746560}
   - component: {fileID: 4680539274913281125}
   - component: {fileID: 7426553321280274607}
+  - component: {fileID: 3721862975686398446}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3721862975686398446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939810830695211386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.365115, y: 49.265297, z: 61.84539}
+  m_Center: {x: 0.00000047683716, y: 24.613518, z: 0.48516464}
