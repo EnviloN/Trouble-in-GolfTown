@@ -18923,6 +18923,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 686205985}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &687033921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1791331725749018, guid: 1e16f83b9a44c6e47a9a869eb4184f98,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494642915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &687033922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687033921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  SmallTalk: 0
+  dialogue:
+    name: Cactus Lisa
+    sentences:
+    - Is he still looking at me?
+    - Samuel... the cactus. Is he staring?
+    - He's been doing this the whole day!
+    - I mean... I don't mind. He's looking sharp and he's always flashing those biceps!
+    - But guy gotta shoot his shots!
+    - Would you go talk him into making a move? Just... don't tell him I've sent
+      you.
 --- !u!1001 &688992032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36758,6 +36788,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1860055623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1370473289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1887909896868874, guid: 05a0c8e6b527de943bd4968427568c0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1814280838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370473290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370473289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  SmallTalk: 1
+  dialogue:
+    name: Cactus Samuel
+    sentences:
+    - Howdy, partner!
+    - Lookin' sharp, cowboy!
+    - You look like you could use a hug.
+    - Care for a hug?
+    - I'll give you five bucks for a hug.
 --- !u!1001 &1372215290
 PrefabInstance:
   m_ObjectHideFlags: 0
