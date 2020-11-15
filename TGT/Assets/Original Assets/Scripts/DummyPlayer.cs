@@ -36,5 +36,10 @@ public class DummyPlayer : MonoBehaviour
             }
 
         }
+
+        // if interact Key is pressed
+        if (Input.GetKeyDown(KeyCode.R)) {
+            dm.UpdateGraphs();
+        }
     }
 }

@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public Animator DialogBoxAnimator;
     public Animator TalkIconAnimator;
 
+    public GameStatus gameStatus;
+
     private Queue<string> sentences; // Queue of sentences in active dialogue
     private bool dialogueActive; // flag if dualogue is ongoing
 
@@ -82,5 +84,12 @@ public class DialogueManager : MonoBehaviour
     public void HideInteractability()
     {
         TalkIconAnimator.SetBool("isVisible", false);
+    }
+
+    public void UpdateGraphs() {
+        var talkatives = FindObjectsOfType<Talkative>();
+        foreach (var talkative in talkatives) {
+            talkative.dialogueGraph.UpdateCurrent();
+        }
     }
 }

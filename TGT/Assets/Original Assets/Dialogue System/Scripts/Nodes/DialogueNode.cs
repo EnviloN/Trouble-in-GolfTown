@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 using XNode;
+using Object = System.Object;
 
 [NodeWidth(500)]
 public class DialogueNode : Node {
     [Input] public EmptyPort In;
-    [Output] public EmptyPort Out;
+    [Output(dynamicPortList = true)] public ConstraintPort[] Children;
 
     public Dialogue dialogue;
 
@@ -13,24 +15,23 @@ public class DialogueNode : Node {
         return null;
     }
 
-
     public void NextState() {
         DialogueGraph dialogueGraph = graph as DialogueGraph;
 
-        if (dialogueGraph.Current != this) {
-            Debug.LogWarning("Node isn't active");
-            return;
+        if (dialogueGraph.Current != this) return;
+
+        DialogueNode nextNode = null;
+        for (int i = 0; i < Children.Length; i++) {
+            if (Children[i].Evaluate(dialogueGraph)) {
+                var port = GetOutputPort("Children " + i);
+                if (port.IsConnected) {
+                    nextNode = port.Connection.node as DialogueNode;
+                    break;
+                }
+            }
         }
-
-        NodePort exitPort = GetOutputPort("exit");
-
-        if (!exitPort.IsConnected) {
-            Debug.LogWarning("Node isn't connected");
-            return;
-        }
-
-        DialogueNode node = exitPort.Connection.node as DialogueNode;
-        node.EnterNode();
+        if (nextNode != null)
+            nextNode.EnterNode();
     }
 
     public void EnterNode() {
@@ -38,5 +39,34 @@ public class DialogueNode : Node {
         dialogueGraph.Current = this;
     }
 
-    [Serializable] public class EmptyPort { }
+    [Serializable]
+    public class EmptyPort { }
+
+
+    [Serializable]
+    public class ConstraintPort {
+        public enum ConstraintType {
+            IsTrue,
+            IsGreaterThan
+        }
+
+        public string property;
+        public ConstraintType type;
+        public int number;
+
+        public bool Evaluate(DialogueGraph graph) {
+            switch (type) {
+                case ConstraintType.IsTrue:
+                    var boolValue = (bool) graph.gameStatus[property];
+                    Debug.Log("Evalueating property " + property + " as Boolean. The property value is: " + boolValue);
+                    return boolValue;
+                case ConstraintType.IsGreaterThan:
+                    var value = (int) graph.gameStatus[property];
+                    Debug.Log("Evalueating property " + property + " as integer. The property value is: " + value);
+                    return value > number;
+                default:
+                    return false;
+            }
+        }
+    }
 }

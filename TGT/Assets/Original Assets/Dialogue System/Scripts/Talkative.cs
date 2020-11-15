@@ -30,6 +30,7 @@ public class Talkative : MonoBehaviour
         }
         dialogueGraph.Current = startNode as DialogueNode;
 
+        dialogueGraph.gameStatus = dm.gameStatus;
     }
 
     private void Update()
