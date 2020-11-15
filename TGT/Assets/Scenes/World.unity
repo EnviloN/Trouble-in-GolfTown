@@ -2740,15 +2740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  name: Church Door
-  dialogue:
-    isSmallTalk: 0
-    sentences:
-    - Knock, Knock!
-    - '*Kills you*'
-    - THE DOOR!
-    - Muhaahaha
-  dialogueGraph: {fileID: 0}
+  dialogueGraph: {fileID: 11400000, guid: 33b1b9853fae0d842b44be5387ae5277, type: 2}
 --- !u!64 &781503910
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3637,8 +3629,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121266846}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1682.5, y: -45.744995, z: 644.39056}
+  m_LocalRotation: {x: 0.055425197, y: 0.9323855, z: 0.16245103, w: -0.31811163}
+  m_LocalPosition: {x: 253.56476, y: 2.5099125, z: 281.70483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 973141235}
@@ -4646,8 +4638,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521397775}
-  m_LocalRotation: {x: 0.080399394, y: 0.9114371, z: 0.21437016, w: -0.3418534}
-  m_LocalPosition: {x: -0.4761157, y: -4.042075, z: -0.179859}
+  m_LocalRotation: {x: 0.092152596, y: 0.8457385, z: 0.15520957, w: -0.50213987}
+  m_LocalPosition: {x: -0.45190063, y: -3.3248577, z: -0.19785339}
   m_LocalScale: {x: 0.010000001, y: 0.07570594, z: 0.011262404}
   m_Children: []
   m_Father: {fileID: 316163562}
@@ -6382,16 +6374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  name: Barrel Bob
-  dialogue:
-    isSmallTalk: 1
-    sentences:
-    - "Heloooo\t\t"
-    - Barreeeel
-    - I am a barrel
-    - The cake is a lie!
-    - I have a fish inside me.
-  dialogueGraph: {fileID: 0}
+  dialogueGraph: {fileID: 11400000, guid: 43847a7be91b7d845b1699ef5ea3370e, type: 2}
 --- !u!1001 &2074184413
 PrefabInstance:
   m_ObjectHideFlags: 0

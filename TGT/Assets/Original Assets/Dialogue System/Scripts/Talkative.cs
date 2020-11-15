@@ -7,9 +7,9 @@ public class Talkative : MonoBehaviour
     [Range(0.5f, 5f)]
     public float radius = 3f;
 
-    public string name; // character name
-    public Dialogue dialogue;
-    public NodeGraph dialogueGraph;
+    //public string name; // character name
+    //public Dialogue dialogue;
+    public DialogueGraph dialogueGraph;
 
     private DummyPlayer player;
     private DialogueManager dm;
@@ -20,6 +20,16 @@ public class Talkative : MonoBehaviour
         player = FindObjectOfType<DummyPlayer>(); // Find reference to player
         dm = FindObjectOfType<DialogueManager>(); // Find reference to dialogue manager
         isTalking = false;
+
+        Node startNode = null;
+        foreach (var node in dialogueGraph.nodes) {
+            if (!node.GetInputPort("In").IsConnected) {
+                startNode = node;
+                break;
+            }
+        }
+        dialogueGraph.Current = startNode as DialogueNode;
+
     }
 
     private void Update()
@@ -47,8 +57,10 @@ public class Talkative : MonoBehaviour
         }
         else
         {
-            isTalking = true;
-            dm.StartDialogue(name, dialogue);
+            if (dialogueGraph.Current != null) {
+                isTalking = true;
+                dm.StartDialogue(dialogueGraph.CharacterName, dialogueGraph.Current.dialogue);
+            }
         }
     }
 
