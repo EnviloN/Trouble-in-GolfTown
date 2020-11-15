@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XNode;
 
 public class Talkative : MonoBehaviour
 {
@@ -6,8 +7,9 @@ public class Talkative : MonoBehaviour
     [Range(0.5f, 5f)]
     public float radius = 3f;
 
-    public bool SmallTalk; // Random responses from the list.
+    public string name; // character name
     public Dialogue dialogue;
+    public NodeGraph dialogueGraph;
 
     private DummyPlayer player;
     private DialogueManager dm;
@@ -46,16 +48,7 @@ public class Talkative : MonoBehaviour
         else
         {
             isTalking = true;
-            if (SmallTalk)
-            {
-                // If small talk is turned on, a random sentence is chosen from dialogue and a new single-sentence dialogue is triggered
-                int randomIndex = Random.Range(0, dialogue.sentences.Length);
-                dm.StartDialogue(new Dialogue(dialogue.name, dialogue.sentences[randomIndex]));
-            }
-            else
-            {
-                dm.StartDialogue(dialogue); // Else full dialogue is started
-            }
+            dm.StartDialogue(name, dialogue);
         }
     }
 

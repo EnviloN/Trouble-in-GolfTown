@@ -23,22 +23,27 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Starts a given dialog
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(string characterName, Dialogue dialogue)
     {
         HideInteractability();
         DialogBoxAnimator.SetBool("isOpen", true);
 
         // Fill the queue
-        foreach (string sentence in dialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
+        if (dialogue.isSmallTalk) {
+            // If small talk is turned on, a random sentence is chosen from dialogue
+            int randomIndex = Random.Range(0, dialogue.sentences.Length);
+            sentences.Enqueue(dialogue.sentences[randomIndex]);
+        } else {
+            foreach (string sentence in dialogue.sentences) {
+                sentences.Enqueue(sentence);
+            }
         }
 
         // Start the dialogue
         if (sentences.Count != 0)
         {
             dialogueActive = true;
-            nameText.text = dialogue.name;
+            nameText.text = characterName;
             DisplayNextSentence();
         }
     }
@@ -62,7 +67,6 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
         DialogBoxAnimator.SetBool("isOpen", false);
         sentences.Clear(); // Clean all remaining sentences
-        Debug.Log("Conversation ended.");
     }
 
     public bool IsDialogueActive() { return dialogueActive; }

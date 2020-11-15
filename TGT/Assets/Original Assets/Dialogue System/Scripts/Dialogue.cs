@@ -3,20 +3,13 @@
 [System.Serializable]
 public class Dialogue
 {
-    public string name; // character name
+    public bool isSmallTalk;
 
     [TextArea(3, 10)]
     public string[] sentences; // things thay have to say
 
-    public Dialogue(string name, string[] sentences)
-    {
-        this.name = name;
+    public Dialogue(string name, string[] sentences) {
+        this.isSmallTalk = false;
         this.sentences = sentences;
-    }
-
-    public Dialogue(string name, string sentence)
-    {
-        this.name = name;
-        this.sentences = new string[] { sentence };
     }
 }
