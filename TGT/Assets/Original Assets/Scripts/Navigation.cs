@@ -46,12 +46,16 @@ public class Navigation : MonoBehaviour
                 mIsNavigating = true;
                 return;
             }
-            if (Vector3.Distance(transform.position, agent.destination) < 0.15)
+            float dist = Vector3.Distance(transform.position, agent.destination);
+            if (dist < 1.5)
             {
                 agent.ResetPath();
                 mIsNavigating = false;
                 mTargetRollCooldown = new Delay(rollCooldown + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));
             }
+        } else
+        {
+            mTargetRollCooldown.update(Time.deltaTime);
         }
     }
 }

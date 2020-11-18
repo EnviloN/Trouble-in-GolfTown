@@ -9,6 +9,7 @@ public class Delay
     public Delay(float cooldown)
     {
         time = cooldown;
+        currentTime = cooldown;
     }
 
     /// Returns true if delay just passed
