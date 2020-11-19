@@ -934,7 +934,6 @@ GameObject:
   m_Component:
   - component: {fileID: 301838754}
   - component: {fileID: 301838756}
-  - component: {fileID: 301838755}
   m_Layer: 0
   m_Name: Secondary light
   m_TagString: Untagged
@@ -956,18 +955,6 @@ Transform:
   m_Father: {fileID: 1319191168}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 33.9, y: 244.61, z: 29.888}
---- !u!114 &301838755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301838753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &301838756
 Light:
   m_ObjectHideFlags: 0
@@ -3419,7 +3406,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1101166381}
   - component: {fileID: 1101166383}
-  - component: {fileID: 1101166382}
   m_Layer: 0
   m_Name: Sunlight
   m_TagString: Untagged
@@ -3441,18 +3427,6 @@ Transform:
   m_Father: {fileID: 1319191168}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: 90, z: 0}
---- !u!114 &1101166382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101166380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1101166383
 Light:
   m_ObjectHideFlags: 0
@@ -3587,8 +3561,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121266846}
-  m_LocalRotation: {x: 0.032088973, y: 0.9379492, z: 0.09032218, w: -0.33326197}
-  m_LocalPosition: {x: 296.1516, y: -11.016626, z: 306.80695}
+  m_LocalRotation: {x: 0.08655034, y: 0.913495, z: 0.27987105, w: -0.28232637}
+  m_LocalPosition: {x: 258.42883, y: 2.968401, z: 279.60394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 973141235}
@@ -4641,8 +4615,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521397775}
-  m_LocalRotation: {x: 0.19278055, y: 0.63338614, z: 0.16714096, w: -0.7305625}
-  m_LocalPosition: {x: -0.4272821, y: -2.8061213, z: -0.22546813}
+  m_LocalRotation: {x: -0.09180106, y: 0.7668395, z: 0.112616815, w: 0.62517774}
+  m_LocalPosition: {x: -0.5398108, y: -11.538158, z: -0.3424176}
   m_LocalScale: {x: 0.010000001, y: 0.07570594, z: 0.011262404}
   m_Children: []
   m_Father: {fileID: 316163562}
@@ -5590,7 +5564,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1861017016}
-  - component: {fileID: 1861017015}
   m_Layer: 0
   m_Name: StaticLightingSky
   m_TagString: Untagged
@@ -5598,18 +5571,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1861017015
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861017014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1861017016
 Transform:
   m_ObjectHideFlags: 1
