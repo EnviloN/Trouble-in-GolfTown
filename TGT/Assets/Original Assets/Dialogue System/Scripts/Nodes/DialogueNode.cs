@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Reflection;
 using UnityEngine;
 using XNode;
-using Object = System.Object;
 
 [NodeWidth(500)]
 public class DialogueNode : Node {

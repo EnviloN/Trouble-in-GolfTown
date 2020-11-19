@@ -1,9 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
+using XNode;
 
 [CustomNodeEditor(typeof(DialogueNode))]
-public class DialogueNodeEditor : NodeEditor {
+public class DialogueNodeEditor : XNodeEditor.NodeEditor {
     public override void OnHeaderGUI() {
         GUI.color = Color.white;
 
