@@ -15,6 +15,12 @@ public class GameStatus : MonoBehaviour {
         set => timesShotVar = value;
     }
 
+    [SerializeField] private int ballsCollectedVar;
+    public int ballsCollected {
+        get => ballsCollectedVar;
+        set => ballsCollectedVar = value;
+    }
+
 
     public object this[string propertyName] {
         get => this.GetType().GetProperty(propertyName)?.GetValue(this, null);

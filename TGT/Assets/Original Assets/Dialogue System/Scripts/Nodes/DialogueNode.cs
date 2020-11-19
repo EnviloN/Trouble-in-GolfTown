@@ -47,7 +47,8 @@ public class DialogueNode : Node {
     public class ConstraintPort {
         public enum ConstraintType {
             IsTrue,
-            IsGreaterThan
+            IsGreaterThan,
+            IsLessThan
         }
 
         public string property;
@@ -58,12 +59,13 @@ public class DialogueNode : Node {
             switch (type) {
                 case ConstraintType.IsTrue:
                     var boolValue = (bool) graph.gameStatus[property];
-                    Debug.Log("Evalueating property " + property + " as Boolean. The property value is: " + boolValue);
                     return boolValue;
                 case ConstraintType.IsGreaterThan:
-                    var value = (int) graph.gameStatus[property];
-                    Debug.Log("Evalueating property " + property + " as integer. The property value is: " + value);
-                    return value > number;
+                    var valueGr = (int) graph.gameStatus[property];
+                    return valueGr > number;
+                case ConstraintType.IsLessThan:
+                    var valueLe = (int) graph.gameStatus[property];
+                    return valueLe < number;
                 default:
                     return false;
             }
