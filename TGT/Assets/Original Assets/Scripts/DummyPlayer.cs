@@ -6,11 +6,13 @@ public class DummyPlayer : MonoBehaviour
     public float interactionRayDistance = 2f;
 
     private DialogueManager dm;
+    private GameStatus gs;
 
     // Start is called before the first frame update
     void Start()
     {
         dm = FindObjectOfType<DialogueManager>();
+        gs = FindObjectOfType<GameStatus>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,15 @@ public class DummyPlayer : MonoBehaviour
                 if (Input.GetKeyDown(interactKey))
                 {
                     talkative.TriggerDialogue();
+                }
+            }
+
+            Placeholder[] ball = hit.collider.GetComponents<Placeholder>();
+            if (ball.Length > 0) {
+                // if interact Key is pressed
+                if (Input.GetKeyDown(interactKey)) {
+                    ball[0].gameObject.SetActive(false);
+                    gs.ballsCollected += 1;
                 }
             }
 
