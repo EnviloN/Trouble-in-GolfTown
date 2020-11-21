@@ -8,6 +8,7 @@ public class Navigation : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent  agent;
     public GameObject    targetsGameObject;
+    public float         stopingDistance = 1.5f;
     private GameObject[] mTargets;
     private bool         mIsNavigating = false;
     [Header("Delays/Cooldowns")]
@@ -15,6 +16,9 @@ public class Navigation : MonoBehaviour
     public float         rollCooldownRangeMax = 1;
     public float         rollCooldown = 5;
     private Delay        mTargetRollCooldown;
+    [Header("Animation Handling")]
+    public Animator      animator;
+    public string        isIdlingVarName;
 
     private static GameObject[] GetTopLevelChildren(Transform parent)
     {
@@ -31,6 +35,7 @@ public class Navigation : MonoBehaviour
     {
         mTargetRollCooldown = new Delay(rollCooldown);
         mTargets = GetTopLevelChildren(targetsGameObject.transform);
+        mIsNavigating = false;
     }
 
     // Update is called once per frame
@@ -44,13 +49,17 @@ public class Navigation : MonoBehaviour
                 int index = Random.Range(0, mTargets.Length);
                 agent.SetDestination(mTargets[index].transform.position);
                 mIsNavigating = true;
+                if (animator != null)
+                    animator.SetBool(isIdlingVarName, false);
                 return;
             }
             float dist = Vector3.Distance(transform.position, agent.destination);
-            if (dist < 1.5)
+            if (dist < stopingDistance)
             {
                 agent.ResetPath();
                 mIsNavigating = false;
+                if (animator != null)
+                    animator.SetBool(isIdlingVarName, true);
                 mTargetRollCooldown = new Delay(rollCooldown + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));
             }
         } else
