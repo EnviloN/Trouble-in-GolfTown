@@ -9,8 +9,11 @@ public class Navigation : MonoBehaviour
     public NavMeshAgent  agent;
     public GameObject    targetsGameObject;
     public float         stopingDistance = 1.5f;
+    public bool          isRandomPicking = true;
     private GameObject[] mTargets;
-    private bool         mIsNavigating = false;
+    private Vector3      mLastDestination;
+    private bool         mIsStopped = false;
+    private int          mIndex = 0;
     [Header("Delays/Cooldowns")]
     public float         rollCooldownRangeMin = -1;
     public float         rollCooldownRangeMax = 1;
@@ -30,12 +33,47 @@ public class Navigation : MonoBehaviour
         return children;
     }
 
+    // Checks if agent is navigating or not. (Can be used to determine if pawn is moving or just idling)
+    public bool IsNavigating()
+    {
+        return agent.enabled;
+    }
+
+    /// Stops current navigation process
+    /// <returns> True if agent was navigating. If agent was idling returns false.</returns>
+    public bool StopNavigation()
+    {
+        if (agent.enabled == true)
+        {
+            mIsStopped = true;
+            agent.enabled = false;
+            mLastDestination = agent.destination;
+            return true;
+        }
+        return false;
+    }
+
+    /// Resumes navigation stopped by StopNavigation
+    /// <returns> True if navigation was stopped by StopNavigation, false otherwise.</returns>
+    public bool StartNavigation()
+    {
+        if (mIsStopped == true)
+        {
+            agent.enabled = true;
+            agent.SetDestination(mLastDestination);
+            return true;
+        }
+        return false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        mIndex = 0;
+        mIsStopped = false;
         mTargetRollCooldown = new Delay(rollCooldown);
         mTargets = GetTopLevelChildren(targetsGameObject.transform);
-        mIsNavigating = false;
+        agent.enabled = false;
     }
 
     // Update is called once per frame
@@ -43,12 +81,16 @@ public class Navigation : MonoBehaviour
     {
         if (!mTargetRollCooldown.isCountingDown())
         {
-            if (!mIsNavigating)
+            if (!agent.enabled)
             {
                 // roll new target and set navigation to it
-                int index = Random.Range(0, mTargets.Length);
-                agent.SetDestination(mTargets[index].transform.position);
-                mIsNavigating = true;
+                if (isRandomPicking)
+                    mIndex = Random.Range(0, mTargets.Length);
+                else
+                    mIndex++;
+                mIndex = mIndex % mTargets.Length;
+                agent.enabled = true;
+                agent.SetDestination(mTargets[mIndex].transform.position);
                 if (animator != null)
                     animator.SetBool(isIdlingVarName, false);
                 return;
@@ -57,7 +99,7 @@ public class Navigation : MonoBehaviour
             if (dist < stopingDistance)
             {
                 agent.ResetPath();
-                mIsNavigating = false;
+                agent.enabled = false;
                 if (animator != null)
                     animator.SetBool(isIdlingVarName, true);
                 mTargetRollCooldown = new Delay(rollCooldown + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));

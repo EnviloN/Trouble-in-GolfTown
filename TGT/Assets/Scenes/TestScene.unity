@@ -2158,9 +2158,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 831115297}
   targetsGameObject: {fileID: 1773070187}
+  stopingDistance: 1.5
+  isRandomPicking: 0
   rollCooldownRangeMin: -5
   rollCooldownRangeMax: 5
   rollCooldown: 10
+  animator: {fileID: 0}
+  isIdlingVarName: 
 --- !u!136 &831115294
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2231,7 +2235,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 831115291}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2994,9 +2998,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1267828229}
   targetsGameObject: {fileID: 1773070187}
+  stopingDistance: 1.5
+  isRandomPicking: 1
   rollCooldownRangeMin: -5
   rollCooldownRangeMax: 5
   rollCooldown: 10
+  animator: {fileID: 0}
+  isIdlingVarName: 
 --- !u!136 &1267828226
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3067,7 +3075,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1267828223}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
