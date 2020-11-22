@@ -1,6 +1,6 @@
 # Static World
 
-This documentation is more of an overview of the semestral project requirements and how the game fulfills them. This page provides links to the primary documentation, which provides more detailed information and backstory.
+This page is more of an overview of the semestral project requirements and how the game fulfills them. It provides links to the primary documentation, which provides more detailed information and backstory.
 
 ## Scenes
 
