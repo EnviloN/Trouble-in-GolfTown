@@ -14,14 +14,20 @@ public class Navigation : MonoBehaviour
     private Vector3      mLastDestination;
     private bool         mIsStopped = false;
     private int          mIndex = 0;
+    public bool          mIsAtSittingPos = false;
+    private Vector3      mLastPos;
     [Header("Delays/Cooldowns")]
     public float         rollCooldownRangeMin = -1;
     public float         rollCooldownRangeMax = 1;
     public float         rollCooldown = 5;
-    private Delay        mTargetRollCooldown;
     [Header("Animation Handling")]
     public Animator      animator;
-    public string        isIdlingVarName;
+    private Delay        mAnimationDelay;
+    private string       mAnimType = "idling";
+    public int           movingProbability = 75;
+    public string[]      isIdlingVarsName;
+    public string        isMovingVarsName;
+    public string[]      isSitingVarsName;
 
     private static GameObject[] GetTopLevelChildren(Transform parent)
     {
@@ -66,12 +72,88 @@ public class Navigation : MonoBehaviour
         return false;
     }
 
+    private void StartNav()
+    {
+        foreach (string v in isIdlingVarsName)
+            animator.SetBool(v, false);
+        foreach (string v in isSitingVarsName)
+            animator.SetBool(v, false);
+        animator.SetBool(isMovingVarsName, true);
+        // roll new target and set navigation to it
+        int index = mIndex;
+        while (mIndex == index)
+        {
+            if (isRandomPicking)
+                index = Random.Range(0, mTargets.Length);
+            else
+                index++;
+            index = index % mTargets.Length;
+        }
+        mIndex = index;
+        agent.enabled = true;
+        if (mTargets[mIndex].name.StartsWith("[sit]"))
+            mIsAtSittingPos = true;
+        else
+            mIsAtSittingPos = false;
+        agent.SetDestination(mTargets[mIndex].transform.position);
+    }
+
+    private void TryStopNav()
+    {
+        float dist = Vector3.Distance(transform.position, mTargets[mIndex].transform.position);
+        if (dist < stopingDistance)
+        {
+            Vector3 pos = agent.destination;
+            animator.SetBool(isMovingVarsName, false);
+            animator.SetBool(isIdlingVarsName[0], true);
+            agent.ResetPath();
+            agent.enabled = false;
+            if (mIsAtSittingPos)
+            {
+                mLastPos = agent.destination;
+                agent.Warp(mTargets[mIndex].transform.position);
+                transform.rotation = mTargets[mIndex].transform.rotation;
+            }
+        }
+    }
+
+    float GetAnimationTime()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+
+    private void AnimationUpdate()
+    {
+        if (mIsAtSittingPos)
+        {
+            int nextAnim = Random.Range(0, isSitingVarsName.Length);
+            foreach (string v in isSitingVarsName)
+                animator.SetBool(v, false);
+            foreach (string v in isIdlingVarsName)
+                animator.SetBool(v, false);
+            animator.SetBool(isMovingVarsName, false);
+            animator.SetBool(isSitingVarsName[nextAnim], true);
+            mAnimType = "sitting";
+        } 
+        else
+        {
+            int nextAnim = Random.Range(0, isIdlingVarsName.Length);
+            foreach (string v in isSitingVarsName)
+                animator.SetBool(v, false);
+            foreach (string v in isIdlingVarsName)
+                animator.SetBool(v, false);
+            animator.SetBool(isMovingVarsName, false);
+            animator.SetBool(isIdlingVarsName[nextAnim], true);
+            mAnimType = "idling";
+        }
+        mAnimationDelay = new Delay(GetAnimationTime() + 0.01f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         mIndex = 0;
         mIsStopped = false;
-        mTargetRollCooldown = new Delay(rollCooldown);
         mTargets = GetTopLevelChildren(targetsGameObject.transform);
         agent.enabled = false;
     }
@@ -79,34 +161,35 @@ public class Navigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!mTargetRollCooldown.isCountingDown())
+        if (mAnimationDelay != null && mAnimationDelay.isCountingDown())
         {
-            if (!agent.enabled)
+            mAnimationDelay.update(Time.deltaTime);
+        } 
+        else
+        {
+            if (agent.enabled)
             {
-                // roll new target and set navigation to it
-                if (isRandomPicking)
-                    mIndex = Random.Range(0, mTargets.Length);
-                else
-                    mIndex++;
-                mIndex = mIndex % mTargets.Length;
-                agent.enabled = true;
-                agent.SetDestination(mTargets[mIndex].transform.position);
-                if (animator != null)
-                    animator.SetBool(isIdlingVarName, false);
+                // agent is enabled so we are still navigating
+                TryStopNav();
                 return;
             }
-            float dist = Vector3.Distance(transform.position, agent.destination);
-            if (dist < stopingDistance)
+            Debug.Log("mAnimationDelay not counting down.");
+            int nextState = Random.Range(0, 100);
+             if ( mAnimType == "idling" &&  nextState > movingProbability)
             {
-                agent.ResetPath();
-                agent.enabled = false;
-                if (animator != null)
-                    animator.SetBool(isIdlingVarName, true);
-                mTargetRollCooldown = new Delay(rollCooldown + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));
+                // move - navigate to new target
+
+                StartNav();
             }
-        } else
-        {
-            mTargetRollCooldown.update(Time.deltaTime);
+            else
+            {
+                if (nextState > movingProbability)
+                {
+                    mIsAtSittingPos = false;
+                }
+                // stay at current position and roll for new animation of that type
+                AnimationUpdate();
+            }
         }
     }
 }
