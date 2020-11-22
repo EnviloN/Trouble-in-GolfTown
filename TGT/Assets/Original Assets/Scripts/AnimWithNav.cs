@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Navigation : MonoBehaviour
+public class AnimWithNav : MonoBehaviour
 {
     [Header("Navigation")]
-    public NavMeshAgent  agent;
-    public GameObject    targetsGameObject;
-    public float         stopingDistance = 1.5f;
-    public bool          isRandomPicking = true;
+    public NavMeshAgent agent;
+    public GameObject targetsGameObject;
+    public float stopingDistance = 1.5f;
+    public bool isRandomPicking = true;
     private GameObject[] mTargets;
-    private Vector3      mLastDestination;
-    private bool         mIsStopped = false;
-    private int          mIndex = 0;
-    public bool          mIsAtSittingPos = false;
-    private Vector3      mLastPos;
+    private Vector3 mLastDestination;
+    private bool mIsStopped = false;
+    private int mIndex = 0;
+    public bool mIsAtSittingPos = false;
+    private Vector3 mLastPos;
     [Header("Delays/Cooldowns")]
-    public float         rollCooldownRangeMin = -1;
-    public float         rollCooldownRangeMax = 1;
-    public float         rollCooldown = 5;
+    public float rollCooldownRangeMin = -1;
+    public float rollCooldownRangeMax = 1;
+    public float rollCooldown = 5;
+    public float sittingCooldown = 0;
     [Header("Animation Handling")]
-    public Animator      animator;
-    private Delay        mAnimationDelay;
-    private string       mAnimType = "idling";
-    public int           movingProbability = 75;
-    public string[]      isIdlingVarsName;
-    public string        isMovingVarsName;
-    public string[]      isSitingVarsName;
+    public Animator animator;
+    private Delay mAnimationDelay;
+    private string mAnimType = "idling";
+    public int movingProbability = 75;
+    public string[] isIdlingVarsName;
+    public string isMovingVarsName;
+    public string[] isSitingVarsName;
 
     private static GameObject[] GetTopLevelChildren(Transform parent)
     {
@@ -74,6 +75,11 @@ public class Navigation : MonoBehaviour
 
     private void StartNav()
     {
+        agent.enabled = true;
+        if (mAnimType == "sitting")
+        {
+            agent.Warp(mLastPos);
+        }
         foreach (string v in isIdlingVarsName)
             animator.SetBool(v, false);
         foreach (string v in isSitingVarsName)
@@ -90,7 +96,6 @@ public class Navigation : MonoBehaviour
             index = index % mTargets.Length;
         }
         mIndex = index;
-        agent.enabled = true;
         if (mTargets[mIndex].name.StartsWith("[sit]"))
             mIsAtSittingPos = true;
         else
@@ -98,23 +103,28 @@ public class Navigation : MonoBehaviour
         agent.SetDestination(mTargets[mIndex].transform.position);
     }
 
-    private void TryStopNav()
+    private bool TryStopNav()
     {
         float dist = Vector3.Distance(transform.position, mTargets[mIndex].transform.position);
         if (dist < stopingDistance)
         {
+            float sc = 0;
             Vector3 pos = agent.destination;
             animator.SetBool(isMovingVarsName, false);
             animator.SetBool(isIdlingVarsName[0], true);
             agent.ResetPath();
-            agent.enabled = false;
             if (mIsAtSittingPos)
             {
                 mLastPos = agent.destination;
-                agent.Warp(mTargets[mIndex].transform.position);
-                transform.rotation = mTargets[mIndex].transform.rotation;
+                agent.Warp(mTargets[mIndex].GetComponentsInChildren<Transform>()[1].position);
+                transform.rotation = mTargets[mIndex].GetComponentsInChildren<Transform>()[1].rotation;
+                sc = sittingCooldown;
             }
+            agent.enabled = false;
+            mAnimationDelay = new Delay(rollCooldown + sc + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));
+            return true;
         }
+        return false;
     }
 
     float GetAnimationTime()
@@ -126,7 +136,7 @@ public class Navigation : MonoBehaviour
     {
         if (mIsAtSittingPos)
         {
-            int nextAnim = Random.Range(0, isSitingVarsName.Length);
+            int nextAnim = Random.Range(0, isSitingVarsName.Length) % isSitingVarsName.Length;
             foreach (string v in isSitingVarsName)
                 animator.SetBool(v, false);
             foreach (string v in isIdlingVarsName)
@@ -134,10 +144,10 @@ public class Navigation : MonoBehaviour
             animator.SetBool(isMovingVarsName, false);
             animator.SetBool(isSitingVarsName[nextAnim], true);
             mAnimType = "sitting";
-        } 
+        }
         else
         {
-            int nextAnim = Random.Range(0, isIdlingVarsName.Length);
+            int nextAnim = Random.Range(0, isIdlingVarsName.Length) % isIdlingVarsName.Length;
             foreach (string v in isSitingVarsName)
                 animator.SetBool(v, false);
             foreach (string v in isIdlingVarsName)
@@ -146,7 +156,6 @@ public class Navigation : MonoBehaviour
             animator.SetBool(isIdlingVarsName[nextAnim], true);
             mAnimType = "idling";
         }
-        mAnimationDelay = new Delay(GetAnimationTime() + 0.01f);
     }
 
     // Start is called before the first frame update
@@ -164,31 +173,22 @@ public class Navigation : MonoBehaviour
         if (mAnimationDelay != null && mAnimationDelay.isCountingDown())
         {
             mAnimationDelay.update(Time.deltaTime);
-        } 
+        }
         else
         {
             if (agent.enabled)
             {
                 // agent is enabled so we are still navigating
-                TryStopNav();
+                if (TryStopNav())
+                    AnimationUpdate();
                 return;
             }
             Debug.Log("mAnimationDelay not counting down.");
             int nextState = Random.Range(0, 100);
-             if ( mAnimType == "idling" &&  nextState > movingProbability)
+            if (nextState > movingProbability)
             {
                 // move - navigate to new target
-
                 StartNav();
-            }
-            else
-            {
-                if (nextState > movingProbability)
-                {
-                    mIsAtSittingPos = false;
-                }
-                // stay at current position and roll for new animation of that type
-                AnimationUpdate();
             }
         }
     }
