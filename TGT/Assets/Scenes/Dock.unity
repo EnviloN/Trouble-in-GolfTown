@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6726927, g: 0.5302038, b: 0.35904723, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2384,6 +2384,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd9a2415c6257cb4ba1738d92c094497, type: 2}
+    - target: {fileID: 771428260347673773, guid: 24362449162558a49bc6904c0fda923a,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 771428260347673773, guid: 24362449162558a49bc6904c0fda923a,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24362449162558a49bc6904c0fda923a, type: 3}
 --- !u!4 &364634544 stripped
@@ -3047,25 +3057,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 439250538}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &449675018 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1506550050545096, guid: 24362449162558a49bc6904c0fda923a,
-    type: 3}
-  m_PrefabInstance: {fileID: 364634543}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &449675019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449675018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.75, z: 0.3}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &478032483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4317,7 +4308,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.75, z: 0.3}
+  m_Size: {x: 0.6, y: 0.8, z: 0.3}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &694841818
 PrefabInstance:
@@ -5877,7 +5868,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.75, z: 0.3}
+  m_Size: {x: 0.6, y: 0.8, z: 0.3}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &975725413
 PrefabInstance:
@@ -9920,6 +9911,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7b37b1f4f9140ca4c87966946df6a95d, type: 2}
+    - target: {fileID: 3850377717404853439, guid: d45da2eb1f79cb74a8950e17c0c21b6d,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45da2eb1f79cb74a8950e17c0c21b6d, type: 3}
 --- !u!4 &1671324294 stripped
@@ -11920,6 +11916,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0a2de4a9dcd2e644aad9448727a71732, type: 2}
+    - target: {fileID: 95060489484656484, guid: e85f10072d335224984d9b8ae2e93843,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 137837828531209922, guid: e85f10072d335224984d9b8ae2e93843,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12188,6 +12189,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 3bd6df5c44178f642abcd61a2459a5ad, type: 2}
+    - target: {fileID: 95082879787689830, guid: e3d9a5b7a19f9684d9b63308cdfa95bd,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 137264071917788478, guid: e3d9a5b7a19f9684d9b63308cdfa95bd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
