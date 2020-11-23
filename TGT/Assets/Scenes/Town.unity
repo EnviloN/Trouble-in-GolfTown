@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6687155, g: 0.52702665, b: 0.35734573, a: 1}
+  m_IndirectSpecularColor: {r: 0.6726927, g: 0.5302038, b: 0.35904723, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20289,11 +20289,10 @@ MonoBehaviour:
   movingProbability: 75
   isIdlingVarsName:
   - IsIdling
-  - IsIdling2
   isMovingVarsName: IsMoving
   isSitingVarsName:
   - IsSitting
-  - IsSitting
+  - IsSitting2
 --- !u!208 &720456687
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -31527,7 +31526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123509933}
   m_LocalRotation: {x: -0, y: 0.92834103, z: -0, w: 0.37172973}
-  m_LocalPosition: {x: -0.5080166, y: -0.805, z: 0.59698486}
+  m_LocalPosition: {x: -0.308, y: -0.805, z: 0.387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 125288396}
@@ -48307,7 +48306,6 @@ MonoBehaviour:
   movingProbability: 75
   isIdlingVarsName:
   - IsIdling
-  - IsIdling2
   isMovingVarsName: IsMoving
   isSitingVarsName:
   - IsSitting

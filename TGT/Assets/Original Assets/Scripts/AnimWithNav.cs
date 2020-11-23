@@ -193,7 +193,6 @@ public class AnimWithNav : MonoBehaviour
                     AnimationUpdate();
                 return;
             }
-            Debug.Log("mAnimationDelay not counting down.");
             int nextState = Random.Range(0, 100);
             if (nextState > movingProbability)
             {
