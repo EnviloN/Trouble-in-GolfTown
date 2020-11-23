@@ -73,6 +73,16 @@ public class AnimWithNav : MonoBehaviour
         return false;
     }
 
+    public void changeDesti(Transform desti, int index)
+    {
+        if (desti.gameObject.name.StartsWith("[sit]"))
+            mIsAtSittingPos = true;
+        else
+            mIsAtSittingPos = false;
+        agent.SetDestination(transform.position);
+        mIndex = index;
+    }
+
     private void StartNav()
     {
         agent.enabled = true;
