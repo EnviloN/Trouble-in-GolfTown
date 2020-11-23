@@ -3666,6 +3666,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 572101125}
     m_Modifications:
+    - target: {fileID: 639624048910920820, guid: 5f49b90f67aa69242b924a7b1af59741,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 987014310f3f9324786a2b3ac3b28a9e, type: 2}
     - target: {fileID: 694120609157327984, guid: 5f49b90f67aa69242b924a7b1af59741,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -4399,6 +4404,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 966910660}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &966910662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 699479653693175084, guid: 5f49b90f67aa69242b924a7b1af59741,
+    type: 3}
+  m_PrefabInstance: {fileID: 966910660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &966910663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966910662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.8, z: 0.3}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &996952438
 GameObject:
   m_ObjectHideFlags: 0
