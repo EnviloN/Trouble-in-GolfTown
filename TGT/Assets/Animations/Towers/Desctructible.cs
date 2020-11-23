@@ -26,12 +26,6 @@ public class Desctructible : MonoBehaviour
             }
             clones[smoke_number] = Instantiate(smoke, transform.position + Vector3.down , smoke.transform.rotation);
 
-            
-            for (var i = 0; i <= smoke_number; i++)
-            {
-                Destroy(clones[i], lifetime + 15f);
-            }
-
             Destroy(this.gameObject);
         }
     }

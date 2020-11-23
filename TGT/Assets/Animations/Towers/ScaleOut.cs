@@ -6,6 +6,7 @@ public class ScaleOut : MonoBehaviour
 {
 
     public float fadeSpeed = .05f;
+    public float lifetime = 20.0f;
     public IEnumerator ScaleOutTower()
     {
 
@@ -25,6 +26,7 @@ public class ScaleOut : MonoBehaviour
     void Start()
     {
         StartCoroutine(ScaleOutTower());
+        Destroy(this.gameObject, lifetime);
 
     }
 
