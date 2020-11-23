@@ -33,12 +33,14 @@ There are several behaviors some NPCs follow. Some of the behaviors are triggere
 
 We have also created a horse behavior that the horses on the Magnate's farm follow. The horses walk around and eat, but when the player approaches, they run away from them.
 
-[TODO] Add image of horses in the farm
+![](../img/animations/horses/horses_1.png)
 <!-- ![](../img/other_npcs/lisa_joe.png) -->
 
 
 ### Most relevant documentation pages:
 - [Animations](../animations.md)
+    - [Oil Tower explosion](../oil_tower.md)
+    - [Horse behavior](../horses.md)
 - [Characters](../characters.md)
     - [Main characters](../main_characters.md)
     - [Other NPCs](../other_npcs.md)
