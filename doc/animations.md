@@ -39,6 +39,7 @@ List of currently functional [Animations](./../TGT/Assets/Animations):
 Adding animation to a rig: [simple YT tutorial](https://www.youtube.com/watch?v=9H0aJhKSlEQ) we use in our project.
 Almost every NPC already has an Animation Controller in folder [Controllers](./../TGT/Assets/Animations/Controllers) with one default animation. Cycles and transitions between animations are in the making.
 
+#### Animation cycles and navigation implementation
+In order to move NPC from one position to the second one, we are using NavMeshes. NavMesh is a mesh consisting of multiple faces, which describes possible path NPC could take. Those can be imported to our project from Unity's GitLab. We are using the NavMesh agent to determine speed, rotation velocity, dimensions of NPC and how should NPC avoid obstacles. We determine the exact location of movement with random picks from GameObject, which has 1 layer children, defining target places. After this setup, we've set transitions in the Animator class, initialized them with parameters, which are referenced and controlled from our AnimWithNav.cs script file.
 
 #### List of [Characters](./characters.md) and Their Animation Cycles:
-[TODO] (this chapter might be added to character descriptions instead)
