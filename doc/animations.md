@@ -119,11 +119,11 @@ In order to move NPC from one position to the second one, we are using NavMeshes
 
 * **Old Dave**
   * OldDave_deco
-    * Male Sitting Pose
+    * Idle
 
 * **Miss Jane**
   * Jane_deco
-    * Female Sitting Pose
+    * Sitting on Chair with Legs Crossed
 
 * **Supply Owner**
   * SupplyOwner_deco
@@ -189,3 +189,9 @@ In order to move NPC from one position to the second one, we are using NavMeshes
   * FSupplier_deco
     * Idle *(custom idle animation)*
     * Look at Sea
+
+* **Horse**
+  * Horse_AnimController
+    * Idle
+    * Eat
+    * Walk
