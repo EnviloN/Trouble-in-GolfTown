@@ -20,7 +20,7 @@ A small VR minigolf adventure that takes place in a small western town by the se
 ## VHS Documentation
 
 - [Milestone 1: Static world](./doc/vhs/static_world.md)
-- Milestone 2: Dynamic world
+- [Milestone 2: Dynamic world](./doc/vhs/dynamic_world.md)
 - Milestone 3: Complex world with a story
 
 
@@ -42,3 +42,4 @@ A small VR minigolf adventure that takes place in a small western town by the se
     - [Main characters](./doc/main_characters.md)
     - [Other NPCs](./doc/other_npcs.md)
 - [Mechanics](./doc/mechanics.md)
+    - [Productions](./doc/productions.md)
