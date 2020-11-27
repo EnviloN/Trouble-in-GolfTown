@@ -16,41 +16,38 @@ public class DummyPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        RaycastHit hit;
+        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         // Check if player is looking at talkative NPC
         dm.HideInteractability();
-        if (Physics.Raycast(ray, out hit, interactionRayDistance))
-        {
-            Talkative talkative = hit.collider.GetComponent<Talkative>();
-            if (talkative)
-            {
+        if (Physics.Raycast(ray, out var talkativeHit, interactionRayDistance)) {
+            var talkative = talkativeHit.collider.GetComponent<Talkative>();
+            if (talkative) {
                 dm.DisplayInteractability();
 
                 // if interact Key is pressed
-                if (Input.GetKeyDown(interactKey))
-                {
+                if (Input.GetKeyDown(interactKey)) {
                     talkative.TriggerDialogue();
                 }
             }
-
-            Placeholder[] ball = hit.collider.GetComponents<Placeholder>();
-            if (ball.Length > 0) {
-                // if interact Key is pressed
-                if (Input.GetKeyDown(interactKey)) {
-                    ball[0].gameObject.SetActive(false);
-                    inventory.addBall();
-                }
-            }
-
         }
 
         // if interact Key is pressed
         if (Input.GetKeyDown(KeyCode.R)) {
             dm.UpdateGraphs();
+        }
+
+        if (Input.GetKeyDown(interactKey)) {
+            var hits = Physics.RaycastAll(ray, interactionRayDistance);
+            foreach (var hit in hits) {
+                Placeholder ball = hit.collider.GetComponent<Placeholder>();
+                if (!ball) continue;
+                ball.gameObject.SetActive(false);
+                inventory.addBall();
+                break;
+            }
         }
     }
 }
