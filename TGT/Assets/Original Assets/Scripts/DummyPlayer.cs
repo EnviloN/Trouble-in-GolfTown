@@ -6,13 +6,13 @@ public class DummyPlayer : MonoBehaviour
     public float interactionRayDistance = 2f;
 
     private DialogueManager dm;
-    private GameStatus gs;
+    private Inventory inventory;
 
     // Start is called before the first frame update
     void Start()
     {
         dm = FindObjectOfType<DialogueManager>();
-        gs = FindObjectOfType<GameStatus>();
+        inventory = FindObjectOfType<Inventory>();
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class DummyPlayer : MonoBehaviour
                 // if interact Key is pressed
                 if (Input.GetKeyDown(interactKey)) {
                     ball[0].gameObject.SetActive(false);
-                    gs.ballsCollected += 1;
+                    inventory.addBall();
                 }
             }
 
