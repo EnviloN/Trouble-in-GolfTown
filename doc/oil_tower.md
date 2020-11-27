@@ -1,7 +1,7 @@
 [Go Up](visuals.md)
 
 # Oil Towers
-Oil Tower or Oil Rigs illistrate the power of Ian McGimmie over the Golf Plains. They are rather ugly structures placed around the Plains, blocking views and ruining the joys that golfing on the fresh air offers. Eventually, the player must destroy all of the towers with his mighty golfing skills, so the townsfolk can return to their favorite hobby and way of life. 
+Oil Towers or Oil Rigs illustrate the power Ian McGimmie holds over the Golf Plains. They are rather ugly structures placed around the Plains, blocking views and ruining the joys that golfing on the fresh air offers. Eventually, the player must destroy all of the towers with his mighty golfing skills, so the townsfolk can return to their favorite hobby and way of life. 
 
 <img src="./img/golf_plains/east_view.png" height="300">
 
