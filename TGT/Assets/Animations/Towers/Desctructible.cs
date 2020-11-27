@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class Desctructible : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class Desctructible : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) {
+        if (Input.GetKeyDown(KeyCode.K)) {
             tower = Instantiate(destroyedTower, transform.position, transform.rotation);
 
             ParticleSystem[] clones = new ParticleSystem[smoke_number+1];
