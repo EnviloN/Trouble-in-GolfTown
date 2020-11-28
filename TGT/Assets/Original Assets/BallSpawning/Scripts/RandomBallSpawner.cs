@@ -1,18 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class RandomBallSpawner : MonoBehaviour {
-    private BallSpawnLocation[] locations;
 
     public GameObject ballPrefab; // ball prefab to be instantiated
 
-    void Start() {
-        // Get all spawn locations
-        locations = FindObjectsOfType<BallSpawnLocation>();
+    private void Start() {
         RefreshSpawns();
     }
 
     // When called, all spawn locations are refreshed.
     public void RefreshSpawns() {
+        var locations = FindObjectsOfType<BallSpawnLocation>();
         foreach (BallSpawnLocation location in locations) {
             location.Refresh(ballPrefab);
         }
