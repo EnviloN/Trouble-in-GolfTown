@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Reflection;
 
 public class GameStatus : MonoBehaviour {
     [SerializeField] private bool somethingHappenedVar;
@@ -13,6 +11,12 @@ public class GameStatus : MonoBehaviour {
     public int timesShot {
         get => timesShotVar;
         set => timesShotVar = value;
+    }
+
+    [SerializeField] private int ballsCollectedVar;
+    public int ballsCollected {
+        get => ballsCollectedVar;
+        set => ballsCollectedVar = value;
     }
 
     public object this[string propertyName] {

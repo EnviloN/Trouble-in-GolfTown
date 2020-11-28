@@ -22,14 +22,21 @@ public class DummyPlayer : MonoBehaviour
 
         // Check if player is looking at talkative NPC
         dm.HideInteractability();
-        if (Physics.Raycast(ray, out var talkativeHit, interactionRayDistance)) {
-            var talkative = talkativeHit.collider.GetComponent<Talkative>();
+        if (Physics.Raycast(ray, out var simpleHit, interactionRayDistance)) {
+            var talkative = simpleHit.collider.GetComponent<Talkative>();
             if (talkative) {
                 dm.DisplayInteractability();
 
                 // if interact Key is pressed
                 if (Input.GetKeyDown(interactKey)) {
                     talkative.TriggerDialogue();
+                }
+            }
+
+            var gate = simpleHit.collider.GetComponent<SceneGate>();
+            if (gate) {
+                if (Input.GetKeyDown(interactKey)) {
+                    gate.LoadScene();
                 }
             }
         }
