@@ -1,19 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GiantGolfBall : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<MeshCollider>().enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!FindObjectOfType<GameStatus>().haveCollectedAllGoldenBalls()) {
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<MeshCollider>().enabled = false;
+        }
     }
 }

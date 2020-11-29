@@ -33,7 +33,6 @@ public class RandomBallSpawner : MonoBehaviour
                 locationNum = Random.Range(0, numOfLocations);
             }
 
-            print("Golden ball on location num " + locationNum);
             goldenBallLocations[i] = locationNum;
         }
 

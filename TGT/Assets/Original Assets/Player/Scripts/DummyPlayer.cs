@@ -65,6 +65,7 @@ public class DummyPlayer : MonoBehaviour
                 }
                 if (goldenBall) {
                     goldenBall.gameObject.SetActive(false);
+                    inventory.addBall();
                     gameStatus.addGoldenBall();
                     if (gameStatus.haveCollectedAllGoldenBalls())
                     {
