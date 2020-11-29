@@ -19,17 +19,13 @@ public class RandomBallSpawner : MonoBehaviour
     public void RefreshSpawns()
     {
         int numOfGBToGenerate = gameStatus.maxNumberOfGoldenBalls() - gameStatus.goldenBallsCollected;
-        // TODO Uncomment
-        //int[] goldenBallLocations = new int[numOfGBToGenerate];
-        // TODO Remove
-        int[] goldenBallLocations = new int[3] { 0, 1, 2 };
+        int[] goldenBallLocations = new int[numOfGBToGenerate];
 
         var locations = FindObjectsOfType<BallSpawnLocation>();
         int numOfLocations = locations.Length;
 
         // Generate locations for golden balls
-        // TODO Uncomment
-        /*for (int i = 0; i < numOfGBToGenerate; i++)
+        for (int i = 0; i < numOfGBToGenerate; i++)
         {
             int locationNum = Random.Range(0, numOfLocations);
             while (Array.Exists(goldenBallLocations, e => e == locationNum))
@@ -40,7 +36,6 @@ public class RandomBallSpawner : MonoBehaviour
             print("Golden ball on location num " + locationNum);
             goldenBallLocations[i] = locationNum;
         }
-        */
 
 
         // Place balls to world

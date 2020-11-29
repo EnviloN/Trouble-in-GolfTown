@@ -8,6 +8,7 @@ public class DummyPlayer : MonoBehaviour
     private DialogueManager dm;
     private Inventory inventory;
     private GameStatus gameStatus;
+    private GiantGolfBall giantBall;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class DummyPlayer : MonoBehaviour
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<Inventory>();
         gameStatus = FindObjectOfType<GameStatus>();
+        giantBall = FindObjectOfType<GiantGolfBall>();
     }
 
     // Update is called once per frame
@@ -66,7 +68,8 @@ public class DummyPlayer : MonoBehaviour
                     gameStatus.addGoldenBall();
                     if (gameStatus.haveCollectedAllGoldenBalls())
                     {
-                        // Do something epic
+                        giantBall.GetComponent<MeshRenderer>().enabled = true;
+                        giantBall.GetComponent<MeshCollider>().enabled = true;
                     }
                     break;
                 }
