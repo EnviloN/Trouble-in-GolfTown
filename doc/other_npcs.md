@@ -33,9 +33,8 @@ The Barber is a talkative guy but he keeps his services costly. When he is not t
 
 Sherrif:  
 * When in Barber shop, sits on chair
-* Walks randomly between Dock, Town and Station
-    * {when he meets Foreign Supplier in Dock Market, they chat}
-    * {when he meets Miss Jane by Railway Station, they chat}
+* Walks randomly between through town
+    * {when he wants to sit on his chair, but Dave sits on it, they'll start arguing}
 
 
 
@@ -44,7 +43,7 @@ Sherrif:
 
 Old Dave is a local legend, once the Master Golfer, used to be the best player in all of [Golf Town](golf_town.md). His glory days are over now and he spends his days in various chairs around the town, reminiscing about the past. He might have a good advice or two.
 
-* Spawns in various chairs around town
+* Walks through town and sit in various chairs around town
     * {if approached by player, gives tips on playing (destroying towers)}
 
 
@@ -74,7 +73,6 @@ Having the only Supply Store in town, the Supply Owner is keeping his customers 
 *Behaviour:* 
      
 * Stands in Supply Store behind counter
-* Walks around store
 
 *When all Towers are destroyed:* Is upset that everyone plays golf now, instead of shopping and is closing store.
 
@@ -122,7 +120,7 @@ Be quiet when you meet him on his hunt, you don't want to frighten away his glor
 
 *Behaviour:* 
      
-* Walks in forest and at random points crouches as if hunting
+* Hides in forest and tries to blend in
 
 
 ## Beau and Austin
