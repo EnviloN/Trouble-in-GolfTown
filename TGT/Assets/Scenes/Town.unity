@@ -13984,7 +13984,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485538372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.017, y: 0.026, z: -0.138}
+  m_LocalPosition: {x: -0.017, y: -0.028, z: -0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1814793345}
@@ -28182,7 +28182,7 @@ MonoBehaviour:
   agent: {fileID: 1008316034}
   targetsGameObject: {fileID: 792612800}
   stopingDistance: 1
-  isRandomPicking: 0
+  isRandomPicking: 1
   mIsAtSittingPos: 0
   rollCooldownRangeMin: -1
   rollCooldownRangeMax: 1
@@ -34255,15 +34255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517892917420314, guid: 085e53ee40ad24b40a83bd90705ad460, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.3
+      value: 38.183
       objectReference: {fileID: 0}
     - target: {fileID: 4517892917420314, guid: 085e53ee40ad24b40a83bd90705ad460, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.378
+      value: 4.244
       objectReference: {fileID: 0}
     - target: {fileID: 4517892917420314, guid: 085e53ee40ad24b40a83bd90705ad460, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.055
+      value: 10.194
       objectReference: {fileID: 0}
     - target: {fileID: 4517892917420314, guid: 085e53ee40ad24b40a83bd90705ad460, type: 3}
       propertyPath: m_LocalRotation.x
@@ -35339,7 +35339,7 @@ MonoBehaviour:
   agent: {fileID: 1265935198}
   targetsGameObject: {fileID: 1529912568}
   stopingDistance: 1
-  isRandomPicking: 0
+  isRandomPicking: 1
   mIsAtSittingPos: 0
   rollCooldownRangeMin: -1
   rollCooldownRangeMax: 1
@@ -43243,9 +43243,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1164799982}
-  - {fileID: 2139916986}
-  - {fileID: 1814793345}
   - {fileID: 1543362250}
+  - {fileID: 1814793345}
+  - {fileID: 2139916986}
   - {fileID: 704099585}
   - {fileID: 1979618032}
   - {fileID: 1633872211}
@@ -43786,7 +43786,7 @@ Transform:
   m_Children:
   - {fileID: 2108822050}
   m_Father: {fileID: 1529912569}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -86.29, z: 0}
 --- !u!1001 &1546374615
 PrefabInstance:
@@ -46434,7 +46434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633872211}
   m_Layer: 0
-  m_Name: '[sit]GameObject (5)'
+  m_Name: '[sit]SheriffChair'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52199,7 +52199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814793344}
   m_LocalRotation: {x: -0, y: -0.741754, z: -0, w: -0.6706721}
-  m_LocalPosition: {x: -109.02, y: 1.961, z: -226.839}
+  m_LocalPosition: {x: -109.28, y: -0.267, z: -226.599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485538373}
@@ -62026,7 +62026,7 @@ Transform:
   m_Children:
   - {fileID: 1090684498}
   m_Father: {fileID: 1529912569}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -328.529, z: 0}
 --- !u!1001 &2141162095
 PrefabInstance:
