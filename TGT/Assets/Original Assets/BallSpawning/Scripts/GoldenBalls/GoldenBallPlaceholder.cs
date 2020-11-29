@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GoldBallPlaceholder : MonoBehaviour
+public class GoldenBallPlaceholder : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

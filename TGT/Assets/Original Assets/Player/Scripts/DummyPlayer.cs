@@ -7,12 +7,14 @@ public class DummyPlayer : MonoBehaviour
 
     private DialogueManager dm;
     private Inventory inventory;
+    private GameStatus gameStatus;
 
     // Start is called before the first frame update
     void Start()
     {
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<Inventory>();
+        gameStatus = FindObjectOfType<GameStatus>();
     }
 
     // Update is called once per frame
@@ -50,10 +52,24 @@ public class DummyPlayer : MonoBehaviour
             var hits = Physics.RaycastAll(ray, interactionRayDistance);
             foreach (var hit in hits) {
                 Placeholder ball = hit.collider.GetComponent<Placeholder>();
-                if (!ball) continue;
-                ball.gameObject.SetActive(false);
-                inventory.addBall();
-                break;
+                GoldenBallPlaceholder goldenBall = hit.collider.GetComponent<GoldenBallPlaceholder>();
+
+                if (!ball && !goldenBall) continue;
+                
+                if (ball) {
+                    ball.gameObject.SetActive(false);
+                    inventory.addBall();
+                    break;
+                }
+                if (goldenBall) {
+                    goldenBall.gameObject.SetActive(false);
+                    gameStatus.addGoldenBall();
+                    if (gameStatus.haveCollectedAllGoldenBalls())
+                    {
+                        // Do something epic
+                    }
+                    break;
+                }
             }
         }
     }

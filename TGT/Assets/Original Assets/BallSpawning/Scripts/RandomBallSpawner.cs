@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class RandomBallSpawner : MonoBehaviour
@@ -6,37 +7,53 @@ public class RandomBallSpawner : MonoBehaviour
     public GameObject ballPrefab; // ball prefab to be instantiated
     public GameObject goldenBallPrefab; // golden ball prefab to be instantiated
 
-    [SerializeField]
     private GameStatus gameStatus;
 
     private void Start()
     {
-        RefreshSpawns();
         gameStatus = FindObjectOfType<GameStatus>();
+        RefreshSpawns();
     }
 
     // When called, all spawn locations are refreshed.
     public void RefreshSpawns()
     {
-        // Pick up to 3 random locations for golden golf ball (based on how many player picked up already)
         int numOfGBToGenerate = gameStatus.maxNumberOfGoldenBalls() - gameStatus.goldenBallsCollected;
+        // TODO Uncomment
+        //int[] goldenBallLocations = new int[numOfGBToGenerate];
+        // TODO Remove
+        int[] goldenBallLocations = new int[3] { 0, 1, 2 };
 
         var locations = FindObjectsOfType<BallSpawnLocation>();
-        foreach (BallSpawnLocation location in locations)
-        {
-            location.Refresh(ballPrefab);
-        }
+        int numOfLocations = locations.Length;
 
-        if (numOfGBToGenerate > 0 && numOfGBToGenerate <= gameStatus.maxNumberOfGoldenBalls())
+        // Generate locations for golden balls
+        // TODO Uncomment
+        /*for (int i = 0; i < numOfGBToGenerate; i++)
         {
-            int numOfLocations = locations.Length;
-            for (int i = 0; i < numOfGBToGenerate; i++)
+            int locationNum = Random.Range(0, numOfLocations);
+            while (Array.Exists(goldenBallLocations, e => e == locationNum))
             {
-                // Random.Range -> Min inclusive, max exclusive: https://docs.unity3d.com/ScriptReference/Random.Range.html
-                int locationNum = Random.Range(0, numOfLocations);
-                locations[locationNum].Refresh(goldenBallPrefab);
+                locationNum = Random.Range(0, numOfLocations);
             }
 
+            print("Golden ball on location num " + locationNum);
+            goldenBallLocations[i] = locationNum;
+        }
+        */
+
+
+        // Place balls to world
+        for (int i = 0; i < numOfLocations; i++)
+        {
+            if (Array.Exists(goldenBallLocations, e => e == i))
+            {
+                locations[i].Refresh(goldenBallPrefab, true);
+            }
+            else
+            {
+                locations[i].Refresh(ballPrefab);
+            }
         }
     }
 }
