@@ -34,7 +34,7 @@ public class AnimationCondition : MonoBehaviour
         {
             float dist = Vector3.Distance(target.position, transform.position);
             float dist2 = Vector3.Distance(transform.position, point.position);
-            if (dist < treshold && dist2 < pointDistance)
+            if (((dist < treshold && !isTriggered) || (dist < treshold + 1 && isTriggered)) && dist2 < pointDistance)
             {
                 if (!mCooldown.isCountingDown())
                 {
