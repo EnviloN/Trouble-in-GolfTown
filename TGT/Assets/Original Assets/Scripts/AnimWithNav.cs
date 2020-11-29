@@ -11,16 +11,17 @@ public class AnimWithNav : MonoBehaviour
     public float stopingDistance = 1.5f;
     public bool isRandomPicking = true;
     private GameObject[] mTargets;
-    private Vector3 mLastDestination;
     private bool mIsStopped = false;
     private int mIndex = 0;
     public bool mIsAtSittingPos = false;
     private Vector3 mLastPos;
+
     [Header("Delays/Cooldowns")]
     public float rollCooldownRangeMin = -1;
     public float rollCooldownRangeMax = 1;
     public float rollCooldown = 5;
     public float sittingCooldown = 0;
+
     [Header("Animation Handling")]
     public Animator animator;
     private Delay mAnimationDelay;
@@ -48,29 +49,60 @@ public class AnimWithNav : MonoBehaviour
 
     /// Stops current navigation process
     /// <returns> True if agent was navigating. If agent was idling returns false.</returns>
-    public bool StopNavigation()
+    public bool StopNavigation(string anim, Vector3 tp)
     {
-        if (agent.enabled == true)
+        mIsStopped = true;
+        if (mAnimType == "sitting")
         {
-            mIsStopped = true;
-            agent.enabled = false;
-            mLastDestination = agent.destination;
-            return true;
+            agent.enabled = true;
+            agent.Warp(tp);
         }
-        return false;
+        agent.enabled = false;
+        foreach (string v in isIdlingVarsName)
+            animator.SetBool(v, false);
+        foreach (string v in isSitingVarsName)
+            animator.SetBool(v, false);
+        animator.SetBool(isMovingVarsName, false);
+        animator.SetBool(anim, true);
+        return true;
     }
 
     /// Resumes navigation stopped by StopNavigation
     /// <returns> True if navigation was stopped by StopNavigation, false otherwise.</returns>
-    public bool StartNavigation()
+    public bool ResetNavigation(bool pickNew, string anim)
     {
-        if (mIsStopped == true)
+        mIsStopped = false;
+        agent.enabled = true;
+        foreach (string v in isIdlingVarsName)
+            animator.SetBool(v, false);
+        foreach (string v in isSitingVarsName)
+            animator.SetBool(v, false);
+        animator.SetBool(isMovingVarsName, true);
+        animator.SetBool(anim, false);
+        if (pickNew)
         {
-            agent.enabled = true;
-            agent.SetDestination(mLastDestination);
-            return true;
+            // roll new target and set navigation to it
+            int index = mIndex;
+            while (mIndex == index)
+            {
+                if (isRandomPicking)
+                    index = Random.Range(0, mTargets.Length);
+                else
+                    index++;
+                index = index % mTargets.Length;
+            }
+            mIndex = index;
+            if (mTargets[mIndex].name.StartsWith("[sit]"))
+                mIsAtSittingPos = true;
+            else
+                mIsAtSittingPos = false;
+            agent.SetDestination(mTargets[mIndex].transform.position);
+        } 
+        else
+        {
+            agent.SetDestination(mTargets[mIndex].transform.position);
         }
-        return false;
+        return true;
     }
 
     public void changeDesti(Transform desti, int index)
@@ -180,24 +212,27 @@ public class AnimWithNav : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mAnimationDelay != null && mAnimationDelay.isCountingDown())
+        if (!mIsStopped)
         {
-            mAnimationDelay.update(Time.deltaTime);
-        }
-        else
-        {
-            if (agent.enabled)
+            if (mAnimationDelay != null && mAnimationDelay.isCountingDown())
             {
-                // agent is enabled so we are still navigating
-                if (TryStopNav())
-                    AnimationUpdate();
-                return;
+                mAnimationDelay.update(Time.deltaTime);
             }
-            int nextState = Random.Range(0, 100);
-            if (nextState > movingProbability)
+            else
             {
-                // move - navigate to new target
-                StartNav();
+                if (agent.enabled)
+                {
+                    // agent is enabled so we are still navigating
+                    if (TryStopNav())
+                        AnimationUpdate();
+                    return;
+                }
+                int nextState = Random.Range(0, 100);
+                if (nextState > movingProbability)
+                {
+                    // move - navigate to new target
+                    StartNav();
+                }
             }
         }
     }
