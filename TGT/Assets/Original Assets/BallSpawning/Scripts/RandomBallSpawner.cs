@@ -41,7 +41,7 @@ public class RandomBallSpawner : MonoBehaviour
         // Place balls to world
         for (int i = 0; i < numOfLocations; i++)
         {
-            if (Array.Exists(goldenBallLocations, e => e == i))
+            if (spawnGoldenBalls && Array.Exists(goldenBallLocations, e => e == i))
             {
                 locations[i].Refresh(goldenBallPrefab, true);
             }
