@@ -75,6 +75,11 @@ Almost every NPC already has an Animation Controller in folder [Controllers](./.
 #### Animation cycles and navigation implementation
 In order to move NPC from one position to the second one, we are using NavMeshes. NavMesh is a mesh consisting of multiple faces, which describes possible path NPC could take. Those can be imported to our project from Unity's GitLab. We are using the NavMesh agent to determine speed, rotation velocity, dimensions of NPC and how should NPC avoid obstacles. We determine the exact location of movement with random picks from GameObject, which has 1 layer children, defining target places. After this setup, we've set transitions in the Animator class, initialized them with parameters, which are referenced and controlled from our AnimWithNav.cs script file.
 
+#### Unique Animation
+When Sheriff sees Dave sitting on his chair, or possibly just going to sit on his chair they both will immediately start arguing. 
+![Arguing](./img/animations/UniqueTriggerAnimation.gif)
+
+
 #### List of [Characters](./characters.md) ,Their Controllers and Animations:
 * **Barman**
   * DrunkenJoe_deco
@@ -104,22 +109,36 @@ In order to move NPC from one position to the second one, we are using NavMeshes
 * **Lisa**
   * CowboyGirl_deco
     * Sitting Laughing
+    * Sitting talking
+    * Walking
+    * Idle
 
 * **Joe**
   * CowBoy_deco
     * Sitting Laughing
+    * Sitting talking
+    * Walking
+    * Idle
 
 * **Sheriff**
   * Sheriff_deco
     * Sitting Idle
+    * Walking
+    * Idle
+    * Arguing
 
 * **Barber**
   * Barber_deco
     * Idle
+    * Walking
+    * Sitting
 
 * **Old Dave**
   * OldDave_deco
     * Idle
+    * Walking
+    * Sitting wasted
+    * Arguing
 
 * **Miss Jane**
   * Jane_deco
@@ -132,10 +151,12 @@ In order to move NPC from one position to the second one, we are using NavMeshes
 * **Sister Angelica**
   * Angelica_deco
     * Idle
+    * Walking
 
 * **Sister Peggy**
   * Peggy_deco
     * Idle
+    * Walking
 
 * **Oil Tower Operators**
   * TOperatorA
@@ -170,6 +191,8 @@ In order to move NPC from one position to the second one, we are using NavMeshes
     * Sittin on Chair
   * MVisitor_deco
     * Idle
+    * Walking
+    * Sitting
 
 * **Frank**
   * Frank_deco
