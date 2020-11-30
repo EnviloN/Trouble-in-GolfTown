@@ -31,9 +31,11 @@ The Barber is a talkative guy but he keeps his services costly. When he is not t
 * or Stands by chimney 
     * {if approached by player, asks him to leave unless he can pay}
 
+![](./img/animations/UniqueTriggerAnimation.gif)
+
 Sherrif:  
 * When in Barber shop, sits on chair
-* Walks randomly between through town
+* Walks randomly around the town
     * {when he wants to sit on his chair, but Dave sits on it, they'll start arguing}
 
 

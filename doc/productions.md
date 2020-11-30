@@ -18,6 +18,11 @@ When a ball is spawned, a prefab that has the necessary scripts to support the p
 ![](./img/productions/ball_location2.png)
 
 
+### Giant Ball
+In the main scene (outside world), also unique black golf balls spawn. The black balls can be picked up as regular balls and added to the player's inventory as standard golf balls. However, If a player manages to find three black balls, a giant golf ball will spawn in the sky. The balls are generated at random locations around the map and are hard to find. It is always guaranteed that the same number of black balls spawned as the player is missing to the three black balls collceted.
+
+![](./img/productions/giant_ball.png)
+
 
 ## Tumbleweed
 

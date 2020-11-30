@@ -15,8 +15,6 @@ We have both created our original animations and used already existing ones.
 - [Characters](../characters.md)
     - [Main characters](../main_characters.md)
     - [Other NPCs](../other_npcs.md)
-    
-[Todo] update list (navigation?)
 
 ## Productions
 
@@ -34,7 +32,6 @@ There are several behaviors some NPCs follow. Some of the behaviors are triggere
 We have also created a horse behavior that the horses on the Magnate's farm follow. The horses walk around and eat, but when the player approaches, they run away from them.
 
 ![](../img/animations/horses/horses_1.png)
-<!-- ![](../img/other_npcs/lisa_joe.png) -->
 
 
 ### Most relevant documentation pages:
@@ -45,4 +42,18 @@ We have also created a horse behavior that the horses on the Magnate's farm foll
     - [Main characters](../main_characters.md)
     - [Other NPCs](../other_npcs.md)
 
-[Todo] update list (horse behavior?)
+## Unique events
+
+Currently, there are two unique events either conditional to player's actions or to random chance.
+
+![](../img/animations/UniqueTriggerAnimation.gif)
+
+Sherif is usually walking through the streets of Gold Town, spending some time at the Barber Shop, or sitting on his chair. On the other hand, Old Dave is always changing spots and sleeps on random chairs throughout the town. He knows he is not allowed to sleep on Sherif's chair, but he can forget and go sleep there with a small probability. If during that time, Sherif happens to go to his chair as well, they start to argue.
+
+![](../img/productions/giant_ball.png)
+
+There are always up to three black golf balls hidden in the Golf Plains. There are very hard to find, but if a player manages to find all three of them, a giant golf ball will spawn in the sky and cast a shadow on the town.
+
+### Most relevant documentation pages:
+- [Productions](../productions.md)
+- [Other NPCs](../other_npcs.md)

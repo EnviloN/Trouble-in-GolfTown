@@ -33,6 +33,8 @@ A small VR minigolf adventure that takes place in a small western town by the se
         - [3rd party assets](./doc/3party_assets.md)
         - [Original assets](./doc/original_assets.md)
     - [Animations](./doc/animations.md)
+        - [Oil Tower explosion](./doc/oil_tower.md)
+        - [Horse behavior](./doc/horses.md)
 - [Scenes](./doc/scenes.md)
     - [Golf Plains](./doc/golf_plains.md)
         - [Golf Town](./doc/golf_town.md)
