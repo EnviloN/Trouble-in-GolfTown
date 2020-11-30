@@ -6,6 +6,7 @@ public class RandomBallSpawner : MonoBehaviour
 {
     public GameObject ballPrefab; // ball prefab to be instantiated
     public GameObject goldenBallPrefab; // golden ball prefab to be instantiated
+    public bool spawnGoldenBalls = false;
 
     private GameStatus gameStatus;
 
@@ -24,18 +25,18 @@ public class RandomBallSpawner : MonoBehaviour
         var locations = FindObjectsOfType<BallSpawnLocation>();
         int numOfLocations = locations.Length;
 
-        // Generate locations for golden balls
-        for (int i = 0; i < numOfGBToGenerate; i++)
+        if (spawnGoldenBalls)
         {
-            int locationNum = Random.Range(0, numOfLocations);
-            while (Array.Exists(goldenBallLocations, e => e == locationNum))
-            {
-                locationNum = Random.Range(0, numOfLocations);
+            // Generate locations for golden balls
+            for (int i = 0; i < numOfGBToGenerate; i++) {
+                int locationNum = Random.Range(0, numOfLocations);
+                while (Array.Exists(goldenBallLocations, e => e == locationNum)) {
+                    locationNum = Random.Range(0, numOfLocations);
+                }
+
+                goldenBallLocations[i] = locationNum;
             }
-
-            goldenBallLocations[i] = locationNum;
         }
-
 
         // Place balls to world
         for (int i = 0; i < numOfLocations; i++)
