@@ -9,8 +9,8 @@ public class BallSpawnLocation : MonoBehaviour {
         GetComponent<MeshRenderer>().enabled = false;
     }
 
-    public void Refresh(GameObject prefab) {
-        if (Random.value < spawnPropability / 100) {
+    public void Refresh(GameObject prefab, bool bypassProbability = false) {
+        if (bypassProbability || Random.value < spawnPropability / 100) {
             Instantiate(prefab, transform.position, Quaternion.identity);
         }
     }
