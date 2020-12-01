@@ -21,7 +21,14 @@ A small VR minigolf adventure that takes place in a small western town by the se
 **Download:**
 [dev_build_v0.3](https://www.dropbox.com/s/pjz95a4yujwjsrp/dev_build_v0.3.zip?dl=0)
 
-Important notes:
+**Controls:**  
+WASD - Walking  
+Space - Jump  
+Shift - Sprint  
+E - Interaction (talk, pickup, enter...)  
+K - Trigger tower destruction  
+
+**Important notes:**  
 - There is currently no menu in the game. To quit, you have to kill the process.
 - The player controller is a prototype. You will experience a camera trembling when standing on some surfaces, and it is also easy to get stuck in some props.
 - You can collect golf balls hidden around the world and interiors.
