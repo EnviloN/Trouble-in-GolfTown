@@ -16,11 +16,21 @@ A small VR minigolf adventure that takes place in a small western town by the se
     - Jan Picka
     - Dominik Fryc
 
+## Play the Game
+
+**Download:**
+[dev_build_v0.3](https://www.dropbox.com/s/pjz95a4yujwjsrp/dev_build_v0.3.zip?dl=0)
+
+Important notes:
+- There is currently no menu in the game. To quit, you have to kill the process.
+- The player controller is a prototype. You will experience a camera trembling when standing on some surfaces, and it is also easy to get stuck in some props.
+- You can collect golf balls hidden around the world and interiors.
+- In the world, there are three unique black golf balls randomly spawned. If all of them are collected, something will happen.
     
 ## VHS Documentation
 
 - [Milestone 1: Static world](./doc/vhs/static_world.md)
-- Milestone 2: Dynamic world
+- [Milestone 2: Dynamic world](./doc/vhs/dynamic_world.md)
 - Milestone 3: Complex world with a story
 
 
@@ -33,6 +43,8 @@ A small VR minigolf adventure that takes place in a small western town by the se
         - [3rd party assets](./doc/3party_assets.md)
         - [Original assets](./doc/original_assets.md)
     - [Animations](./doc/animations.md)
+        - [Oil Tower explosion](./doc/oil_tower.md)
+        - [Horse behavior](./doc/horses.md)
 - [Scenes](./doc/scenes.md)
     - [Golf Plains](./doc/golf_plains.md)
         - [Golf Town](./doc/golf_town.md)
@@ -42,3 +54,4 @@ A small VR minigolf adventure that takes place in a small western town by the se
     - [Main characters](./doc/main_characters.md)
     - [Other NPCs](./doc/other_npcs.md)
 - [Mechanics](./doc/mechanics.md)
+    - [Productions](./doc/productions.md)
