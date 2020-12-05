@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public GameStatus gameStatus;
 
     private Queue<string> sentences; // Queue of sentences in active dialogue
+    private string currentCharacterName; 
     private bool dialogueActive; // flag if dualogue is ongoing
 
     void Start()
@@ -45,7 +46,7 @@ public class DialogueManager : MonoBehaviour
         if (sentences.Count != 0)
         {
             dialogueActive = true;
-            nameText.text = characterName;
+            currentCharacterName = characterName;
             DisplayNextSentence();
         }
     }
@@ -59,8 +60,14 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        string raw_sentence = sentences.Dequeue();
+        if (raw_sentence.StartsWith("[player]")) {
+            nameText.text = "Player";
+            dialogueText.text = raw_sentence.Remove(0, 8).Trim();
+        } else {
+            nameText.text = currentCharacterName;
+            dialogueText.text = raw_sentence;
+        }
     }
 
     // Ends the current dialog
