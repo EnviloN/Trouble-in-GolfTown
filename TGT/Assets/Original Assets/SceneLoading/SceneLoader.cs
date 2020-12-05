@@ -7,9 +7,11 @@ public class SceneLoader : MonoBehaviour {
     public float transitionTime = 1f;
 
     private GameObject player;
+    private DialogueManager dm;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
+        dm = FindObjectOfType<DialogueManager>();
         LoadMainScene();
     }
 
@@ -51,6 +53,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
+        dm.UpdateGraphs();
 
         transition.SetTrigger("End");
     }

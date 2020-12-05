@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -18,10 +20,13 @@ public class DialogueManager : MonoBehaviour
     private string currentCharacterName; 
     private bool dialogueActive; // flag if dualogue is ongoing
 
+    private Dictionary<string, string> currentDialogueNodes;
+
     void Start()
     {
         // initialize
         sentences = new Queue<string>();
+        currentDialogueNodes = new Dictionary<string, string>();
         dialogueActive = false;
     }
 
@@ -97,6 +102,23 @@ public class DialogueManager : MonoBehaviour
         var talkatives = FindObjectsOfType<Talkative>();
         foreach (var talkative in talkatives) {
             talkative.dialogueGraph.UpdateCurrent();
+            updateCurrentGUID(talkative.dialogueGraph.CharacterName, talkative.dialogueGraph.Current.GUID);
+        }
+    }
+
+    public string getOrInsertCurrentGUID(string name, string dialogueGUID) {
+        if (!currentDialogueNodes.ContainsKey(name)) {
+            currentDialogueNodes.Add(name, dialogueGUID);
+        }
+
+        return currentDialogueNodes[name];
+    }
+
+    public void updateCurrentGUID(string name, string dialogueGUID) {
+        if (!currentDialogueNodes.ContainsKey(name)) {
+            currentDialogueNodes.Add(name, dialogueGUID);
+        } else {
+            currentDialogueNodes[name] = dialogueGUID;
         }
     }
 }

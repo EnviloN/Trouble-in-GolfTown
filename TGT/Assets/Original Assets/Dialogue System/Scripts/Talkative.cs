@@ -29,8 +29,17 @@ public class Talkative : MonoBehaviour
             }
         }
         dialogueGraph.Current = startNode as DialogueNode;
-
         dialogueGraph.gameStatus = dm.gameStatus;
+
+        var guid = dm.getOrInsertCurrentGUID(dialogueGraph.name, dialogueGraph.Current.GUID);
+        if (guid == dialogueGraph.Current.GUID) return;
+        foreach (var node in dialogueGraph.nodes) {
+            var dialogueNode = (DialogueNode) node;
+            if (dialogueNode.GUID == guid) {
+                dialogueGraph.Current = dialogueNode;
+                return;
+            }
+        }
     }
 
     private void Update()
