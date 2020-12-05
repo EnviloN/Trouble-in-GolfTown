@@ -8,6 +8,7 @@ public class DummyPlayer : MonoBehaviour
     private DialogueManager dm;
     private Inventory inventory;
     private GameStatus gameStatus;
+    private GameManager GM;
     private GiantGolfBall giantBall;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class DummyPlayer : MonoBehaviour
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<Inventory>();
         gameStatus = FindObjectOfType<GameStatus>();
+        GM = FindObjectOfType<GameManager>();
         giantBall = FindObjectOfType<GiantGolfBall>();
     }
 
@@ -61,13 +63,15 @@ public class DummyPlayer : MonoBehaviour
                 if (ball) {
                     ball.gameObject.SetActive(false);
                     inventory.addBall();
+                    var count = (int) GM.GetGameStatus("ballsCollected") + 1;
+                    GM.SetGameStatus("ballsCollected", count);
                     break;
                 }
                 if (goldenBall) {
                     goldenBall.gameObject.SetActive(false);
                     inventory.addBall();
-                    gameStatus.addGoldenBall();
-                    if (gameStatus.haveCollectedAllGoldenBalls())
+                    GM.AddGoldenBall();
+                    if (GM.HaveCollectedAllGoldenBalls())
                     {
                         giantBall.GetComponent<MeshRenderer>().enabled = true;
                         giantBall.GetComponent<MeshCollider>().enabled = true;
