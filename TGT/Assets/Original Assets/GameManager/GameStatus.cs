@@ -19,39 +19,13 @@ public class GameStatus : MonoBehaviour {
         set => ballsCollectedVar = value;
     }
 
-    #region Golden Balls
     [SerializeField]
-    [Range(0, 3)]
     private int goldenBallsCollectedVar;
     public int goldenBallsCollected
     {
         get => goldenBallsCollectedVar;
         set => goldenBallsCollectedVar = value;
     }
-
-    public void addGoldenBall()
-    {
-        if (goldenBallsCollectedVar != maxNumberOfGoldenBalls())
-        {
-            goldenBallsCollectedVar++;
-        }
-    }
-
-    public void resetGoldenBallsCollected()
-    {
-        goldenBallsCollectedVar = 0;
-    }
-
-    public int maxNumberOfGoldenBalls()
-    {
-        return 3;
-    }
-
-    public bool haveCollectedAllGoldenBalls()
-    {
-        return goldenBallsCollectedVar == maxNumberOfGoldenBalls();
-    }
-    #endregion
 
     public object this[string propertyName] {
         get => this.GetType().GetProperty(propertyName)?.GetValue(this, null);

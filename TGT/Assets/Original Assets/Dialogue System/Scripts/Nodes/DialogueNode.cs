@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using XNode;
 
 [NodeWidth(500)]
@@ -8,6 +7,9 @@ public class DialogueNode : Node {
     [Output(dynamicPortList = true)] public ConstraintPort[] Children;
 
     public Dialogue dialogue;
+
+    [NonSerialized]
+    public string GUID = Guid.NewGuid().ToString();
 
     public override object GetValue(NodePort port) {
         return null;

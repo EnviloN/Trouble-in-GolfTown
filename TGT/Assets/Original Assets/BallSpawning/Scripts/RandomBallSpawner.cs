@@ -8,18 +8,18 @@ public class RandomBallSpawner : MonoBehaviour
     public GameObject goldenBallPrefab; // golden ball prefab to be instantiated
     public bool spawnGoldenBalls = false;
 
-    private GameStatus gameStatus;
+    private GameManager GM;
 
     private void Start()
     {
-        gameStatus = FindObjectOfType<GameStatus>();
+        GM = FindObjectOfType<GameManager>();
         RefreshSpawns();
     }
 
     // When called, all spawn locations are refreshed.
     public void RefreshSpawns()
     {
-        int numOfGBToGenerate = gameStatus.maxNumberOfGoldenBalls() - gameStatus.goldenBallsCollected;
+        int numOfGBToGenerate = GM.MaxNumberOfGoldenBalls - GM.GetGoldenBallsCollected();
         int[] goldenBallLocations = new int[numOfGBToGenerate];
 
         var locations = FindObjectsOfType<BallSpawnLocation>();
