@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,12 +17,16 @@ public class DialogueManager : MonoBehaviour
     public GameStatus gameStatus;
 
     private Queue<string> sentences; // Queue of sentences in active dialogue
+    private string currentCharacterName; 
     private bool dialogueActive; // flag if dualogue is ongoing
+
+    private Dictionary<string, string> currentDialogueNodes;
 
     void Start()
     {
         // initialize
         sentences = new Queue<string>();
+        currentDialogueNodes = new Dictionary<string, string>();
         dialogueActive = false;
     }
 
@@ -45,7 +51,7 @@ public class DialogueManager : MonoBehaviour
         if (sentences.Count != 0)
         {
             dialogueActive = true;
-            nameText.text = characterName;
+            currentCharacterName = characterName;
             DisplayNextSentence();
         }
     }
@@ -59,8 +65,14 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        string raw_sentence = sentences.Dequeue();
+        if (raw_sentence.StartsWith("[player]")) {
+            nameText.text = "Player";
+            dialogueText.text = raw_sentence.Remove(0, 8).Trim();
+        } else {
+            nameText.text = currentCharacterName;
+            dialogueText.text = raw_sentence;
+        }
     }
 
     // Ends the current dialog
@@ -90,6 +102,23 @@ public class DialogueManager : MonoBehaviour
         var talkatives = FindObjectsOfType<Talkative>();
         foreach (var talkative in talkatives) {
             talkative.dialogueGraph.UpdateCurrent();
+            updateCurrentGUID(talkative.dialogueGraph.CharacterName, talkative.dialogueGraph.Current.GUID);
+        }
+    }
+
+    public string getOrInsertCurrentGUID(string name, string dialogueGUID) {
+        if (!currentDialogueNodes.ContainsKey(name)) {
+            currentDialogueNodes.Add(name, dialogueGUID);
+        }
+
+        return currentDialogueNodes[name];
+    }
+
+    public void updateCurrentGUID(string name, string dialogueGUID) {
+        if (!currentDialogueNodes.ContainsKey(name)) {
+            currentDialogueNodes.Add(name, dialogueGUID);
+        } else {
+            currentDialogueNodes[name] = dialogueGUID;
         }
     }
 }

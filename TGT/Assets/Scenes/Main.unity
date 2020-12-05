@@ -1455,6 +1455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904069659}
   - component: {fileID: 1904069658}
+  - component: {fileID: 1904069661}
   - component: {fileID: 1904069660}
   m_Layer: 0
   m_Name: GameManager
@@ -1505,6 +1506,18 @@ MonoBehaviour:
   timesShotVar: 0
   ballsCollectedVar: 0
   goldenBallsCollectedVar: 0
+--- !u!114 &1904069661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904069657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c678073755f0744b9d28ce60d131d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1940149834
 GameObject:
   m_ObjectHideFlags: 0
