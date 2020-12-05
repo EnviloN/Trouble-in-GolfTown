@@ -7,17 +7,15 @@ public class MainMenu : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 0.5f;
+    public GameObject MusicPlayer;
 
-    private void LoadMainScene()
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
-    }
 
     public IEnumerator LoadScene()
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
+        //mute music (just for now)
+        MusicPlayer.GetComponent<AudioSource>().mute = true;
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
         //transition.SetTrigger("End");
     }
