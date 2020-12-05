@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour {
     public int MaxNumberOfGoldenBalls = 3;
 
     // Start is called before the first frame update
-    void Start() {
-        gameStatus = FindObjectOfType<GameStatus>();
+    void Awake() {
+        gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
         dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
