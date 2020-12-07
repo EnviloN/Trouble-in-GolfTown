@@ -7,12 +7,6 @@ public class GameStatus : MonoBehaviour {
         set => somethingHappenedVar = value;
     }
 
-    [SerializeField] private int timesShotVar;
-    public int timesShot {
-        get => timesShotVar;
-        set => timesShotVar = value;
-    }
-
     [SerializeField] private int ballsCollectedVar;
     public int ballsCollected {
         get => ballsCollectedVar;
@@ -26,6 +20,15 @@ public class GameStatus : MonoBehaviour {
         get => goldenBallsCollectedVar;
         set => goldenBallsCollectedVar = value;
     }
+
+    #region Quests
+    [SerializeField]
+    private int tutorialStageVar = 0;
+    public int tutorialStage {
+        get => tutorialStageVar;
+        set => tutorialStageVar = value;
+    }
+    #endregion
 
     public object this[string propertyName] {
         get => this.GetType().GetProperty(propertyName)?.GetValue(this, null);

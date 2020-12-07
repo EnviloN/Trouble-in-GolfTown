@@ -8,11 +8,21 @@ public class SceneLoader : MonoBehaviour {
 
     private GameObject player;
     private DialogueManager dm;
+    private GameManager GM;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
-        LoadMainScene();
+        GM = FindObjectOfType<GameManager>();
+
+        if (GM.debugMode) {
+            LoadMainScene();
+            return;
+        }
+
+        LoadChurchScene();
+        player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+
     }
 
     private static void LoadSceneAdditively(string sceneName) {
@@ -53,6 +63,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
+        dm.RetreivePersistantStatuses();
         dm.UpdateGraphs();
 
         transition.SetTrigger("End");

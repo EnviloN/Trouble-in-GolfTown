@@ -2,8 +2,11 @@
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    public bool debugMode;
+
     private GameStatus gameStatus;
     private DialogueManager dialogueManager;
+    private GameObject player;
 
     [NonSerialized]
     public int MaxNumberOfGoldenBalls = 3;
@@ -12,6 +15,7 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
         dialogueManager = FindObjectOfType<DialogueManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void SetGameStatus(string property, object value) {
