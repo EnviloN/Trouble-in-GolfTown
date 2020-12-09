@@ -70,12 +70,14 @@ public class DialogueManager : MonoBehaviour
             nameText.text = "Player";
             dialogueText.text = raw_sentence.Remove(0, 8).Trim();
         } else if (raw_sentence.StartsWith("[status]")) {
-            var statisSet = raw_sentence.Remove(0, 8).Trim();
+            var statusSet = raw_sentence.Remove(0, 8).Trim();
             EndDialogue();
 
-            var property = statisSet.Split('=')[0];
-            var value = Convert.ToInt32(statisSet.Split('=')[1]);
-            GM.SetGameStatus(property, value);
+            foreach (var status in statusSet.Split('|')) {
+                var property = status.Split('=')[0];
+                var value = Convert.ToInt32(status.Split('=')[1]);
+                GM.SetGameStatus(property, value);
+            }
             return;
         } else {
             nameText.text = currentCharacterName;

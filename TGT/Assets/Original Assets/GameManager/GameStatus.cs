@@ -23,10 +23,24 @@ public class GameStatus : MonoBehaviour {
 
     #region Quests
     [SerializeField]
-    private int tutorialStageVar = 0;
+    private int tutorialStageVar;
     public int tutorialStage {
         get => tutorialStageVar;
         set => tutorialStageVar = value;
+    }
+
+    [SerializeField]
+    private int givePutterVar;
+    public int givePutter {
+        get => givePutterVar;
+        set => givePutterVar = value;
+    }
+
+    [SerializeField]
+    private int give5IronVar;
+    public int give5Iron {
+        get => give5IronVar;
+        set => give5IronVar = value;
     }
     #endregion
 

@@ -18,6 +18,18 @@ public class GameManager : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update() {
+        if (gameStatus.givePutter == 1) {
+            gameStatus.givePutter = 0;
+            player.GetComponent<Inventory>().havePutterClub = true;
+        }
+
+        if (gameStatus.give5Iron == 1) {
+            gameStatus.give5Iron = 0;
+            player.GetComponent<Inventory>().have5IronClub = true;
+        }
+    }
+
     public void SetGameStatus(string property, object value) {
         gameStatus[property] = value;
         dialogueManager.UpdateGraphs();

@@ -1,5 +1,138 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6097496921862569815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2662.8896, y: -141.10373}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -6097496921862569815}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 4096766997981948787}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -6097496921862569815}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -6097496921862569815}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -1764282685889206973}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: tutorialStage
+    type: 1
+    number: 4
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Go on, give it a try.
+    - It's easy, you'll figure it out in no time!
+    - This hole should be pretty straight forward.
+    - Just place the ball somewhere on the sqare with no walls and start playing.
+  GUID: 08742af1-9be2-4d78-a38b-7476f3ccb70a
+--- !u!114 &-1764282685889206973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3396.1567, y: -120.83058}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -1764282685889206973}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -6097496921862569815}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -1764282685889206973}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -1764282685889206973}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 2060842035647105457}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: tutorialStage
+    type: 0
+    number: 6
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - There you go! You are a natural at it!
+    - 'You can keep my putter. Take it as a welcome gift. '
+    - I wanted to get a new one anyway.
+    - You should go check out the town. It's just down the hill.
+    - Make sure to visit the saloon. Barman will hapilly introduce to our little
+      town.
+    - '[status] tutorialStage=6'
+  GUID: f0ef11e5-3fe3-46a9-b9fb-d984e53dd1b6
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,6 +150,9 @@ MonoBehaviour:
   - {fileID: 7730338455984880551}
   - {fileID: 4096766997981948787}
   - {fileID: 8713770992974607258}
+  - {fileID: -6097496921862569815}
+  - {fileID: -1764282685889206973}
+  - {fileID: 2060842035647105457}
   CharacterName: Dr. Quinn
 --- !u!114 &482302657704763535
 MonoBehaviour:
@@ -89,6 +225,54 @@ MonoBehaviour:
     - '... [TODO]: continue!'
     - '[status] tutorialStage=1'
   GUID: 79b5db02-495a-4c5e-b647-9cc1dbf9179d
+--- !u!114 &2060842035647105457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4248, y: -136}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: 2060842035647105457}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -1764282685889206973}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 2060842035647105457}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Have you checked out the town yet?
+    - Have you played some minigiolf from the last time we met?
+    - '[TODO]'
+  GUID: 05b6f46d-26af-4a43-9d4f-a886da591db3
 --- !u!114 &4096766997981948787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +291,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: 4096766997981948787}
@@ -129,7 +314,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: 4096766997981948787}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6097496921862569815}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: tutorialStage
+    type: 1
+    number: 3
   dialogue:
     isSmallTalk: 0
     sentences:
@@ -141,7 +341,7 @@ MonoBehaviour:
     - Here, take my putter and give it a try. You should also be able to find some
       golf balls around the cemetery.
     - '[player] Uhhh... Okay..?'
-    - '[status] tutorialStage=4'
+    - '[status] tutorialStage=4|givePutter=1'
     - 
     - 
   GUID: 69970c1d-3793-4a81-9cc2-721fad7506db
