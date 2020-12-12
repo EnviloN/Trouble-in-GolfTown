@@ -765,6 +765,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallCountUI: {fileID: 1940149836}
   numOfBallsVar: 0
+  switchClubKey: 257
+  putterPrefab: {fileID: 210722126370726939, guid: 64601ecd9459e57468b19fdaa1a9026a,
+    type: 3}
+  fiveIronPrefab: {fileID: 6302164973794587298, guid: 46528beebb2a46b488d0d7dd287c8e26,
+    type: 3}
+  clubInHandState: 0
+  relativeClubDistance: 0.3
+  clubRotX: 35
+  clubRotY: 20
+  clubRotZ: 180
+  switchBallKey: 258
+  maxBallSpawnDistance: 2
+  spawnableGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
+    type: 3}
   havePutterClubVar: 0
   have5IronClubVar: 0
 --- !u!1 &881385352
@@ -1654,6 +1668,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
