@@ -532,6 +532,7 @@ GameObject:
   - component: {fileID: 16334408}
   - component: {fileID: 16334407}
   - component: {fileID: 16334406}
+  - component: {fileID: 16334409}
   m_Layer: 0
   m_Name: Island
   m_TagString: Untagged
@@ -597,6 +598,18 @@ Transform:
   m_Father: {fileID: 1961311702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &16334409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16334405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55683fcc6881b3b4dbdeced57b92a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23753137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22014,8 +22027,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521397775}
-  m_LocalRotation: {x: -0.0021788098, y: 0.9709407, z: 0.2391496, w: 0.008770884}
-  m_LocalPosition: {x: -0.40764892, y: -8.646843, z: -0.18027039}
+  m_LocalRotation: {x: 0.03250542, y: 0.95488113, z: 0.2723167, w: -0.11396935}
+  m_LocalPosition: {x: -0.32889464, y: -11.664598, z: 0.3002197}
   m_LocalScale: {x: 0.010000001, y: 0.07570594, z: 0.011262404}
   m_Children: []
   m_Father: {fileID: 316163562}

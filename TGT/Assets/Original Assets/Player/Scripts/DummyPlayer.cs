@@ -61,6 +61,11 @@ public class DummyPlayer : MonoBehaviour
                 if (!ball && !goldenBall) continue;
                 
                 if (ball) {
+                    if (inventory.IsRaycastingBall())
+                    {
+                        // Player can pickup the ball with interaction key while raycasting it on ground
+                        inventory.CancelRaycast(false);
+                    }
                     ball.gameObject.SetActive(false);
                     inventory.addBall();
                     var count = (int) GM.GetGameStatus("ballsCollected") + 1;
