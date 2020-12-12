@@ -86,4 +86,10 @@ public class DummyPlayer : MonoBehaviour
             }
         }
     }
+
+    public void OnSceneChange()
+    {
+        inventory.RemoveClubFromHand();
+        inventory.CancelRaycast();
+    }
 }
