@@ -6,6 +6,8 @@ public class Inventory : MonoBehaviour {
 
     [SerializeField] private int numOfBallsVar;
 
+    public KeyCode cancelKey;
+
     // Clubs in hand
     public KeyCode switchClubKey;
     public GameObject putterPrefab;
@@ -13,13 +15,15 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private int clubInHandState = 0;
     private GameObject clubObject = null;
     private float relativeClubDistance = 0.3f;
-    private Quaternion clubRotation = Quaternion.Euler(35f, 20f, 180f);
+    private Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     // Ball in hand
-    public KeyCode switchBallKey;
-    public float maxBallSpawnDistance = 3f;
+    public KeyCode showPlaceBallKey;
+    private float maxBallSpawnDistance = 4f;
     public GameObject spawnableGolfBallPrefab;
-    private bool ballSpawningState = false;
+    [SerializeField] private bool raycasting = false;
+    private GameObject ballObject = null;
+    private float moveUpBy = 0.023f;
 
     public int numOfBalls {
         get => numOfBallsVar;
@@ -45,6 +49,12 @@ public class Inventory : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown(cancelKey))
+        {
+            RemoveClubFromHand();
+            CancelRaycast();
+        }
+
         if (Input.GetKeyDown(switchClubKey))
         {
             switch(clubInHandState)
@@ -78,11 +88,33 @@ public class Inventory : MonoBehaviour {
                     break;
             }
         }
+
+        if (raycasting)
+        {
+            RaycastBallHere();
+        }
+
+        if (Input.GetKeyDown(showPlaceBallKey))
+        {
+            if (raycasting)
+            {
+                CancelRaycast(false);
+            } else if (haveBall() && CanPlaceBallHere())
+            {
+                raycasting = true;
+                removeBall();
+            }
+        }
     }
 
     private void LateUpdate()
     {
         PositionClubInPlayersHand();
+    }
+
+    private Ray GetRay()
+    {
+        return Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
     }
 
     #region ItemsInHand methods
@@ -105,6 +137,77 @@ public class Inventory : MonoBehaviour {
     private void InstantiateFiveIron()
     {
         clubObject = Instantiate(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+    }
+
+    private void InstantiateGolfBall(Vector3 position)
+    {
+        ballObject = Instantiate(spawnableGolfBallPrefab, position + new Vector3(0, moveUpBy, 0), Quaternion.Euler(0, 0, 0));
+    }
+
+    private void MoveGolfBall(Vector3 toPosition)
+    {
+        if (ballObject != null)
+        {
+            ballObject.transform.SetPositionAndRotation(toPosition + new Vector3(0, moveUpBy, 0), Quaternion.Euler(0, 0, 0));
+        }
+    }
+
+    public bool IsRaycastingBall()
+    {
+        return raycasting;
+    }
+
+    private bool CanPlaceBallHere()
+    {
+        var ray = GetRay();
+
+        if (Physics.Raycast(ray, out var simpleHit, maxBallSpawnDistance))
+        {
+            return simpleHit.collider.GetComponent<GolfBallPlaceableArea>() != null;
+
+        }
+        return false;
+    }
+
+    private void RaycastBallHere()
+    {
+        var ray = GetRay();
+
+        if (Physics.Raycast(ray, out var simpleHit, maxBallSpawnDistance))
+        {
+            var placeableArea = simpleHit.collider.GetComponent<GolfBallPlaceableArea>();
+            if (placeableArea)
+            {
+                if (ballObject != null)
+                {
+                    MoveGolfBall(simpleHit.point);
+                }
+                else
+                {
+                    InstantiateGolfBall(simpleHit.point);
+                }
+            }
+        }
+    }
+
+    public void CancelRaycast(bool addBallBackToInventory = true)
+    {
+        raycasting = false;
+        if (addBallBackToInventory && ballObject != null)
+        {
+            Destroy(ballObject.gameObject);
+            addBall();
+        }
+        ballObject = null;
+    }
+
+    public void RemoveClubFromHand()
+    {
+        if (clubInHandState != 0)
+        {
+            Destroy(clubObject);
+            clubInHandState = 0;
+        }
     }
 
     #endregion
