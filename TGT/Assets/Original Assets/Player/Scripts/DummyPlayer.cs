@@ -5,6 +5,7 @@ public class DummyPlayer : MonoBehaviour
     public KeyCode interactKey;
     public float interactionRayDistance = 2f;
 
+    public Camera mainCamera;
     public XRInteractions interactions;
     private bool primaryButtonIsPressed = false;
 
@@ -22,18 +23,13 @@ public class DummyPlayer : MonoBehaviour
         gameStatus = FindObjectOfType<GameStatus>();
         GM = FindObjectOfType<GameManager>();
         giantBall = FindObjectOfType<GiantGolfBall>();
-        interactions.primaryButtonPress.AddListener(onPrimaryButtonEvent);
-    }
-
-    public void onPrimaryButtonEvent(bool pressed)
-    {
-        primaryButtonIsPressed = pressed;
+        interactions.primaryButtonPress.AddListener(pressed => primaryButtonIsPressed = pressed);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        var ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         // Check if player is looking at talkative NPC
         dm.HideInteractability();
