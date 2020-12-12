@@ -13,12 +13,14 @@ public class Talkative : MonoBehaviour
 
     private DummyPlayer player;
     private DialogueManager dm;
+    private Animator animator;
 
     private bool isTalking;
     private void Start()
     {
         player = FindObjectOfType<DummyPlayer>(); // Find reference to player
         dm = FindObjectOfType<DialogueManager>(); // Find reference to dialogue manager
+        animator = GetComponent<Animator>();      // Get reference to animator
         isTalking = false;
 
         Node startNode = null;
@@ -69,6 +71,7 @@ public class Talkative : MonoBehaviour
         {
             if (dialogueGraph.Current != null) {
                 isTalking = true;
+                animator.SetBool("isTalking", isTalking);
                 dm.StartDialogue(dialogueGraph.CharacterName, dialogueGraph.Current.dialogue);
             }
         }
@@ -78,6 +81,7 @@ public class Talkative : MonoBehaviour
     public void EndDialogue()
     {
         isTalking = false;
+        animator.SetBool("isTalking", isTalking);
         dm.EndDialogue();
     }
 }
