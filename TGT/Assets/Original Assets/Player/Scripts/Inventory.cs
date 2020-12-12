@@ -6,14 +6,16 @@ public class Inventory : MonoBehaviour {
 
     [SerializeField] private int numOfBallsVar;
 
+    // Clubs in hand
     public KeyCode switchClubKey;
     public GameObject putterPrefab;
     public GameObject fiveIronPrefab;
-    private int clubInHandState = 0;
+    [SerializeField] private int clubInHandState = 0;
     private GameObject clubObject = null;
     private float relativeClubDistance = 0.3f;
     private Quaternion clubRotation = Quaternion.Euler(35f, 20f, 180f);
 
+    // Ball in hand
     public KeyCode switchBallKey;
     public float maxBallSpawnDistance = 3f;
     public GameObject spawnableGolfBallPrefab;
@@ -48,18 +50,29 @@ public class Inventory : MonoBehaviour {
             switch(clubInHandState)
             {
                 case 0: // Neither of clubs is in player hand
-                    // Instantiate Putter in player's hand
-                    clubObject = Instantiate(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
-                    clubInHandState = 1;
+                    if (havePutterClub)
+                    {
+                        InstantiatePutter();
+                        clubInHandState = 1;
+                    } else if (have5IronClub)
+                    {
+                        InstantiateFiveIron();
+                        clubInHandState = 2;
+                    }
                     break;
                 case 1: // Putter in player's hand
-                    // Remove Putter from player's hand and instatiate 5Iron
                     Destroy(clubObject);
-                    clubObject = Instantiate(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
-                    clubInHandState = 2;
+
+                    if (have5IronClub)
+                    {
+                        InstantiateFiveIron();
+                        clubInHandState = 2;
+                    } else
+                    {
+                        clubInHandState = 0;
+                    }
                     break;
                 case 2: // 5Iron in player's hand
-                    // Remove 5Iron from player's hand
                     Destroy(clubObject);
                     clubInHandState = 0;
                     break;
@@ -82,6 +95,16 @@ public class Inventory : MonoBehaviour {
             clubObject.transform.rotation = transform.rotation * clubRotation;
 
         }
+    }
+
+    private void InstantiatePutter()
+    {
+        clubObject = Instantiate(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+    }
+
+    private void InstantiateFiveIron()
+    {
+        clubObject = Instantiate(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
     #endregion
