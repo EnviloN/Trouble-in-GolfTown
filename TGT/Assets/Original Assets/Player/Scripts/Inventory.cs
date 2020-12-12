@@ -192,13 +192,16 @@ public class Inventory : MonoBehaviour {
 
     public void CancelRaycast(bool addBallBackToInventory = true)
     {
-        raycasting = false;
-        if (addBallBackToInventory && ballObject != null)
+        if (raycasting)
         {
-            Destroy(ballObject.gameObject);
-            addBall();
+            raycasting = false;
+            if (addBallBackToInventory && ballObject != null)
+            {
+                Destroy(ballObject.gameObject);
+                addBall();
+            }
+            ballObject = null;
         }
-        ballObject = null;
     }
 
     public void RemoveClubFromHand()

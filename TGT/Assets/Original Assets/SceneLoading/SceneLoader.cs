@@ -55,6 +55,12 @@ public class SceneLoader : MonoBehaviour {
         }
         dm.UpdateGraphs();
 
+        DummyPlayer dummyPlayerScript = player.GetComponent<DummyPlayer>();
+        if (dummyPlayerScript)
+        {
+            dummyPlayerScript.OnSceneChange();
+        }
+
         transition.SetTrigger("End");
     }
 }
