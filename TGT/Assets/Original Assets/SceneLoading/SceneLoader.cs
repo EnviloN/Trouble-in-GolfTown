@@ -64,7 +64,6 @@ public class SceneLoader : MonoBehaviour {
                 break;
         }
         dm.RetreivePersistantStatuses();
-        dm.UpdateGraphs();
 
         transition.SetTrigger("End");
     }

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     private DialogueManager dialogueManager;
     private GameObject player;
 
+    private float framesToUpdateGraphs=1f;
+
     [NonSerialized]
     public int MaxNumberOfGoldenBalls = 3;
 
@@ -19,6 +21,8 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
+        // Nothing to see here, move along...
+
         if (gameStatus.givePutter == 1) {
             gameStatus.givePutter = 0;
             player.GetComponent<Inventory>().havePutterClub = true;
@@ -28,6 +32,13 @@ public class GameManager : MonoBehaviour {
             gameStatus.give5Iron = 0;
             player.GetComponent<Inventory>().have5IronClub = true;
         }
+
+        if (framesToUpdateGraphs <= 0) {
+            dialogueManager.UpdateGraphs();
+            framesToUpdateGraphs = 1f;
+        }
+
+        framesToUpdateGraphs -= Time.deltaTime;
     }
 
     public void SetGameStatus(string property, object value) {

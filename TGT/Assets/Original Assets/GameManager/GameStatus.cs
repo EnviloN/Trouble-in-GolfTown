@@ -30,6 +30,13 @@ public class GameStatus : MonoBehaviour {
     }
 
     [SerializeField]
+    private int quest1StageVar;
+    public int quest1Stage {
+        get => quest1StageVar;
+        set => quest1StageVar = value;
+    }
+
+    [SerializeField]
     private int givePutterVar;
     public int givePutter {
         get => givePutterVar;
@@ -41,6 +48,22 @@ public class GameStatus : MonoBehaviour {
     public int give5Iron {
         get => give5IronVar;
         set => give5IronVar = value;
+    }
+    #endregion
+
+    #region Meetings
+    [SerializeField]
+    private int metJoeVar; 
+    public int metJoe {
+        get => metJoeVar;
+        set => metJoeVar = value;
+    }
+
+    [SerializeField]
+    private int metDixxiVar;
+    public int metDixxi {
+        get => metDixxiVar;
+        set => metDixxiVar = value;
     }
     #endregion
 

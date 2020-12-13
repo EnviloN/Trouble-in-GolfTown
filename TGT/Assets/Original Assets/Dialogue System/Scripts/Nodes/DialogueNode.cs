@@ -8,6 +8,7 @@ public class DialogueNode : Node {
 
     public Dialogue dialogue;
 
+    [NonSerialized]
     public string GUID = Guid.NewGuid().ToString();
 
     public override object GetValue(NodePort port) {

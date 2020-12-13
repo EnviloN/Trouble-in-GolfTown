@@ -47,11 +47,6 @@ public class DummyPlayer : MonoBehaviour
             }
         }
 
-        // if interact Key is pressed
-        if (Input.GetKeyDown(KeyCode.R)) {
-            dm.UpdateGraphs();
-        }
-
         if (Input.GetKeyDown(interactKey)) {
             var hits = Physics.RaycastAll(ray, interactionRayDistance);
             foreach (var hit in hits) {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2662.8896, y: -141.10373}
+  position: {x: 2136, y: -264}
   ports:
     keys:
     - In
@@ -64,7 +64,6 @@ MonoBehaviour:
     - It's easy, you'll figure it out in no time!
     - This hole should be pretty straight forward.
     - Just place the ball somewhere on the sqare with no walls and start playing.
-  GUID: 08742af1-9be2-4d78-a38b-7476f3ccb70a
 --- !u!114 &-1764282685889206973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3396.1567, y: -120.83058}
+  position: {x: 2728, y: -264}
   ports:
     keys:
     - In
@@ -120,19 +119,23 @@ MonoBehaviour:
       _dynamic: 1
   Children:
   - property: tutorialStage
-    type: 0
-    number: 6
+    type: 1
+    number: 5
   dialogue:
     isSmallTalk: 0
     sentences:
     - There you go! You are a natural at it!
     - 'You can keep my putter. Take it as a welcome gift. '
-    - I wanted to get a new one anyway.
-    - You should go check out the town. It's just down the hill.
+    - I wanted to get a new one anyway...
+    - '[player] Thank you. You know, it''s kinda weird... the minigolf thing.'
+    - You'll get used to it! Everyone here plays minigolf. We love the game and it
+      brought calmness and peace to our town.
+    - Oh and speaking of the town, you should go check it out. It's just down the
+      hill.
     - Make sure to visit the saloon. Barman will hapilly introduce to our little
       town.
+    - '[player] Okay, I''ll go there. Thank you.'
     - '[status] tutorialStage=6'
-  GUID: f0ef11e5-3fe3-46a9-b9fb-d984e53dd1b6
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,85 +149,14 @@ MonoBehaviour:
   m_Name: Dr Quinn
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 482302657704763535}
-  - {fileID: 7730338455984880551}
   - {fileID: 4096766997981948787}
   - {fileID: 8713770992974607258}
   - {fileID: -6097496921862569815}
   - {fileID: -1764282685889206973}
   - {fileID: 2060842035647105457}
+  - {fileID: 5446372755440803649}
+  - {fileID: 8780166706221440299}
   CharacterName: Dr. Quinn
---- !u!114 &482302657704763535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -312, y: -200}
-  ports:
-    keys:
-    - In
-    - Children
-    - Children 0
-    values:
-    - _fieldName: In
-      _node: {fileID: 482302657704763535}
-      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Children
-      _node: {fileID: 482302657704763535}
-      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Children 0
-      _node: {fileID: 482302657704763535}
-      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: In
-        node: {fileID: 7730338455984880551}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  Children:
-  - property: tutorialStage
-    type: 1
-    number: 0
-  dialogue:
-    isSmallTalk: 0
-    sentences:
-    - Ah! You're finally awake!
-    - I'm glad that you are okay. You seemed you would never wake up.
-    - That crash was terrible! We heard a loud boom and... the boat sunk in seconds...
-      We couldn't see anyone as the boat...
-    - '[player] W.. Where am I?'
-    - Oh, I'm sorry! And I should also introduce myself, shouldn't I?
-    - I am Michaela Quinn, a local medicine woman in Golf Town. You are at my infirmary.
-    - Well... its actually a church. Since the town does not have proper funds for
-      a hospital I had to establish an infirmary here.
-    - Anyway! We should check you up properly. It only seems like a miracle that
-      you suddenly woke up and you can walk.
-    - '... [TODO]: continue!'
-    - '[status] tutorialStage=1'
-  GUID: 79b5db02-495a-4c5e-b647-9cc1dbf9179d
 --- !u!114 &2060842035647105457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +170,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 4248, y: -136}
+  position: {x: 3336, y: -264}
   ports:
     keys:
     - In
@@ -271,8 +203,7 @@ MonoBehaviour:
     sentences:
     - Have you checked out the town yet?
     - Have you played some minigiolf from the last time we met?
-    - '[TODO]'
-  GUID: 05b6f46d-26af-4a43-9d4f-a886da591db3
+    - You'll find me at the infirmary
 --- !u!114 &4096766997981948787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +217,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1928, y: -248}
+  position: {x: 1544, y: -264}
   ports:
     keys:
     - In
@@ -333,7 +264,7 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Since you are now in Golf Town, you need to learn how to play minigilf!
+    - Since you are now in the Golf Town, you need to learn how to play minigilf!
     - Folks around here aren't very friendly to someone whe haven't played minigolf
       yet.
     - Here on the cemetery, we have a simple minigolf course for rehabilitations.
@@ -342,10 +273,7 @@ MonoBehaviour:
       golf balls around the cemetery.
     - '[player] Uhhh... Okay..?'
     - '[status] tutorialStage=4|givePutter=1'
-    - 
-    - 
-  GUID: 69970c1d-3793-4a81-9cc2-721fad7506db
---- !u!114 &7730338455984880551
+--- !u!114 &5446372755440803649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,7 +286,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 456, y: -200}
+  position: {x: -296, y: -264}
   ports:
     keys:
     - In
@@ -366,19 +294,16 @@ MonoBehaviour:
     - Children 0
     values:
     - _fieldName: In
-      _node: {fileID: 7730338455984880551}
+      _node: {fileID: 5446372755440803649}
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Children 0
-        node: {fileID: 482302657704763535}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: Children
-      _node: {fileID: 7730338455984880551}
+      _node: {fileID: 5446372755440803649}
       _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
@@ -387,12 +312,12 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: Children 0
-      _node: {fileID: 7730338455984880551}
+      _node: {fileID: 5446372755440803649}
       _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
-        node: {fileID: 8713770992974607258}
+        node: {fileID: 8780166706221440299}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -401,16 +326,24 @@ MonoBehaviour:
   Children:
   - property: tutorialStage
     type: 1
-    number: 1
+    number: 0
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Looking good cowboy! You're only missing one thing.
-    - Let's go outside. I have something to show you by the cemetery.
-    - '[status] tutorialStage=2'
-    - 
-    - 
-  GUID: 8b3f22e9-ac65-4a7f-8310-a405f0bd2d0a
+    - Ah! You're finally awake!
+    - I'm glad that you are okay. You seemed you would never wake up.
+    - That crash was terrible! We heard a loud boom and... the boat sunk in seconds...
+      We couldn't see anyone as the boat...
+    - '[player] W.. Where am I?'
+    - Oh, I'm sorry! And I should also introduce myself, shouldn't I?
+    - I am Michaela Quinn, a local medicine woman in Golf Town. You are at my infirmary.
+    - Well... its actually a church. Since the town does not have proper funds for
+      a hospital, I had to establish an infirmary here.
+    - Anyway! We should check you up properly. It only seems like a miracle that
+      you suddenly woke up and you can walk.
+    - Go on! Have a walk around the church. See if you feel any dizziness or if you
+      feel any pain.
+    - '[status] tutorialStage=1'
 --- !u!114 &8713770992974607258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +357,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: -216}
+  position: {x: 936, y: -264}
   ports:
     keys:
     - In
@@ -437,7 +370,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: Children 0
-        node: {fileID: 7730338455984880551}
+        node: {fileID: 8780166706221440299}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -475,5 +408,75 @@ MonoBehaviour:
     - Go on, I'll be there in a bit.
     - We'll meet outside.
     - I'll meet you outside!
-    - I'll meet you outside!
-  GUID: bf14b14f-fc1c-4dc2-bfdd-a7ca45339459
+--- !u!114 &8780166706221440299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 328, y: -264}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 8780166706221440299}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 5446372755440803649}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8780166706221440299}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 8780166706221440299}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8713770992974607258}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: tutorialStage
+    type: 1
+    number: 1
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] Everything feels good.'
+    - Looking good cowboy! I almost can't believe it.
+    - '[player] What about the other tourists?'
+    - We... we don't know. As I was saying, we couldn't see anyone as the boat was
+      sinking.
+    - We found only you. Unexpectedly, by the dock. You must have swum all the way
+      there. Don't you remember?
+    - '[player] ...no.'
+    - Anyway, the important thing is that you are all right.
+    - And now, you are only missing one thing!
+    - Come! Let's meet outside by the cemetery.
+    - '[status] tutorialStage=2'
