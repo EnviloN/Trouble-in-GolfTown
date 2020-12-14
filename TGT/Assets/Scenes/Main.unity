@@ -560,6 +560,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4629927555906278918, guid: d12e4ae56c05d2047acbed7e9be01433,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4629927555906278920, guid: d12e4ae56c05d2047acbed7e9be01433,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -952,7 +957,7 @@ MonoBehaviour:
   interactKey: 101
   interactionRayDistance: 2
   mainCamera: {fileID: 1956934791}
-  interactions: {fileID: 0}
+  interactions: {fileID: 765878780}
 --- !u!114 &832204695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,7 +1812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_Name
@@ -1819,7 +1824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalPosition.x
