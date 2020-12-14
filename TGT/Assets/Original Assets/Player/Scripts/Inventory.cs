@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour {
     public KeyCode switchClubKey;
     public GameObject putterPrefab;
     public GameObject fiveIronPrefab;
-    [SerializeField] private int clubInHandState = 0;
+    private int clubInHandState = 0;
     private GameObject clubObject = null;
     private float relativeClubDistance = 0.3f;
     private Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour {
     public KeyCode showPlaceBallKey;
     private float maxBallSpawnDistance = 4f;
     public GameObject spawnableGolfBallPrefab;
-    [SerializeField] private bool raycasting = false;
+    private bool raycasting = false;
     private GameObject ballObject = null;
     private float moveUpBy = 0.023f;
 
