@@ -12,9 +12,8 @@ public class BallShooting : MonoBehaviour
     private bool        mInitialized;
     float               mStrength;
     GameObject          mObj;
-    Color               mStartingColor;
 
-    public float maxStrength;
+    public float       maxStrength;
     public float       minStrength;
 
     // Start is called before the first frame update
@@ -27,7 +26,7 @@ public class BallShooting : MonoBehaviour
     private GameObject raycastToObject()
     {
         RaycastHit hit;
-        Physics.Raycast(transform.position, cam.transform.forward, out hit);
+        Physics.Raycast(cam.transform.position, cam.transform.forward, out hit);
         if (hit.collider.gameObject.GetComponent<Shootable>())
         {
             return hit.collider.gameObject;
@@ -48,41 +47,44 @@ public class BallShooting : MonoBehaviour
             if (!mInitialized)
             {
                 GameObject objectToShoot = raycastToObject();
+                mStrength = 0f;
                 if (objectToShoot)
                 {
                     mObj = objectToShoot;
-                    mStartingColor = mObj.GetComponent<Material>().color;
                 }
                 mInitialized = true;
-            } 
-            else
-            {
-                mStrength += Time.deltaTime;
-                Color color = new Color(0.5f * (mStrength), mStartingColor.g, mStartingColor.b, mStartingColor.a);
-                mObj.GetComponent<Material>().color = color;
             }
-
-        } 
+        }
+        if (mInitialized)
+        {
+            mStrength += Time.deltaTime;
+        }
         if ((mInitialized && Input.GetKeyUp(interactKey)) || mStrength > 2.0)
         {
+            if (mObj == null)
+            {
+                mInitialized = false;
+                return;
+            }
             mStrength = Mathf.Clamp(mStrength, 0f, 2f);
             mInitialized = false;
-            float strength = minStrength + ((maxStrength - minStrength) / (2f)) * (mStrength);
-            mObj.GetComponent<Material>().color = mStartingColor;
+            float strength = minStrength + (mStrength / 2f) * (maxStrength - minStrength);
             Vector3 direction;
             RaycastHit hit;
             Physics.Raycast(transform.position, cam.transform.forward, out hit);
             if (inventory.havePutterClub)
             {
-                direction = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
-                mObj.GetComponent<Rigidbody>().AddForce(direction * strength);
+                Debug.Log("Putter shot.");
+                direction = new Vector3(transform.forward.x, 0, transform.forward.z);
+                mObj.GetComponent<Rigidbody>().AddForce(direction.normalized * strength, ForceMode.Impulse);
             }
             if (inventory.have5IronClub)
             {
-                Vector3 reflect = Vector3.Reflect(cam.transform.forward, Vector3.up);
-                direction = reflect;
-                mObj.GetComponent<Rigidbody>().AddForce(direction * strength);
+                Debug.Log("5 Iron shot.");
+                direction = new Vector3(transform.forward.x, 1f, transform.forward.z);
+                mObj.GetComponent<Rigidbody>().AddForce(direction.normalized * strength, ForceMode.Impulse);
             }
+            mObj = null;
         }
     }
 }
