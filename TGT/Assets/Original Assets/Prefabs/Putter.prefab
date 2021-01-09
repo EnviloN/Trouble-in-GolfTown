@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1867972228969907662}
   - component: {fileID: 2863111715224827156}
   - component: {fileID: -1022399197860949205}
+  - component: {fileID: 2365838546789954277}
   m_Layer: 0
   m_Name: Putter
   m_TagString: Untagged
@@ -174,3 +175,17 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
+--- !u!64 &2365838546789954277
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210722126370726939}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5699167827763708033, guid: cd9116ffefa32af4abecc62345bd5d52, type: 3}
