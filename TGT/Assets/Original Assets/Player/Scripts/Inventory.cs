@@ -22,7 +22,7 @@ public abstract class Inventory : MonoBehaviour
     protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     // Ball in hand
-    [SerializeField] protected bool raycasting = false;
+    protected bool raycasting = false;
     protected GameObject ballObject = null;
     protected float moveUpBy = 0.03f;
 
