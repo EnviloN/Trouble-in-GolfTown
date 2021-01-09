@@ -83,7 +83,7 @@ public class XRPlayerInventory : AbstractInventory
         XRDirectInteractor directInteractor = FindObjectOfType<XRDirectInteractor>();
         directInteractor.onSelectExited.AddListener(interactable =>
         {
-            Rigidbody rigidbody = interactable.gameObject.GetComponent<Rigidbody>();
+            Rigidbody rigidbody = interactable.GetComponent<Rigidbody>();
             if (rigidbody == null)
             {
                 Debug.Log("Rigidbody is null");
