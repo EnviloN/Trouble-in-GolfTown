@@ -83,7 +83,15 @@ public class XRPlayerInventory : Inventory
         XRDirectInteractor directInteractor = FindObjectOfType<XRDirectInteractor>();
         directInteractor.onSelectEntered.AddListener(interactable =>
         {
-            interactable.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            Rigidbody rigidbody = interactable.gameObject.GetComponent<Rigidbody>();
+            if (rigidbody == null)
+            {
+                Debug.Log("Rigidbody is null");
+            } else
+            {
+                Debug.Log("Rigidbody is ok");
+                rigidbody.useGravity = true;
+            }
         });
     }
 
