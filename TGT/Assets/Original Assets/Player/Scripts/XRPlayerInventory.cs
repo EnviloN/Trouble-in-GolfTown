@@ -12,7 +12,8 @@ public class XRPlayerInventory : Inventory
     {
         initInventory();
         rayInteractor = FindObjectOfType<XRRayInteractor>();
-        interactions.leftPrimaryButtonPress.AddListener(pressed => {
+        interactions.leftPrimaryButtonPress.AddListener(pressed =>
+        {
             if (pressed)
             {
                 switch (clubInHandState)
@@ -50,7 +51,8 @@ public class XRPlayerInventory : Inventory
             }
         });
 
-        interactions.leftSecondaryButtonPress.AddListener(pressed => {
+        interactions.leftSecondaryButtonPress.AddListener(pressed =>
+        {
             if (pressed)
             {
                 if (raycasting)
@@ -65,7 +67,8 @@ public class XRPlayerInventory : Inventory
             }
         });
 
-        interactions.leftTriggerButtonPress.AddListener(pressed => {
+        interactions.leftTriggerButtonPress.AddListener(pressed =>
+        {
             if (pressed)
             {
                 if (raycasting)
@@ -75,6 +78,12 @@ public class XRPlayerInventory : Inventory
 
                 tryPickupBall();
             }
+        });
+
+        XRDirectInteractor directInteractor = FindObjectOfType<XRDirectInteractor>();
+        directInteractor.onSelectEntered.AddListener(interactable =>
+        {
+            interactable.gameObject.GetComponent<Rigidbody>().useGravity = true;
         });
     }
 
