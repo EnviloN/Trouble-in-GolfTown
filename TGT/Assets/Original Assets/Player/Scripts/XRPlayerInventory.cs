@@ -90,7 +90,10 @@ public class XRPlayerInventory : Inventory
             } else
             {
                 Debug.Log("Rigidbody is ok");
+                Debug.Log("Garbbing gameobject with name " + interactable.gameObject.name);
+                Debug.Log("Use gravity is set to " + rigidbody.useGravity);
                 rigidbody.useGravity = true;
+                Debug.Log("Use gravity is set to " + rigidbody.useGravity);
             }
         });
     }
