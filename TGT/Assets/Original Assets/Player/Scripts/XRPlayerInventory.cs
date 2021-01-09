@@ -96,11 +96,11 @@ public class XRPlayerInventory : Inventory
 
     protected override void InstantiatePutter()
     {
-        InstantiateClub(putterPrefab, transform.position + (transform.forward * 1) + (transform.up * 1), transform.rotation);
+        InstantiateClub(putterPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
     }
 
     protected override void InstantiateFiveIron()
     {
-        InstantiateClub(fiveIronPrefab, transform.position + (transform.forward * 1) + (transform.up * 1), transform.rotation);
+        InstantiateClub(fiveIronPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
     }
 }
