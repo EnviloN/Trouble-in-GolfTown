@@ -17,8 +17,15 @@ public class XRPlayerInventory : AbstractInventory
         rayInteractor = FindObjectOfType<XRRayInteractor>();
         interactions.leftPrimaryButtonPress.AddListener(pressed =>
         {
-            if (pressed && !clubGrabbed)
+            if (pressed)
             {
+                if (clubGrabbed)
+                {
+                    interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
+                    interactions.SendHapticImpulseToRightController(0.0f, 0.1f);    // Pause vibration
+                    interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
+                }
+
                 switch (clubInHandState)
                 {
                     case 0: // Neither of clubs is in player hand
