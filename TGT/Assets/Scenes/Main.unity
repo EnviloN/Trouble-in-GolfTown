@@ -550,6 +550,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4629927555812574378, guid: d12e4ae56c05d2047acbed7e9be01433,
+        type: 3}
+      propertyPath: m_Velocity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4629927555906278918, guid: d12e4ae56c05d2047acbed7e9be01433,
         type: 3}
       propertyPath: m_Name
@@ -783,6 +788,7 @@ MonoBehaviour:
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  raycasting: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   interactions: {fileID: 765878780}
@@ -1004,6 +1010,7 @@ MonoBehaviour:
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  raycasting: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   cancelKey: 27
