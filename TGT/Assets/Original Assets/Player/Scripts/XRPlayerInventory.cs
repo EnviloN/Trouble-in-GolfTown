@@ -7,47 +7,12 @@ public class XRPlayerInventory : Inventory
     protected XRRayInteractor rayInteractor;
 
     // Button presses
-    private bool leftPrimaryPressed = false;
 
     override protected void Start()
     {
         initInventory();
         rayInteractor = FindObjectOfType<XRRayInteractor>();
         interactions.leftPrimaryButtonPress.AddListener(pressed => {
-            leftPrimaryPressed = pressed;
-        });
-        interactions.leftSecondaryButtonPress.AddListener(pressed => {
-            if (pressed)
-            {
-                if (raycasting)
-                {
-                    CancelRaycast(true);
-                }
-                else if (haveBall() && CanPlaceBallHere())
-                {
-                    raycasting = true;
-                    removeBall();
-                }
-            }
-        });
-        interactions.leftTriggerButtonPress.AddListener(pressed => {
-            if (pressed)
-            {
-                if (raycasting)
-                {
-                    CancelRaycast(false);
-                }
-
-                tryPickupBall();
-            }
-        });
-    }
-
-    // Update is called once per frame
-    override protected void Update()
-    {
-        /*if (leftPrimaryPressed)
-        {
             switch (clubInHandState)
             {
                 case 0: // Neither of clubs is in player hand
@@ -80,8 +45,39 @@ public class XRPlayerInventory : Inventory
                     clubInHandState = 0;
                     break;
             }
-        }*/
+        });
 
+        interactions.leftSecondaryButtonPress.AddListener(pressed => {
+            if (pressed)
+            {
+                if (raycasting)
+                {
+                    CancelRaycast(true);
+                }
+                else if (haveBall() && CanPlaceBallHere())
+                {
+                    raycasting = true;
+                    removeBall();
+                }
+            }
+        });
+
+        interactions.leftTriggerButtonPress.AddListener(pressed => {
+            if (pressed)
+            {
+                if (raycasting)
+                {
+                    CancelRaycast(false);
+                }
+
+                tryPickupBall();
+            }
+        });
+    }
+
+    // Update is called once per frame
+    override protected void Update()
+    {
         if (raycasting)
         {
             RaycastBallHere();
@@ -91,5 +87,17 @@ public class XRPlayerInventory : Inventory
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
         return rayInteractor.GetCurrentRaycastHit(out raycastHit);
+    }
+
+    // Clubs
+
+    protected override void InstantiatePutter()
+    {
+        InstantiateClub(putterPrefab, transform.position + (transform.forward * 1), transform.rotation);
+    }
+
+    protected override void InstantiateFiveIron()
+    {
+        InstantiateClub(fiveIronPrefab, transform.position + (transform.forward * 1), transform.rotation);
     }
 }

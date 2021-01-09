@@ -55,11 +55,6 @@ public abstract class Inventory : MonoBehaviour
 
     abstract protected void Update();
 
-    protected void LateUpdate()
-    {
-        PositionClubInPlayersHand();
-    }
-
     abstract protected bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
 
     protected void tryPickupBall()
@@ -106,25 +101,9 @@ public abstract class Inventory : MonoBehaviour
 
     #region ItemsInHand methods
 
-    protected void PositionClubInPlayersHand()
-    {
-        if (clubObject != null)
-        {
-            clubObject.transform.position = transform.position + (transform.right * relativeClubDistance);
-            clubObject.transform.rotation = transform.rotation * clubRotation;
+    abstract protected void InstantiatePutter();
 
-        }
-    }
-
-    protected void InstantiatePutter()
-    {
-        InstantiateClub(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
-    }
-
-    protected void InstantiateFiveIron()
-    {
-        InstantiateClub(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
-    }
+    abstract protected void InstantiateFiveIron();
 
     protected void InstantiateClub(GameObject clubPrefab, Vector3 position, Quaternion rotation)
     {
@@ -205,7 +184,7 @@ public abstract class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveClubFromHand()
+    public void RemoveClub()
     {
         if (clubInHandState != 0)
         {
@@ -220,8 +199,8 @@ public abstract class Inventory : MonoBehaviour
 
     public void resetInventory()
     {
-        havePutterClubVar = false;
-        have5IronClubVar = false;
+        //havePutterClubVar = false;
+        //have5IronClubVar = false;
         numOfBallsVar = 0;
         UpdateUI();
     }

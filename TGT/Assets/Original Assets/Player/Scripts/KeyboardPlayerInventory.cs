@@ -17,7 +17,7 @@ public class KeyboardPlayerInventory : Inventory
     {
         if (Input.GetKeyDown(cancelKey))
         {
-            RemoveClubFromHand();
+            RemoveClub();
             CancelRaycast();
         }
 
@@ -84,6 +84,11 @@ public class KeyboardPlayerInventory : Inventory
         }
     }
 
+    protected void LateUpdate()
+    {
+        PositionClubInPlayersHand();
+    }
+
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
         return Physics.Raycast(GetRay(), out raycastHit, interactionDistance);
@@ -92,5 +97,27 @@ public class KeyboardPlayerInventory : Inventory
     protected Ray GetRay()
     {
         return Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+    }
+
+    // Clubs
+
+    protected void PositionClubInPlayersHand()
+    {
+        if (clubObject != null)
+        {
+            clubObject.transform.position = transform.position + (transform.right * relativeClubDistance);
+            clubObject.transform.rotation = transform.rotation * clubRotation;
+
+        }
+    }
+
+    protected override void InstantiatePutter()
+    {
+        InstantiateClub(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+    }
+
+    protected override void InstantiateFiveIron()
+    {
+        InstantiateClub(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 }
