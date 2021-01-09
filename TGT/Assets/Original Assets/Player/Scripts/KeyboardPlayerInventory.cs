@@ -78,12 +78,10 @@ public class KeyboardPlayerInventory : Inventory
             }
         }
 
-        tryPickupBall();
-    }
-
-    protected override bool interactKeyPressed()
-    {
-        return Input.GetKeyDown(interactKey);
+        if (Input.GetKeyDown(interactKey))
+        {
+            tryPickupBall();
+        }
     }
 
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)

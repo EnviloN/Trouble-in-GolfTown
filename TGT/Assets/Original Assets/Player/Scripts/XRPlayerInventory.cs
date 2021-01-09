@@ -8,7 +8,6 @@ public class XRPlayerInventory : Inventory
 
     // Button presses
     private bool leftPrimaryPressed = false;
-    private bool leftTriggerPressed = false;
 
     override protected void Start()
     {
@@ -32,7 +31,15 @@ public class XRPlayerInventory : Inventory
             }
         });
         interactions.leftTriggerButtonPress.AddListener(pressed => {
-            leftTriggerPressed = pressed;
+            if (pressed)
+            {
+                if (raycasting)
+                {
+                    CancelRaycast(false);
+                }
+
+                tryPickupBall();
+            }
         });
     }
 
@@ -79,18 +86,6 @@ public class XRPlayerInventory : Inventory
         {
             RaycastBallHere();
         }
-
-        if (leftTriggerPressed && raycasting)
-        {
-            CancelRaycast(false);
-        }
-
-        tryPickupBall();
-    }
-
-    protected override bool interactKeyPressed()
-    {
-        return leftTriggerPressed;
     }
 
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)

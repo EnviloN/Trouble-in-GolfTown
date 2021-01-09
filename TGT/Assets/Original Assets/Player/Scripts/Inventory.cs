@@ -60,51 +60,46 @@ public abstract class Inventory : MonoBehaviour
         PositionClubInPlayersHand();
     }
 
-    abstract protected bool interactKeyPressed();
-
     abstract protected bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
 
     protected void tryPickupBall()
     {
         // Pick ball from ground
-        if (interactKeyPressed())
+        if (doRaycast(out RaycastHit raycastHit))
         {
-            if (doRaycast(out RaycastHit raycastHit))
+            Placeholder ball = raycastHit.collider.GetComponent<Placeholder>();
+            GoldenBallPlaceholder goldenBall = raycastHit.collider.GetComponent<GoldenBallPlaceholder>();
+
+            if (!ball && !goldenBall) return;
+
+            if (ball)
             {
-                Placeholder ball = raycastHit.collider.GetComponent<Placeholder>();
-                GoldenBallPlaceholder goldenBall = raycastHit.collider.GetComponent<GoldenBallPlaceholder>();
-
-                if (!ball && !goldenBall) return;
-
-                if (ball)
+                if (raycasting)
                 {
-                    if (raycasting)
-                    {
-                        // Place ball on the ground
-                        CancelRaycast(false);
-                    }
-                    else
-                    {
-                        // Pick ball and add it to inventory
-                        ball.gameObject.SetActive(false);
-                        addBall();
-                        var count = (int)gm.GetGameStatus("ballsCollected") + 1;
-                        gm.SetGameStatus("ballsCollected", count);
-                    }
-                    return;
+                    // Place ball on the ground
+                    CancelRaycast(false);
                 }
-                if (goldenBall)
+                else
                 {
-                    goldenBall.gameObject.SetActive(false);
+                    // Pick ball and add it to inventory
+                    ball.gameObject.SetActive(false);
                     addBall();
-                    gm.AddGoldenBall();
-                    if (gm.HaveCollectedAllGoldenBalls())
-                    {
-                        giantBall.GetComponent<MeshRenderer>().enabled = true;
-                        giantBall.GetComponent<MeshCollider>().enabled = true;
-                    }
-                    return;
+                    var count = (int)gm.GetGameStatus("ballsCollected") + 1;
+                    gm.SetGameStatus("ballsCollected", count);
                 }
+                return;
+            }
+            if (goldenBall)
+            {
+                goldenBall.gameObject.SetActive(false);
+                addBall();
+                gm.AddGoldenBall();
+                if (gm.HaveCollectedAllGoldenBalls())
+                {
+                    giantBall.GetComponent<MeshRenderer>().enabled = true;
+                    giantBall.GetComponent<MeshCollider>().enabled = true;
+                }
+                return;
             }
         }
     }
@@ -201,7 +196,8 @@ public abstract class Inventory : MonoBehaviour
             {
                 Destroy(ballObject.gameObject);
                 addBall();
-            } else if (ballObject != null)
+            }
+            else if (ballObject != null)
             {
                 ReplacePlaceholderBallWithNormal();
             }
