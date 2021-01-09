@@ -81,6 +81,8 @@ public class XRPlayerInventory : Inventory
         {
             CancelRaycast(false);
         }
+
+        tryPickupBall();
     }
 
     protected override bool interactKeyPressed()
