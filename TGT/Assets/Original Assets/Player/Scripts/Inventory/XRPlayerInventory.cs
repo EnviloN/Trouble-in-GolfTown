@@ -94,6 +94,7 @@ public class XRPlayerInventory : AbstractInventory
         {
             clubGrabbed = true;
             interactions.SendHapticImpulseToRightController(0.5f, 0.2f);
+            interactable.GetComponent<MeshCollider>().enabled = false;
         });
 
         directInteractor.onSelectExited.AddListener(interactable =>
@@ -108,6 +109,7 @@ public class XRPlayerInventory : AbstractInventory
                 rigidbody.useGravity = true;
             }
             clubGrabbed = false;
+            interactable.GetComponent<MeshCollider>().enabled = true;
         });
     }
 
