@@ -1,125 +1,116 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
+public abstract class Inventory : MonoBehaviour
+{
+    public const float DEFAULT_INTERACTION_DISTANCE = 2f;
+
     public Text BallCountUI;
 
-    [SerializeField] private int numOfBallsVar;
+    [SerializeField] protected int numOfBallsVar;
 
-    public KeyCode cancelKey;
-
-    // Clubs in hand
-    public KeyCode switchClubKey;
+    // Prefabs
     public GameObject putterPrefab;
     public GameObject fiveIronPrefab;
-    private int clubInHandState = 0;
-    private GameObject clubObject = null;
-    private float relativeClubDistance = 0.3f;
-    private Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
+    public GameObject spawnableGolfBallPrefab;
+
+    // Club in hand
+    protected int clubInHandState = 0;
+    protected GameObject clubObject = null;
+    protected float relativeClubDistance = 0.3f;
+    protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     // Ball in hand
-    public KeyCode showPlaceBallKey;
-    private float maxBallSpawnDistance = 4f;
-    public GameObject spawnableGolfBallPrefab;
-    private bool raycasting = false;
-    private GameObject ballObject = null;
-    private float moveUpBy = 0.023f;
+    protected bool raycasting = false;
+    protected GameObject ballObject = null;
+    protected float moveUpBy = 0.023f;
 
-    public int numOfBalls {
+    // Others
+    protected GameManager gm;
+    protected GiantGolfBall giantBall;
+
+    public int numOfBalls
+    {
         get => numOfBallsVar;
     }
 
-    [SerializeField] private bool havePutterClubVar;
+    [SerializeField] protected bool havePutterClubVar;
 
-    public bool havePutterClub {
+    public bool havePutterClub
+    {
         get => havePutterClubVar;
         set => havePutterClubVar = value;
     }
 
-    [SerializeField] private bool have5IronClubVar;
+    [SerializeField] protected bool have5IronClubVar;
 
-    public bool have5IronClub {
+    public bool have5IronClub
+    {
         get => have5IronClubVar;
         set => have5IronClubVar = value;
     }
 
-    void Start() {
-        resetInventory();
-    }
+    abstract protected void Start();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(cancelKey))
-        {
-            RemoveClubFromHand();
-            CancelRaycast();
-        }
+    abstract protected void Update();
 
-        if (Input.GetKeyDown(switchClubKey))
-        {
-            switch(clubInHandState)
-            {
-                case 0: // Neither of clubs is in player hand
-                    if (havePutterClub)
-                    {
-                        InstantiatePutter();
-                        clubInHandState = 1;
-                    } else if (have5IronClub)
-                    {
-                        InstantiateFiveIron();
-                        clubInHandState = 2;
-                    }
-                    break;
-                case 1: // Putter in player's hand
-                    Destroy(clubObject);
-
-                    if (have5IronClub)
-                    {
-                        InstantiateFiveIron();
-                        clubInHandState = 2;
-                    } else
-                    {
-                        clubInHandState = 0;
-                    }
-                    break;
-                case 2: // 5Iron in player's hand
-                    Destroy(clubObject);
-                    clubInHandState = 0;
-                    break;
-            }
-        }
-
-        if (raycasting)
-        {
-            RaycastBallHere();
-        }
-
-        if (Input.GetKeyDown(showPlaceBallKey))
-        {
-            if (raycasting)
-            {
-                CancelRaycast(false);
-            } else if (haveBall() && CanPlaceBallHere())
-            {
-                raycasting = true;
-                removeBall();
-            }
-        }
-    }
-
-    private void LateUpdate()
+    protected void LateUpdate()
     {
         PositionClubInPlayersHand();
     }
 
-    private Ray GetRay()
+    abstract protected bool interactKeyPressed();
+
+    abstract protected bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
+
+    protected void tryPickupBall()
     {
-        return Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        // Pick ball from ground
+        if (interactKeyPressed())
+        {
+            if (doRaycast(out RaycastHit raycastHit))
+            {
+                Placeholder ball = raycastHit.collider.GetComponent<Placeholder>();
+                GoldenBallPlaceholder goldenBall = raycastHit.collider.GetComponent<GoldenBallPlaceholder>();
+
+                if (!ball && !goldenBall) return;
+
+                if (ball)
+                {
+                    if (raycasting)
+                    {
+                        // Place ball on the ground
+                        CancelRaycast(false);
+                    }
+                    else
+                    {
+                        // Pick ball and add it to inventory
+                        ball.gameObject.SetActive(false);
+                        addBall();
+                        var count = (int)gm.GetGameStatus("ballsCollected") + 1;
+                        gm.SetGameStatus("ballsCollected", count);
+                    }
+                    return;
+                }
+                if (goldenBall)
+                {
+                    goldenBall.gameObject.SetActive(false);
+                    addBall();
+                    gm.AddGoldenBall();
+                    if (gm.HaveCollectedAllGoldenBalls())
+                    {
+                        giantBall.GetComponent<MeshRenderer>().enabled = true;
+                        giantBall.GetComponent<MeshCollider>().enabled = true;
+                    }
+                    return;
+                }
+            }
+        }
     }
 
     #region ItemsInHand methods
 
-    private void PositionClubInPlayersHand()
+    protected void PositionClubInPlayersHand()
     {
         if (clubObject != null)
         {
@@ -129,22 +120,22 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    private void InstantiatePutter()
+    protected void InstantiatePutter()
     {
         clubObject = Instantiate(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
-    private void InstantiateFiveIron()
+    protected void InstantiateFiveIron()
     {
         clubObject = Instantiate(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
-    private void InstantiateGolfBall(Vector3 position)
+    protected void InstantiateGolfBall(Vector3 position)
     {
         ballObject = Instantiate(spawnableGolfBallPrefab, position + new Vector3(0, moveUpBy, 0), Quaternion.Euler(0, 0, 0));
     }
 
-    private void MoveGolfBall(Vector3 toPosition)
+    protected void MoveGolfBall(Vector3 toPosition)
     {
         if (ballObject != null)
         {
@@ -157,34 +148,30 @@ public class Inventory : MonoBehaviour {
         return raycasting;
     }
 
-    private bool CanPlaceBallHere()
+    protected bool CanPlaceBallHere()
     {
-        var ray = GetRay();
-
-        if (Physics.Raycast(ray, out var simpleHit, maxBallSpawnDistance))
+        if (doRaycast(out RaycastHit raycastHit))
         {
-            return simpleHit.collider.GetComponent<GolfBallPlaceableArea>() != null;
+            return raycastHit.collider.GetComponent<GolfBallPlaceableArea>() != null;
 
         }
         return false;
     }
 
-    private void RaycastBallHere()
+    protected void RaycastBallHere()
     {
-        var ray = GetRay();
-
-        if (Physics.Raycast(ray, out var simpleHit, maxBallSpawnDistance))
+        if (doRaycast(out RaycastHit raycastHit))
         {
-            var placeableArea = simpleHit.collider.GetComponent<GolfBallPlaceableArea>();
+            var placeableArea = raycastHit.collider.GetComponent<GolfBallPlaceableArea>();
             if (placeableArea)
             {
                 if (ballObject != null)
                 {
-                    MoveGolfBall(simpleHit.point);
+                    MoveGolfBall(raycastHit.point);
                 }
                 else
                 {
-                    InstantiateGolfBall(simpleHit.point);
+                    InstantiateGolfBall(raycastHit.point);
                 }
             }
         }
@@ -217,28 +204,40 @@ public class Inventory : MonoBehaviour {
 
     #region Inventory methods
 
-    public void resetInventory() {
+    public void resetInventory()
+    {
         havePutterClubVar = false;
         have5IronClubVar = false;
         numOfBallsVar = 0;
         UpdateUI();
     }
 
+    protected void initInventory()
+    {
+        resetInventory();
+        gm = FindObjectOfType<GameManager>();
+        giantBall = FindObjectOfType<GiantGolfBall>();
+    }
+
     #endregion
 
     #region Balls methods
 
-    public bool haveBall() {
+    public bool haveBall()
+    {
         return numOfBallsVar > 0;
     }
 
-    public void addBall() {
+    public void addBall()
+    {
         numOfBallsVar++;
         UpdateUI();
     }
 
-    public bool removeBall() {
-        if (!haveBall()) {
+    public bool removeBall()
+    {
+        if (!haveBall())
+        {
             return false;
         }
 
@@ -247,14 +246,16 @@ public class Inventory : MonoBehaviour {
         return true;
     }
 
-    public void removeAllBalls() {
+    public void removeAllBalls()
+    {
         numOfBallsVar = 0;
         UpdateUI();
     }
 
-    private void UpdateUI() {
+    private void UpdateUI()
+    {
         BallCountUI.text = numOfBalls.ToString();
     }
 
-#endregion
+    #endregion
 }
