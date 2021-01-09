@@ -24,6 +24,7 @@ public class XRPlayerInventory : AbstractInventory
                     interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
                     interactions.SendHapticImpulseToRightController(0.0f, 0.1f);    // Pause vibration
                     interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
+                    return;
                 }
 
                 switch (clubInHandState)
