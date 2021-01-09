@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Inventory : MonoBehaviour
+public abstract class AbstractInventory : MonoBehaviour
 {
     public const float DEFAULT_INTERACTION_DISTANCE = 4f;
 
@@ -18,8 +18,6 @@ public abstract class Inventory : MonoBehaviour
     // Club in hand
     protected int clubInHandState = 0;
     protected GameObject clubObject = null;
-    protected float relativeClubDistance = 0.3f;
-    protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     // Ball in hand
     protected bool raycasting = false;

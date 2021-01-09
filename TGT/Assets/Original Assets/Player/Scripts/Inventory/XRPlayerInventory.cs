@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XRPlayerInventory : Inventory
+public class XRPlayerInventory : AbstractInventory
 {
     public XRInteractions interactions;
     protected XRRayInteractor rayInteractor;

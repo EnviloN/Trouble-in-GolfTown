@@ -10,13 +10,13 @@ public class DummyPlayer : MonoBehaviour
     private bool rightPrimaryButtonIsPressed = false;
 
     private DialogueManager dm;
-    private Inventory inventory;
+    private AbstractInventory inventory;
 
     // Start is called before the first frame update
     void Start()
     {
         dm = FindObjectOfType<DialogueManager>();
-        inventory = FindObjectOfType<Inventory>();
+        inventory = FindObjectOfType<AbstractInventory>();
         interactions.rightPrimaryButtonPress.AddListener(pressed => rightPrimaryButtonIsPressed = pressed);
     }
 

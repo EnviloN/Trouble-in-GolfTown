@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class KeyboardPlayerInventory : Inventory
+public class KeyboardPlayerInventory : AbstractInventory
 {
     public KeyCode cancelKey;
     public KeyCode switchClubKey;
     public KeyCode showBallKey;
     public KeyCode interactKey;
+
+    protected float relativeClubDistance = 0.3f;
+    protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     override protected void Start()
     {
@@ -89,6 +92,8 @@ public class KeyboardPlayerInventory : Inventory
         PositionClubInPlayersHand();
     }
 
+
+    // Balls
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
         return Physics.Raycast(GetRay(), out raycastHit, interactionDistance);
@@ -100,7 +105,6 @@ public class KeyboardPlayerInventory : Inventory
     }
 
     // Clubs
-
     protected void PositionClubInPlayersHand()
     {
         if (clubObject != null)
