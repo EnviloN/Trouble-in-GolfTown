@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRPlayerInventory : AbstractInventory
@@ -6,15 +7,17 @@ public class XRPlayerInventory : AbstractInventory
     public XRInteractions interactions;
     protected XRRayInteractor rayInteractor;
 
-    // Button presses
+    protected bool clubGrabbed = false;
 
+    // Button presses
     override protected void Start()
     {
         initInventory();
+
         rayInteractor = FindObjectOfType<XRRayInteractor>();
         interactions.leftPrimaryButtonPress.AddListener(pressed =>
         {
-            if (pressed)
+            if (pressed && !clubGrabbed)
             {
                 switch (clubInHandState)
                 {
@@ -81,6 +84,18 @@ public class XRPlayerInventory : AbstractInventory
         });
 
         XRDirectInteractor directInteractor = FindObjectOfType<XRDirectInteractor>();
+        directInteractor.onSelectEntered.AddListener(interactable =>
+        {
+            clubGrabbed = true;
+            InputDevice rightDevice = interactions.rightDevices[0];
+            if (rightDevice.TryGetHapticCapabilities(out HapticCapabilities hapticCapabilities))
+            {
+                uint channels = hapticCapabilities.numChannels;
+                Debug.Log("Number of haptic channels is " + channels);
+                rightDevice.SendHapticImpulse(0, 0.5f, 1.0f);
+            }
+        });
+
         directInteractor.onSelectExited.AddListener(interactable =>
         {
             Rigidbody rigidbody = interactable.GetComponent<Rigidbody>();
@@ -92,6 +107,7 @@ public class XRPlayerInventory : AbstractInventory
             {
                 rigidbody.useGravity = true;
             }
+            clubGrabbed = false;
         });
     }
 

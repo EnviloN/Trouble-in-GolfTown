@@ -32,8 +32,8 @@ public class XRInteractions : MonoBehaviour
     private bool lastLeftTriggerButtonState = false;
     private bool lastRightTriggerButtonState = false;
 
-    private List<InputDevice> leftDevices;
-    private List<InputDevice> rightDevices;
+    public List<InputDevice> leftDevices;
+    public List<InputDevice> rightDevices;
 
     private void Awake()
     {
