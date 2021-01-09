@@ -87,13 +87,7 @@ public class XRPlayerInventory : AbstractInventory
         directInteractor.onSelectEntered.AddListener(interactable =>
         {
             clubGrabbed = true;
-            InputDevice rightDevice = interactions.rightDevices[0];
-            if (rightDevice.TryGetHapticCapabilities(out HapticCapabilities hapticCapabilities))
-            {
-                uint channels = hapticCapabilities.numChannels;
-                Debug.Log("Number of haptic channels is " + channels);
-                rightDevice.SendHapticImpulse(0, 0.5f, 1.0f);
-            }
+            interactions.SendHapticImpulseToRightController(0.5f, 0.3f);
         });
 
         directInteractor.onSelectExited.AddListener(interactable =>

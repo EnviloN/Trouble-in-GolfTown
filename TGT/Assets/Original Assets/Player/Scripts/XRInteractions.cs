@@ -168,4 +168,19 @@ public class XRInteractions : MonoBehaviour
             lastRightTriggerButtonState = tempRightTriggerState;
         }
     }
+
+    protected void SendHapticImpulse(InputDevice device, uint channel, float amplitude, float duration = 1.0f)
+    {
+        device.SendHapticImpulse(channel, amplitude, duration);
+    }
+
+    public void SendHapticImpulseToRightController(float amplitude, float duration = 1.0f, uint channel = 0)
+    {
+        SendHapticImpulse(rightDevices[0], channel, amplitude, duration);
+    }
+
+    public void SendHapticImpulseToLeftController(float amplitude, float duration = 1.0f, uint channel = 0)
+    {
+        SendHapticImpulse(leftDevices[0], channel, amplitude, duration);
+    }
 }
