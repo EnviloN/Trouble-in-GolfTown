@@ -8,16 +8,29 @@ public class XRPlayerInventory : Inventory
 
     // Button presses
     private bool leftPrimaryPressed = false;
-    private bool leftSecondaryPressed = false;
     private bool leftTriggerPressed = false;
 
     override protected void Start()
     {
         initInventory();
         rayInteractor = FindObjectOfType<XRRayInteractor>();
-        interactions.leftPrimaryButtonPress.AddListener(pressed => leftPrimaryPressed = pressed);
-        interactions.leftSecondaryButtonPress.AddListener(pressed => leftSecondaryPressed = pressed);
-        interactions.leftTriggerButtonPress.AddListener(pressed => leftTriggerPressed = pressed);
+        interactions.leftPrimaryButtonPress.AddListener(pressed => {
+            leftPrimaryPressed = pressed;
+        });
+        interactions.leftSecondaryButtonPress.AddListener(pressed => {
+            if (raycasting)
+            {
+                CancelRaycast(true);
+            }
+            else if (haveBall() && CanPlaceBallHere())
+            {
+                raycasting = true;
+                removeBall();
+            }
+        });
+        interactions.leftTriggerButtonPress.AddListener(pressed => {
+            leftTriggerPressed = pressed; 
+        });
     }
 
     // Update is called once per frame
@@ -64,19 +77,6 @@ public class XRPlayerInventory : Inventory
             RaycastBallHere();
         }
 
-        if (leftSecondaryPressed)
-        {
-            if (raycasting)
-            {
-                CancelRaycast(true);
-            }
-            else if (haveBall() && CanPlaceBallHere())
-            {
-                raycasting = true;
-                removeBall();
-            }
-        }
-
         if (leftTriggerPressed && raycasting)
         {
             CancelRaycast(false);
@@ -92,7 +92,6 @@ public class XRPlayerInventory : Inventory
 
     protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
-        rayInteractor.velocity = interactionDistance;
         return rayInteractor.GetCurrentRaycastHit(out raycastHit);
     }
 }

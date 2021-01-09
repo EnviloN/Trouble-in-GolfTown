@@ -4,7 +4,7 @@ public class KeyboardPlayerInventory : Inventory
 {
     public KeyCode cancelKey;
     public KeyCode switchClubKey;
-    public KeyCode showPlaceBallKey;
+    public KeyCode showBallKey;
     public KeyCode interactKey;
 
     override protected void Start()
@@ -65,11 +65,11 @@ public class KeyboardPlayerInventory : Inventory
             RaycastBallHere();
         }
 
-        if (Input.GetKeyDown(showPlaceBallKey))
+        if (Input.GetKeyDown(showBallKey))
         {
             if (raycasting)
             {
-                CancelRaycast(true);
+                CancelRaycast();
             }
             else if (haveBall() && CanPlaceBallHere())
             {

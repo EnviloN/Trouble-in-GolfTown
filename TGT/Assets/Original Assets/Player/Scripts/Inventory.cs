@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public abstract class Inventory : MonoBehaviour
 {
-    public const float DEFAULT_INTERACTION_DISTANCE = 2f;
+    public const float DEFAULT_INTERACTION_DISTANCE = 4f;
 
     public Text BallCountUI;
 
@@ -13,6 +13,7 @@ public abstract class Inventory : MonoBehaviour
     public GameObject putterPrefab;
     public GameObject fiveIronPrefab;
     public GameObject spawnableGolfBallPrefab;
+    public GameObject placeholderGolfBallPrefab;
 
     // Club in hand
     protected int clubInHandState = 0;
@@ -21,9 +22,9 @@ public abstract class Inventory : MonoBehaviour
     protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
 
     // Ball in hand
-    protected bool raycasting = false;
+    [SerializeField] protected bool raycasting = false;
     protected GameObject ballObject = null;
-    protected float moveUpBy = 0.023f;
+    protected float moveUpBy = 0.03f;
 
     // Others
     protected GameManager gm;
@@ -122,24 +123,38 @@ public abstract class Inventory : MonoBehaviour
 
     protected void InstantiatePutter()
     {
-        clubObject = Instantiate(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+        InstantiateClub(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
     protected void InstantiateFiveIron()
     {
-        clubObject = Instantiate(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+        InstantiateClub(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
-    protected void InstantiateGolfBall(Vector3 position)
+    protected void InstantiateClub(GameObject clubPrefab, Vector3 position, Quaternion rotation)
     {
-        ballObject = Instantiate(spawnableGolfBallPrefab, position + new Vector3(0, moveUpBy, 0), Quaternion.Euler(0, 0, 0));
+        clubObject = Instantiate(clubPrefab, position, rotation);
     }
 
-    protected void MoveGolfBall(Vector3 toPosition)
+    protected void InstantiatePlaceholderBall(Vector3 position)
+    {
+        ballObject = Instantiate(placeholderGolfBallPrefab, position + new Vector3(0, 0.02f, 0), Quaternion.Euler(0, 0, 0));
+    }
+
+    protected void MovePlaceholderBall(Vector3 toPosition)
     {
         if (ballObject != null)
         {
-            ballObject.transform.SetPositionAndRotation(toPosition + new Vector3(0, moveUpBy, 0), Quaternion.Euler(0, 0, 0));
+            ballObject.transform.SetPositionAndRotation(toPosition + new Vector3(0, 0.02f, 0), Quaternion.Euler(0, 0, 0));
+        }
+    }
+
+    protected void ReplacePlaceholderBallWithNormal()
+    {
+        if (ballObject != null)
+        {
+            Instantiate(spawnableGolfBallPrefab, ballObject.transform.position + new Vector3(0, moveUpBy, 0), ballObject.transform.rotation);
+            Destroy(ballObject.gameObject);
         }
     }
 
@@ -167,11 +182,11 @@ public abstract class Inventory : MonoBehaviour
             {
                 if (ballObject != null)
                 {
-                    MoveGolfBall(raycastHit.point);
+                    MovePlaceholderBall(raycastHit.point);
                 }
                 else
                 {
-                    InstantiateGolfBall(raycastHit.point);
+                    InstantiatePlaceholderBall(raycastHit.point);
                 }
             }
         }
@@ -186,6 +201,9 @@ public abstract class Inventory : MonoBehaviour
             {
                 Destroy(ballObject.gameObject);
                 addBall();
+            } else if (ballObject != null)
+            {
+                ReplacePlaceholderBallWithNormal();
             }
             ballObject = null;
         }
