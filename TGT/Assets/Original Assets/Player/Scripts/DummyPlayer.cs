@@ -7,7 +7,7 @@ public class DummyPlayer : MonoBehaviour
 
     public Camera mainCamera;
     public XRInteractions interactions;
-    private bool primaryButtonIsPressed = false;
+    private bool rightPrimaryButtonIsPressed = false;
 
     private DialogueManager dm;
     private Inventory inventory;
@@ -23,7 +23,7 @@ public class DummyPlayer : MonoBehaviour
         gameStatus = FindObjectOfType<GameStatus>();
         GM = FindObjectOfType<GameManager>();
         giantBall = FindObjectOfType<GiantGolfBall>();
-        interactions.primaryButtonPress.AddListener(pressed => primaryButtonIsPressed = pressed);
+        interactions.rightPrimaryButtonPress.AddListener(pressed => rightPrimaryButtonIsPressed = pressed);
     }
 
     // Update is called once per frame
@@ -39,14 +39,14 @@ public class DummyPlayer : MonoBehaviour
                 dm.DisplayInteractability();
 
                 // if interact Key is pressed
-                if (Input.GetKeyDown(interactKey) || primaryButtonIsPressed) {
+                if (Input.GetKeyDown(interactKey) || rightPrimaryButtonIsPressed) {
                     talkative.TriggerDialogue();
                 }
             }
 
             var gate = simpleHit.collider.GetComponent<SceneGate>();
             if (gate) {
-                if (Input.GetKeyDown(interactKey) || primaryButtonIsPressed) {
+                if (Input.GetKeyDown(interactKey) || rightPrimaryButtonIsPressed) {
                     gate.LoadScene();
                 }
             }

@@ -4,23 +4,54 @@ using UnityEngine.Events;
 using UnityEngine.XR;
 
 [System.Serializable]
-public class PrimaryButtonEvent : UnityEvent<bool> { }
+public class LeftPrimaryButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class RightPrimaryButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class LeftSecondaryButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class RightSecondaryButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class LeftTriggerButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class RightTriggerButtonEvent : UnityEvent<bool> { }
 
 public class XRInteractions : MonoBehaviour
 {
-    public PrimaryButtonEvent primaryButtonPress;
+    public LeftPrimaryButtonEvent leftPrimaryButtonPress;
+    public RightPrimaryButtonEvent rightPrimaryButtonPress;
+    public LeftSecondaryButtonEvent leftSecondaryButtonPress;
+    public RightSecondaryButtonEvent rightSecondaryButtonPress;
+    public LeftTriggerButtonEvent leftTriggerButtonPress;
+    public RightTriggerButtonEvent rightTriggerButtonPress;
 
-    private bool lastButtonState = false;
-    private List<InputDevice> devicesWithPrimaryButton;
+    private bool lastLeftPrimaryButtonState = false;
+    private bool lastRightPrimaryButtonState = false;
+    private bool lastLeftSecondaryButtonState = false;
+    private bool lastRightSecondaryButtonState = false;
+    private bool lastLeftTriggerButtonState = false;
+    private bool lastRightTriggerButtonState = false;
+
+    private List<InputDevice> leftDevices;
+    private List<InputDevice> rightDevices;
 
     private void Awake()
     {
-        if (primaryButtonPress == null)
-        {
-            primaryButtonPress = new PrimaryButtonEvent();
-        }
+        if (leftPrimaryButtonPress == null) 
+        	leftPrimaryButtonPress = new LeftPrimaryButtonEvent();
+        if (rightPrimaryButtonPress == null) 
+        	rightPrimaryButtonPress = new RightPrimaryButtonEvent();
+        if (leftSecondaryButtonPress == null) 
+        	leftSecondaryButtonPress = new LeftSecondaryButtonEvent();
+        if (rightSecondaryButtonPress == null) 
+        	rightSecondaryButtonPress = new RightSecondaryButtonEvent();
+        if (leftTriggerButtonPress == null) 
+        	leftTriggerButtonPress = new LeftTriggerButtonEvent();
+        if (rightTriggerButtonPress == null) 
+        	rightTriggerButtonPress = new RightTriggerButtonEvent();
 
-        devicesWithPrimaryButton = new List<InputDevice>();
+        leftDevices = new List<InputDevice>();
+    	rightDevices = new List<InputDevice>();
     }
 
     void OnEnable()
@@ -38,39 +69,103 @@ public class XRInteractions : MonoBehaviour
     {
         InputDevices.deviceConnected -= InputDevices_deviceConnected;
         InputDevices.deviceDisconnected -= InputDevices_deviceDisconnected;
-        devicesWithPrimaryButton.Clear();
+        leftDevices.Clear();
+    	rightDevices.Clear();
     }
 
     private void InputDevices_deviceConnected(InputDevice device)
     {
-        bool discardedValue;
-        if (device.TryGetFeatureValue(CommonUsages.primaryButton, out discardedValue))
+        if ((device.characteristics & InputDeviceCharacteristics.HeldInHand) == InputDeviceCharacteristics.HeldInHand)
         {
-            devicesWithPrimaryButton.Add(device); // Add any devices that have a primary button.
+        	if ((device.characteristics & InputDeviceCharacteristics.Left) == InputDeviceCharacteristics.Left)
+        	{
+            	leftDevices.Add(device);
+        	}
+        	if ((device.characteristics & InputDeviceCharacteristics.Right) == InputDeviceCharacteristics.Right)
+        	{
+            	rightDevices.Add(device);
+        	}
         }
     }
 
     private void InputDevices_deviceDisconnected(InputDevice device)
     {
-        if (devicesWithPrimaryButton.Contains(device))
-            devicesWithPrimaryButton.Remove(device);
+        if (leftDevices.Contains(device))
+            leftDevices.Remove(device);
+        if (rightDevices.Contains(device))
+            rightDevices.Remove(device);
     }
 
     void Update()
     {
-        bool tempState = false;
-        foreach (var device in devicesWithPrimaryButton)
+        bool tempLeftPrimaryState = false;
+        bool tempRightPrimaryState = false;
+        bool tempLeftSecondaryState = false;
+        bool tempRightSecondaryState = false;
+        bool tempLeftTriggerState = false;
+        bool tempRightTriggerState = false;
+
+        foreach (var device in leftDevices)
         {
             bool primaryButtonState = false;
-            tempState = device.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonState) // did get a value
-                        && primaryButtonState // the value we got
-                        || tempState; // cumulative result from other controllers
+            bool secondaryButtonState = false;
+            bool triggerButtonState = false;
+            tempLeftPrimaryState = device.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonState)
+                        && primaryButtonState
+                        || tempLeftPrimaryState;
+            tempLeftSecondaryState = device.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryButtonState)
+                        && secondaryButtonState
+                        || tempLeftSecondaryState;
+            tempLeftTriggerState = device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonState)
+                        && triggerButtonState
+                        || tempLeftTriggerState;
         }
 
-        if (tempState != lastButtonState) // Button state changed since last frame
+        foreach (var device in rightDevices)
         {
-            primaryButtonPress.Invoke(tempState);
-            lastButtonState = tempState;
+            bool primaryButtonState = false;
+            bool secondaryButtonState = false;
+            bool triggerButtonState = false;
+            tempRightPrimaryState = device.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonState)
+                        && primaryButtonState
+                        || tempRightPrimaryState;
+            tempRightSecondaryState = device.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryButtonState)
+                        && secondaryButtonState
+                        || tempRightSecondaryState;
+            tempRightTriggerState = device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonState)
+                        && triggerButtonState
+                        || tempRightTriggerState;
+        }
+
+        if (tempLeftPrimaryState != lastLeftPrimaryButtonState)
+        {
+            leftPrimaryButtonPress.Invoke(tempLeftPrimaryState);
+            lastLeftPrimaryButtonState = tempLeftPrimaryState;
+        }
+        if (tempRightPrimaryState != lastRightPrimaryButtonState)
+        {
+            rightPrimaryButtonPress.Invoke(tempRightPrimaryState);
+            lastRightPrimaryButtonState = tempRightPrimaryState;
+        }
+        if (tempLeftSecondaryState != lastLeftSecondaryButtonState)
+        {
+            leftSecondaryButtonPress.Invoke(tempLeftSecondaryState);
+            lastLeftSecondaryButtonState = tempLeftSecondaryState;
+        }
+        if (tempRightSecondaryState != lastRightSecondaryButtonState)
+        {
+            rightSecondaryButtonPress.Invoke(tempRightSecondaryState);
+            lastRightSecondaryButtonState = tempRightSecondaryState;
+        }
+        if (tempLeftTriggerState != lastLeftTriggerButtonState)
+        {
+            leftTriggerButtonPress.Invoke(tempLeftTriggerState);
+            lastLeftTriggerButtonState = tempLeftTriggerState;
+        }
+        if (tempRightTriggerState != lastRightTriggerButtonState)
+        {
+            rightTriggerButtonPress.Invoke(tempRightTriggerState);
+            lastRightTriggerButtonState = tempRightTriggerState;
         }
     }
 }
