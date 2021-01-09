@@ -201,7 +201,7 @@ public abstract class Inventory : MonoBehaviour
     {
         //havePutterClubVar = false;
         //have5IronClubVar = false;
-        numOfBallsVar = 0;
+        //numOfBallsVar = 0;
         UpdateUI();
     }
 
