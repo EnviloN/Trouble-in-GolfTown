@@ -21,9 +21,7 @@ public class XRPlayerInventory : AbstractInventory
             {
                 if (clubGrabbed)
                 {
-                    interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
-                    interactions.SendHapticImpulseToRightController(0.0f, 0.1f);    // Pause vibration
-                    interactions.SendHapticImpulseToRightController(0.7f, 0.2f);
+                    interactions.SendHapticImpulseToRightController(0.7f, 0.4f);
                     return;
                 }
 
@@ -95,7 +93,7 @@ public class XRPlayerInventory : AbstractInventory
         directInteractor.onSelectEntered.AddListener(interactable =>
         {
             clubGrabbed = true;
-            interactions.SendHapticImpulseToRightController(0.5f, 0.3f);
+            interactions.SendHapticImpulseToRightController(0.5f, 0.2f);
         });
 
         directInteractor.onSelectExited.AddListener(interactable =>
