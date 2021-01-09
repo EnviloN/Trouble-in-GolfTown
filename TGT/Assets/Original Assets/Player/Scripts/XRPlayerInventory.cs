@@ -81,13 +81,30 @@ public class XRPlayerInventory : Inventory
         });
 
         XRDirectInteractor directInteractor = FindObjectOfType<XRDirectInteractor>();
-        directInteractor.onSelectEntered.AddListener(interactable =>
+        /*directInteractor.onSelectEntered.AddListener(interactable =>
         {
             Rigidbody rigidbody = interactable.gameObject.GetComponent<Rigidbody>();
             if (rigidbody == null)
             {
                 Debug.Log("Rigidbody is null");
             } else
+            {
+                Debug.Log("Rigidbody is ok");
+                Debug.Log("Garbbing gameobject with name " + interactable.gameObject.name);
+                Debug.Log("Use gravity is set to " + rigidbody.useGravity);
+                rigidbody.useGravity = true;
+                Debug.Log("Use gravity is set to " + rigidbody.useGravity);
+            }
+        });*/
+
+        directInteractor.onSelectExited.AddListener(interactable =>
+        {
+            Rigidbody rigidbody = interactable.gameObject.GetComponent<Rigidbody>();
+            if (rigidbody == null)
+            {
+                Debug.Log("Rigidbody is null");
+            }
+            else
             {
                 Debug.Log("Rigidbody is ok");
                 Debug.Log("Garbbing gameobject with name " + interactable.gameObject.name);
