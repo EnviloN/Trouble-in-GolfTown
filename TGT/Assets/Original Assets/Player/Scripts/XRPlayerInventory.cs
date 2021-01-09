@@ -18,18 +18,21 @@ public class XRPlayerInventory : Inventory
             leftPrimaryPressed = pressed;
         });
         interactions.leftSecondaryButtonPress.AddListener(pressed => {
-            if (raycasting)
+            if (pressed)
             {
-                CancelRaycast(true);
-            }
-            else if (haveBall() && CanPlaceBallHere())
-            {
-                raycasting = true;
-                removeBall();
+                if (raycasting)
+                {
+                    CancelRaycast(true);
+                }
+                else if (haveBall() && CanPlaceBallHere())
+                {
+                    raycasting = true;
+                    removeBall();
+                }
             }
         });
         interactions.leftTriggerButtonPress.AddListener(pressed => {
-            leftTriggerPressed = pressed; 
+            leftTriggerPressed = pressed;
         });
     }
 
