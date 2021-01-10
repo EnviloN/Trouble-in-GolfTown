@@ -19,6 +19,7 @@ public class XRPlayerInventory : AbstractInventory
         {
             if (pressed)
             {
+                // If player has club in hand, they cannot change it (results in Null exception)
                 if (clubGrabbed)
                 {
                     interactions.SendHapticImpulseToRightController(0.7f, 0.4f);
@@ -67,11 +68,13 @@ public class XRPlayerInventory : AbstractInventory
                 if (raycasting)
                 {
                     CancelRaycast(true);
+                    Debug.Log("Raycasting stopped (add one ball to inventory). Count " + numOfBalls);
                 }
                 else if (haveBall() && CanPlaceBallHere())
                 {
                     raycasting = true;
                     removeBall();
+                    Debug.Log("Started raycasting (removed one ball from inventory). Count " + numOfBalls);
                 }
             }
         });
@@ -80,11 +83,6 @@ public class XRPlayerInventory : AbstractInventory
         {
             if (pressed)
             {
-                if (raycasting)
-                {
-                    CancelRaycast(false);
-                }
-
                 tryPickupBall();
             }
         });

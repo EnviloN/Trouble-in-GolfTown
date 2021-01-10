@@ -71,6 +71,7 @@ public abstract class AbstractInventory : MonoBehaviour
                 {
                     // Place ball on the ground
                     CancelRaycast(false);
+                    Debug.Log("Placed ball on ground. Count " + numOfBalls);
                 }
                 else
                 {
@@ -79,6 +80,7 @@ public abstract class AbstractInventory : MonoBehaviour
                     addBall();
                     var count = (int)gm.GetGameStatus("ballsCollected") + 1;
                     gm.SetGameStatus("ballsCollected", count);
+                    Debug.Log("Picked up a ball. Count " + numOfBalls);
                 }
                 return;
             }
@@ -86,6 +88,7 @@ public abstract class AbstractInventory : MonoBehaviour
             {
                 goldenBall.gameObject.SetActive(false);
                 addBall();
+                Debug.Log("Picked up a golden ball. Count " + numOfBalls + ", golden " + gm.GetGoldenBallsCollected());
                 gm.AddGoldenBall();
                 if (gm.HaveCollectedAllGoldenBalls())
                 {
