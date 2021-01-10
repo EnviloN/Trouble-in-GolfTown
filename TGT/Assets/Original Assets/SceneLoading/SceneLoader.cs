@@ -8,18 +8,21 @@ public class SceneLoader : MonoBehaviour {
 
     private GameObject player;
     private DialogueManager dm;
+    private GameObject menu;
+    private GameObject pause_menu;//?
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
+        menu = GameObject.FindGameObjectWithTag("Menu");
         dm = FindObjectOfType<DialogueManager>();
-        LoadMainScene();
+        LoadIntroScene();
     }
 
     private static void LoadSceneAdditively(string sceneName) {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
-    private void LoadMainScene() {
+    private void LoadIntroScene() {
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
         LoadSceneAdditively("Dock");
@@ -28,6 +31,41 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Cemetery");
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
+
+        //ground Player movement
+        //player.GetComponent<FreezeMovement>().Freeze();
+        //Debug.Log("Player Movement is freezed.");
+        Debug.Log(player.transform.position);
+
+        //position Menu canvas
+
+
+
+    }
+
+    public void LoadMainScene() {
+        Debug.Log("Player Movement free.");
+        Debug.Log(player.transform.position);
+
+        //unfreeze player
+        player.GetComponent<FreezeMovement>().UnFreeze();
+
+        //disable menu
+        menu.SetActive(false); //= false;
+
+        //stop music? (already should be dead because of button trigger)
+
+
+        /*
+        SceneManager.LoadScene("World", LoadSceneMode.Single);
+        LoadSceneAdditively("Town");
+        LoadSceneAdditively("Dock");
+        LoadSceneAdditively("MagnatesResidence");
+        LoadSceneAdditively("TrainStation");
+        LoadSceneAdditively("Cemetery");
+        LoadSceneAdditively("MinigolfCourses");
+        LoadSceneAdditively("Towers");
+        */
     }
 
     private void LoadSaloonScene() {
