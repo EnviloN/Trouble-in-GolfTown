@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class FreezeMovement : MonoBehaviour
 {
@@ -19,11 +20,10 @@ public class FreezeMovement : MonoBehaviour
             rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }
         else
-        { //VR Player
-            //Continouous movement
-            //gameObject.GetComponent<DeviceBasedContinuousMoveProvider>().enabled = false;
-            CharacterController controller = this.GetComponent<CharacterController>();
-            controller.enabled = false;
+        {
+            //VR Player
+            FindObjectOfType<DeviceBasedContinuousMoveProvider>().enabled = false;
+            FindObjectOfType<DeviceBasedContinuousTurnProvider>().enabled = false;
         }
 
     }
@@ -39,8 +39,8 @@ public class FreezeMovement : MonoBehaviour
         else
         {
             //VR Player
-            CharacterController controller = this.GetComponent<CharacterController>();
-            controller.enabled = true;
+            FindObjectOfType<DeviceBasedContinuousMoveProvider>().enabled = true;
+            FindObjectOfType<DeviceBasedContinuousTurnProvider>().enabled = true;
         }
 
     }
