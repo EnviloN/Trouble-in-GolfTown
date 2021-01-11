@@ -8,7 +8,6 @@ public class SetVolume : MonoBehaviour
 
     public AudioMixer mixer;
 
-
     public void SetLevel(float sliderValue) {
         sliderValue = sliderValue * 2;
         float volume = sliderValue / 10.0f;
@@ -18,7 +17,5 @@ public class SetVolume : MonoBehaviour
         }
 
         mixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
-        
-
     }
 }

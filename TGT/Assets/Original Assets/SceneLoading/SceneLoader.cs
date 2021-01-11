@@ -5,17 +5,25 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
+    public GameObject MusicPlayer;
 
     private GameObject player;
     private DialogueManager dm;
-    private GameObject menu;
-    private GameObject pause_menu;//?
+    private GameObject canvas;
+    private bool isPaused;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
-        menu = GameObject.FindGameObjectWithTag("Menu");
+        canvas = GameObject.FindGameObjectWithTag("Menu");
         dm = FindObjectOfType<DialogueManager>();
         LoadIntroScene();
+    }
+
+    private void Update()
+    {
+        if (isPaused) {
+            PositionCanvas();
+        }
     }
 
     private static void LoadSceneAdditively(string sceneName) {
@@ -33,30 +41,26 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Towers");
 
         //ground Player movement
-        //player.GetComponent<FreezeMovement>().Freeze();
-        //Debug.Log("Player Movement is freezed.");
-        Debug.Log(player.transform.position);
+        isPaused = true;
+        player.GetComponent<FreezeMovement>().Freeze();
+    }
 
-        //position Menu canvas
+    void PositionCanvas() {
+        canvas.transform.position = player.transform.position + player.transform.forward * 30.0f + Vector3.up*0.0f;
+        canvas.transform.rotation = player.transform.rotation;
+    }
 
-
-
+    public void StartGame() {
+        //fadeout audio
+        StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), 2.0f));
+        //unfreeze player
+        player.GetComponent<FreezeMovement>().UnFreeze();
+        //disable menu
+        canvas.SetActive(false); //this would be nice with animation
+        isPaused = false;
     }
 
     public void LoadMainScene() {
-        Debug.Log("Player Movement free.");
-        Debug.Log(player.transform.position);
-
-        //unfreeze player
-        player.GetComponent<FreezeMovement>().UnFreeze();
-
-        //disable menu
-        menu.SetActive(false); //= false;
-
-        //stop music? (already should be dead because of button trigger)
-
-
-        /*
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
         LoadSceneAdditively("Dock");
@@ -65,7 +69,7 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Cemetery");
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
-        */
+        
     }
 
     private void LoadSaloonScene() {
@@ -94,5 +98,24 @@ public class SceneLoader : MonoBehaviour {
         dm.UpdateGraphs();
 
         transition.SetTrigger("End");
+    }
+
+    public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
+    {
+
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            Debug.Log("Fade out Coroutine running. vol: " + audioSource.volume);
+            Debug.Log("time scale: " + Time.timeScale);
+            yield return null;
+
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+        Debug.Log("Fade out Coroutine ended.");
     }
 }

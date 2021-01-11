@@ -5,27 +5,23 @@ using UnityEngine;
 public class FreezeMovement : MonoBehaviour
 {
 
-    //private bool isFrozen;
-    // Start is called before the first frame update
     void Start()
     {
-        //isFrozen = false;
         //UnFreeze();
     }
 
 
     public void Freeze() {
-        //isFrozen = true;
-        //PC Player
-        Debug.Log("Freezing player movement");
+
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
-        if (rigidbody)
+        if (rigidbody) //PC Player
         {
             rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }
-        else {
-            Debug.Log("else");
-            //VR Player
+        else
+        { //VR Player
+            //Continouous movement
+            //gameObject.GetComponent<DeviceBasedContinuousMoveProvider>().enabled = false;
             CharacterController controller = this.GetComponent<CharacterController>();
             controller.enabled = false;
         }
@@ -34,8 +30,6 @@ public class FreezeMovement : MonoBehaviour
 
     public void UnFreeze()
     {
-        //isFrozen = false;
-        Debug.Log("Restoring player movement");
         //PC Player
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
         if (rigidbody)
@@ -44,7 +38,6 @@ public class FreezeMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("else");
             //VR Player
             CharacterController controller = this.GetComponent<CharacterController>();
             controller.enabled = true;
