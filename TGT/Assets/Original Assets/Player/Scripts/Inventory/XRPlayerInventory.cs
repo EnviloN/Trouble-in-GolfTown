@@ -68,13 +68,11 @@ public class XRPlayerInventory : AbstractInventory
                 if (raycasting)
                 {
                     CancelRaycast(true);
-                    Debug.Log("Raycasting stopped (add one ball to inventory). Count " + numOfBalls);
                 }
                 else if (haveBall() && CanPlaceBallHere())
                 {
                     raycasting = true;
                     removeBall();
-                    Debug.Log("Started raycasting (removed one ball from inventory). Count " + numOfBalls);
                 }
             }
         });
@@ -98,14 +96,7 @@ public class XRPlayerInventory : AbstractInventory
         directInteractor.onSelectExited.AddListener(interactable =>
         {
             Rigidbody rigidbody = interactable.GetComponent<Rigidbody>();
-            if (rigidbody == null)
-            {
-                Debug.Log("Rigidbody is null");
-            }
-            else
-            {
-                rigidbody.useGravity = true;
-            }
+            rigidbody.useGravity = true;
             clubGrabbed = false;
             interactable.GetComponent<MeshCollider>().enabled = true;
         });
