@@ -227,7 +227,12 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (ballCountCanvasObject != null)
         {
-            ballCountCanvasObject.GetComponentInChildren<Text>().text = "You have " + numOfBalls + " balls";
+            string textBuilder = "You have " + numOfBalls + " ball";
+            if (numOfBalls > 1)
+            {
+                textBuilder += "s";
+            }
+            ballCountCanvasObject.GetComponentInChildren<Text>().text = textBuilder;
         }
     }
 

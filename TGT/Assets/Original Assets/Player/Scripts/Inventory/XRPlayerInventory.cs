@@ -26,6 +26,12 @@ public class XRPlayerInventory : AbstractInventory
                     return;
                 }
 
+                if (!havePutterClub && !have5IronClub)
+                {
+                    interactions.SendHapticImpulseToRightController(0.7f, 0.4f);
+                    return;
+                }
+
                 switch (clubInHandState)
                 {
                     case 0: // Neither of clubs is in player hand
@@ -76,7 +82,7 @@ public class XRPlayerInventory : AbstractInventory
                         raycasting = true;
                     } else
                     {
-                        interactions.SendHapticImpulseToRightController(0.7f, 0.4f);
+                        interactions.SendHapticImpulseToLeftController(0.7f, 0.4f);
                     }
                 }
             }
