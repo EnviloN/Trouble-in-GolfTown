@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallCountUI: {fileID: 1940149836}
-  numOfBallsVar: 10
+  numOfBallsVar: 0
   putterPrefab: {fileID: 210722126370726939, guid: 64601ecd9459e57468b19fdaa1a9026a,
     type: 3}
   fiveIronPrefab: {fileID: 6302164973794587298, guid: 46528beebb2a46b488d0d7dd287c8e26,
@@ -790,8 +790,8 @@ MonoBehaviour:
     type: 3}
   ballCountCanvasPrefab: {fileID: 2123652008513543768, guid: df5874593501a954781122bee0c53131,
     type: 3}
-  havePutterClubVar: 1
-  have5IronClubVar: 1
+  havePutterClubVar: 0
+  have5IronClubVar: 0
   interactions: {fileID: 765878780}
 --- !u!114 &765878777
 MonoBehaviour:
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallCountUI: {fileID: 1940149836}
-  numOfBallsVar: 10
+  numOfBallsVar: 0
   putterPrefab: {fileID: 210722126370726939, guid: 64601ecd9459e57468b19fdaa1a9026a,
     type: 3}
   fiveIronPrefab: {fileID: 6302164973794587298, guid: 46528beebb2a46b488d0d7dd287c8e26,
@@ -1013,8 +1013,8 @@ MonoBehaviour:
     type: 3}
   ballCountCanvasPrefab: {fileID: 2123652008513543768, guid: df5874593501a954781122bee0c53131,
     type: 3}
-  havePutterClubVar: 1
-  have5IronClubVar: 1
+  havePutterClubVar: 0
+  have5IronClubVar: 0
   cancelKey: 27
   switchClubKey: 49
   showBallKey: 50

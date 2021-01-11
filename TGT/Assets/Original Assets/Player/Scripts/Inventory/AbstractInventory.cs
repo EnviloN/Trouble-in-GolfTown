@@ -242,9 +242,9 @@ public abstract class AbstractInventory : MonoBehaviour
 
     public void resetInventory()
     {
-        //havePutterClubVar = false;
-        //have5IronClubVar = false;
-        //numOfBallsVar = 0;
+        havePutterClubVar = false;
+        have5IronClubVar = false;
+        numOfBallsVar = 0;
         UpdateUI();
     }
 
