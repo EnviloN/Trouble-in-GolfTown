@@ -14,6 +14,7 @@ public abstract class AbstractInventory : MonoBehaviour
     public GameObject fiveIronPrefab;
     public GameObject spawnableGolfBallPrefab;
     public GameObject placeholderGolfBallPrefab;
+    public GameObject ballCountCanvasPrefab;
 
     // Club in hand
     protected int clubInHandState = 0;
@@ -23,6 +24,8 @@ public abstract class AbstractInventory : MonoBehaviour
     protected bool raycasting = false;
     protected GameObject ballObject = null;
     protected float moveUpBy = 0.03f;
+
+    protected GameObject ballCountCanvasObject = null;
 
     // Others
     protected GameManager gm;
@@ -155,10 +158,12 @@ public abstract class AbstractInventory : MonoBehaviour
                 if (ballObject != null)
                 {
                     MovePlaceholderBall(raycastHit.point);
+                    ShowBallCounter(raycastHit.point);
                 }
                 else
                 {
                     InstantiatePlaceholderBall(raycastHit.point);
+                    ShowBallCounter(raycastHit.point);
                 }
             }
         }
@@ -172,12 +177,13 @@ public abstract class AbstractInventory : MonoBehaviour
             if (addBallBackToInventory && ballObject != null)
             {
                 Destroy(ballObject.gameObject);
-                addBall();
             }
             else if (ballObject != null)
             {
                 ReplacePlaceholderBallWithNormal();
+                removeBall();
             }
+            HideBallCounter();
             ballObject = null;
         }
     }
@@ -188,6 +194,40 @@ public abstract class AbstractInventory : MonoBehaviour
         {
             Destroy(clubObject);
             clubInHandState = 0;
+        }
+    }
+
+    #endregion
+
+    #region Ball counter canvas methods
+
+    protected void ShowBallCounter(Vector3 position)
+    {
+        Vector3 relativePosFromBall = (transform.forward * 0.1f) + (transform.up * 0.2f);
+
+        if (ballCountCanvasObject == null)
+        {
+            ballCountCanvasObject = Instantiate(ballCountCanvasPrefab, position + relativePosFromBall, Quaternion.LookRotation(transform.position - position));
+            setCountOfBallsOnCanvas();
+        } else
+        {
+            ballCountCanvasObject.transform.SetPositionAndRotation(position + relativePosFromBall, ballCountCanvasObject.transform.rotation);
+        }
+    }
+
+    protected void HideBallCounter()
+    {
+        if (ballCountCanvasObject != null)
+        {
+            Destroy(ballCountCanvasObject);
+        }
+    }
+
+    protected void setCountOfBallsOnCanvas()
+    {
+        if (ballCountCanvasObject != null)
+        {
+            ballCountCanvasObject.GetComponentInChildren<Text>().text = "You have " + numOfBalls + " balls";
         }
     }
 

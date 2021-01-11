@@ -77,7 +77,6 @@ public class KeyboardPlayerInventory : AbstractInventory
             else if (haveBall() && CanPlaceBallHere())
             {
                 raycasting = true;
-                removeBall();
             }
         }
 

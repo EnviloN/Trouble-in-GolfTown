@@ -69,10 +69,15 @@ public class XRPlayerInventory : AbstractInventory
                 {
                     CancelRaycast(true);
                 }
-                else if (haveBall() && CanPlaceBallHere())
+                else if (CanPlaceBallHere())
                 {
-                    raycasting = true;
-                    removeBall();
+                    if (haveBall())
+                    {
+                        raycasting = true;
+                    } else
+                    {
+                        interactions.SendHapticImpulseToRightController(0.7f, 0.4f);
+                    }
                 }
             }
         });
