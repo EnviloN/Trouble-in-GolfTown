@@ -19,9 +19,11 @@ public class HandsPresence : MonoBehaviour
     void TryInitialize() {
     	List<InputDevice> devices = new List<UnityEngine.XR.InputDevice>();
 		InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, devices);
-		targetDevice = devices[0];
-        spawnedHandModel = Instantiate(handModelPrefab, transform);
-		handAnimator = spawnedHandModel.GetComponent<Animator>();
+		if (devices.Count > 0) {
+			targetDevice = devices[0];
+        	spawnedHandModel = Instantiate(handModelPrefab, transform);
+			handAnimator = spawnedHandModel.GetComponent<Animator>();
+		}
     }
 
     void Update()
