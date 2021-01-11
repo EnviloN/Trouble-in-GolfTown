@@ -11,20 +11,18 @@ public class SceneLoader : MonoBehaviour {
     private DialogueManager dm;
     private GameObject canvas;
     private bool isPaused;
+    private PauseGame pauser;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         canvas = GameObject.FindGameObjectWithTag("Menu");
         dm = FindObjectOfType<DialogueManager>();
+        pauser = gameObject.GetComponent<PauseGame>();
         LoadIntroScene();
     }
 
     private void Update()
-    {
-        if (isPaused) {
-            PositionCanvas();
-        }
-    }
+    {}
 
     private static void LoadSceneAdditively(string sceneName) {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
@@ -41,23 +39,24 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Towers");
 
         //ground Player movement
-        isPaused = true;
-        player.GetComponent<FreezeMovement>().Freeze();
+        //isPaused = true;
+        pauser.Pause();
+        pauser.DisplayMainMenu();
+        
+        //player.GetComponent<FreezeMovement>().Freeze();
     }
 
-    void PositionCanvas() {
-        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up*1.5f;
-        canvas.transform.rotation = player.transform.rotation;
-    }
 
     public void StartGame() {
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), 2.0f));
         //unfreeze player
-        player.GetComponent<FreezeMovement>().UnFreeze();
+        //player.GetComponent<FreezeMovement>().UnFreeze();
         //disable menu
-        canvas.SetActive(false); //this would be nice with animation
-        isPaused = false;
+        pauser.HideMenu();
+        pauser.Resume();
+        //canvas.SetActive(false); //this would be nice with animation
+        //isPaused = false;
     }
 
     public void LoadMainScene() {
