@@ -15,7 +15,7 @@ public class XRPlayerInventory : AbstractInventory
         initInventory();
 
         rayInteractor = FindObjectOfType<XRRayInteractor>();
-        interactions.leftPrimaryButtonPress.AddListener(pressed =>
+        interactions.rightPrimaryButtonPress.AddListener(pressed =>
         {
             if (pressed)
             {
@@ -67,7 +67,7 @@ public class XRPlayerInventory : AbstractInventory
             }
         });
 
-        interactions.leftSecondaryButtonPress.AddListener(pressed =>
+        interactions.leftPrimaryButtonPress.AddListener(pressed =>
         {
             if (pressed)
             {

@@ -7,7 +7,7 @@ public class DummyPlayer : MonoBehaviour
 
     public Camera mainCamera;
     public XRInteractions interactions;
-    private bool rightPrimaryButtonIsPressed = false;
+    private bool rightTriggerButtonIsPressed = false;
 
     private DialogueManager dm;
     private AbstractInventory inventory;
@@ -17,7 +17,7 @@ public class DummyPlayer : MonoBehaviour
     {
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<AbstractInventory>();
-        interactions.rightPrimaryButtonPress.AddListener(pressed => rightPrimaryButtonIsPressed = pressed);
+        interactions.rightTriggerButtonPress.AddListener(pressed => rightTriggerButtonIsPressed = pressed);
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class DummyPlayer : MonoBehaviour
                 dm.DisplayInteractability();
 
                 // if interact Key is pressed
-                if (Input.GetKeyDown(interactKey) || rightPrimaryButtonIsPressed)
+                if (Input.GetKeyDown(interactKey) || rightTriggerButtonIsPressed)
                 {
                     talkative.TriggerDialogue();
                 }
@@ -44,7 +44,7 @@ public class DummyPlayer : MonoBehaviour
             var gate = simpleHit.collider.GetComponent<SceneGate>();
             if (gate)
             {
-                if (Input.GetKeyDown(interactKey) || rightPrimaryButtonIsPressed)
+                if (Input.GetKeyDown(interactKey) || rightTriggerButtonIsPressed)
                 {
                     gate.LoadScene();
                 }
