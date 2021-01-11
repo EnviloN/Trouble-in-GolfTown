@@ -41,7 +41,7 @@ public class PauseGame : MonoBehaviour
 
     void PositionCanvas()
     {
-        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 0.0f;
+        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.5f;
         canvas.transform.rotation = player.transform.rotation;
     }
 
