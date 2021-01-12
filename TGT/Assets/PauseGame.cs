@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 
@@ -49,7 +50,7 @@ public class PauseGame : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        isPaused = false;
+        isPaused = true;
 
     }
 
@@ -59,7 +60,8 @@ public class PauseGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && isPaused == false)
         {
             Pause();
-            DisplayPauseMenu();
+            //DisplayPauseMenu();
+            DisplayMainMenu();
         }
         else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
             Resume();
@@ -67,12 +69,24 @@ public class PauseGame : MonoBehaviour
         }
 
         if (isPaused) {
-
+            
             GameObject hover_over = IsPointerOverUIObject();
             if (hover_over !=  null) {
-                Debug.Log("Pointer over UI. "+ hover_over.name);
+                //Debug.Log("Pointer over UI. "+ hover_over.name);
                 EventSystem.current.SetSelectedGameObject(hover_over);
+                if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.H))
+                {
+                    //Debug.Log("Mouse position:" + Input.mousePosition);
+                    Button btn = hover_over.GetComponent<Button>();
+                    if (btn != null) {
+                        btn.onClick.Invoke();
+                    }
+                    //Debug.Log("Clicked " + hover_over.name);
+                    //Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
+                }
             }
+
+                       
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -80,11 +94,7 @@ public class PauseGame : MonoBehaviour
                 Application.Quit();
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
-                Debug.Log("system:   " + EventSystem.current.name);
-            }
+            
         }
     }
 
@@ -126,7 +136,7 @@ public class PauseGame : MonoBehaviour
         settings_menu.SetActive(false);
 
         //clear
-        EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(null);
     }
 
 
