@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
+
+
+public static class MouseOverUILayerObject
+{
+
+}
+
 public class PauseGame : MonoBehaviour
 {
 
@@ -18,12 +25,32 @@ public class PauseGame : MonoBehaviour
 
     GameObject player;
     public static bool isPaused;
+    public GameObject[] hands;
+
+    public static GameObject IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            if (results[i].gameObject.layer == 5) //5 = UI layer
+            {
+                return results[i].gameObject;
+            }
+        }
+
+        return null;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         isPaused = false;
+
     }
 
     // Update is called once per frame
@@ -33,7 +60,6 @@ public class PauseGame : MonoBehaviour
         {
             Pause();
             DisplayPauseMenu();
-            //DisplayMainMenu();
         }
         else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
             Resume();
@@ -41,11 +67,23 @@ public class PauseGame : MonoBehaviour
         }
 
         if (isPaused) {
-            //Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
+
+            GameObject hover_over = IsPointerOverUIObject();
+            if (hover_over !=  null) {
+                Debug.Log("Pointer over UI. "+ hover_over.name);
+                EventSystem.current.SetSelectedGameObject(hover_over);
+            }
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Game presumably ended.");
                 Application.Quit();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
+                Debug.Log("system:   " + EventSystem.current.name);
             }
         }
     }
@@ -59,8 +97,8 @@ public class PauseGame : MonoBehaviour
     }
 
     public void DisplayMainMenu() {
-        this.canvas.SetActive(true);
-        this.main_menu.SetActive(true);
+        canvas.SetActive(true);
+        main_menu.SetActive(true);
         //clear
         EventSystem.current.SetSelectedGameObject(null);
         //set on play
@@ -70,22 +108,22 @@ public class PauseGame : MonoBehaviour
     }
 
     public void DisplayPauseMenu() {
-        this.canvas.SetActive(true);
-        this.pause_menu.SetActive(true);
-        this.main_menu.SetActive(false);
+        canvas.SetActive(true);
+        pause_menu.SetActive(true);
+        main_menu.SetActive(false);
         //clear
         EventSystem.current.SetSelectedGameObject(null);
         //set on resume
-        //EventSystem.current.SetSelectedGameObject(quitBtnPause);
-        this.PositionCanvas();
+        //EventSystem.current.SetSelectedGameObject(resumeBtn);
+        PositionCanvas();
         //Debug.Log("Pause menu displayed." + EventSystem.current.currentSelectedGameObject);
     }
 
     public void HideMenu() {
-        this.canvas.SetActive(false);
-        this.pause_menu.SetActive(false);
-        this.main_menu.SetActive(false);
-        this.settings_menu.SetActive(false);
+        canvas.SetActive(false);
+        pause_menu.SetActive(false);
+        main_menu.SetActive(false);
+        settings_menu.SetActive(false);
 
         //clear
         EventSystem.current.SetSelectedGameObject(null);
@@ -99,6 +137,13 @@ public class PauseGame : MonoBehaviour
         //freeze player
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 5);
+        hands = GameObject.FindGameObjectsWithTag("Hands");
+
+        foreach (GameObject hand in hands)
+        {
+            SetLayerRecursively(hand, 5);
+        }
+
         player.GetComponent<FreezeMovement>().Freeze();
         
     }
@@ -108,6 +153,12 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 0);
+
+        hands = GameObject.FindGameObjectsWithTag("Hands");
+
+        foreach (GameObject hand in hands) {
+            SetLayerRecursively(hand, 0);
+        }
 
         isPaused = false;
         //unfreeze player

@@ -41,6 +41,7 @@ public class SceneLoader : MonoBehaviour {
 
         pauser.Pause();
         //Debug.Log("Time stopped: " + Time.timeScale);
+        pauser.HideMenu();
         pauser.DisplayMainMenu();
     }
 
