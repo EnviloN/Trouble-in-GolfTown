@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public static class MouseOverUILayerObject
@@ -22,6 +22,7 @@ public class PauseGame : MonoBehaviour
     GameObject player;
     public static bool isPaused;
     public GameObject[] hands;
+    private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
     {
@@ -57,7 +58,6 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
     }
 
     // Update is called once per frame
@@ -134,8 +134,9 @@ public class PauseGame : MonoBehaviour
         {
             SetLayerRecursively(hand, 5);
         }
-
         player.GetComponent<FreezeMovement>().Freeze();
+        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
+        rayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
     }
 
 
@@ -155,6 +156,8 @@ public class PauseGame : MonoBehaviour
         isPaused = false;
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
+        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
+        rayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
     }
 
 
