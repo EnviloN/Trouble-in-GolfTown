@@ -22,6 +22,7 @@ public class PauseGame : MonoBehaviour
     GameObject player;
     public static bool isPaused;
     public GameObject[] hands;
+    public XRInteractions interactions;
     private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
@@ -58,6 +59,19 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        interactions.menuButtonPress.AddListener(pressed =>
+        {
+            if (pressed && !isPaused)
+            {
+                Pause();
+                DisplayMainMenu();
+            }
+            else if (pressed && isPaused)
+            {
+                Resume();
+                HideMenu();
+            }
+        });
     }
 
     // Update is called once per frame
@@ -136,7 +150,7 @@ public class PauseGame : MonoBehaviour
         }
         player.GetComponent<FreezeMovement>().Freeze();
         rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
-        rayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
+        rayInteractor.velocity = 50;
     }
 
 
@@ -157,7 +171,7 @@ public class PauseGame : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
         rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
-        rayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
+        rayInteractor.velocity = 5;
     }
 
 
