@@ -1084,6 +1084,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1134513023205410, guid: afc78ae17d5637e47834b329300d6e9a, type: 3}
+      propertyPath: m_TagString
+      value: Structure
+      objectReference: {fileID: 0}
     - target: {fileID: 1404303191809006, guid: afc78ae17d5637e47834b329300d6e9a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -6061,6 +6065,7 @@ MonoBehaviour:
     type: 3}
   goldenBallPrefab: {fileID: 8301507646652354823, guid: c361a6fa055c9394587e9d107960494b,
     type: 3}
+  spawnGoldenBalls: 0
 --- !u!4 &1215052530
 Transform:
   m_ObjectHideFlags: 0
