@@ -33,6 +33,7 @@ public class PauseGame : MonoBehaviour
         {
             Pause();
             DisplayPauseMenu();
+            //DisplayMainMenu();
         }
         else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
             Resume();
@@ -63,7 +64,7 @@ public class PauseGame : MonoBehaviour
         //clear
         EventSystem.current.SetSelectedGameObject(null);
         //set on play
-        EventSystem.current.SetSelectedGameObject(settingsBtn);
+        //EventSystem.current.SetSelectedGameObject(settingsBtn);
         PositionCanvas();
         //Debug.Log("Main menu displayed:"+ EventSystem.current.currentSelectedGameObject);
     }
@@ -75,7 +76,7 @@ public class PauseGame : MonoBehaviour
         //clear
         EventSystem.current.SetSelectedGameObject(null);
         //set on resume
-        EventSystem.current.SetSelectedGameObject(quitBtnPause);
+        //EventSystem.current.SetSelectedGameObject(quitBtnPause);
         this.PositionCanvas();
         //Debug.Log("Pause menu displayed." + EventSystem.current.currentSelectedGameObject);
     }
@@ -93,21 +94,45 @@ public class PauseGame : MonoBehaviour
 
     public void Pause() {
         isPaused = true;
+        Time.timeScale = 0;
 
         //freeze player
         player = GameObject.FindGameObjectWithTag("Player");
+        SetLayerRecursively(player, 5);
         player.GetComponent<FreezeMovement>().Freeze();
-        Time.timeScale = 0;
+        
     }
 
 
     public void Resume() {
         Time.timeScale = 1;
-        GameObject.FindGameObjectWithTag("Player").layer = 0;
+        player = GameObject.FindGameObjectWithTag("Player");
+        SetLayerRecursively(player, 0);
+
         isPaused = false;
         //unfreeze player
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
+    }
+
+
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+            {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
     }
 
 
