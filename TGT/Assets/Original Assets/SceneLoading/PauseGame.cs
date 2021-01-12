@@ -41,7 +41,8 @@ public class PauseGame : MonoBehaviour
         return null;
     }
 
-    private bool PointerPressedDown() {
+    private bool PointerPressedDown()
+    {
         if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(0))
         {
             return true;
@@ -102,7 +103,8 @@ public class PauseGame : MonoBehaviour
         canvas.transform.rotation = player.transform.rotation;
     }
 
-    public void DisplayMainMenu() {
+    public void DisplayMainMenu()
+    {
         canvas.SetActive(true);
         main_menu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -110,14 +112,16 @@ public class PauseGame : MonoBehaviour
     }
 
 
-    public void HideMenu() {
+    public void HideMenu()
+    {
         canvas.SetActive(false);
         main_menu.SetActive(false);
         settings_menu.SetActive(false);
     }
 
 
-    public void Pause() {
+    public void Pause()
+    {
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -143,7 +147,8 @@ public class PauseGame : MonoBehaviour
 
         hands = GameObject.FindGameObjectsWithTag("Hands");
 
-        foreach (GameObject hand in hands) {
+        foreach (GameObject hand in hands)
+        {
             SetLayerRecursively(hand, 0);
         }
 
