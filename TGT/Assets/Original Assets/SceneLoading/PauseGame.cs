@@ -23,7 +23,7 @@ public class PauseGame : MonoBehaviour
     public static bool isPaused;
     public GameObject[] hands;
 
-    public static GameObject IsPointerOverUIObject()
+    private static GameObject IsPointerOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -41,11 +41,21 @@ public class PauseGame : MonoBehaviour
         return null;
     }
 
+    private bool PointerPressedDown() {
+        if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(0))
+        {
+            return true;
+        }
+        else return false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
 
@@ -59,27 +69,19 @@ public class PauseGame : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
             Resume();
+            Cursor.visible = false;
             HideMenu();
         }
 
-        if (isPaused) {
-            
-            GameObject hover_over = IsPointerOverUIObject();
-            if (hover_over !=  null) {
-                //Debug.Log("Pointer over UI. "+ hover_over.name);
-                EventSystem.current.SetSelectedGameObject(hover_over);
-                if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.H))
-                {
-                    //Debug.Log("Mouse position:" + Input.mousePosition);
-                    Button btn = hover_over.GetComponent<Button>();
-                    if (btn != null) {
-                        btn.onClick.Invoke();
-                    }
-                    //Debug.Log("Clicked " + hover_over.name);
-                    //Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
-                }
-            }
+        
 
+        if (isPaused) {
+
+            if (!Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
                        
 
             if (Input.GetKeyDown(KeyCode.Q))
@@ -117,6 +119,8 @@ public class PauseGame : MonoBehaviour
 
     public void Pause() {
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0;
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 5);
@@ -132,6 +136,7 @@ public class PauseGame : MonoBehaviour
 
 
     public void Resume() {
+        Cursor.visible = false;
         Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 0);
