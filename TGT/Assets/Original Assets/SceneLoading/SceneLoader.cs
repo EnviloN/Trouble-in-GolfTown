@@ -38,25 +38,20 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
 
-        //ground Player movement
-        //isPaused = true;
+
         pauser.Pause();
+        //Debug.Log("Time stopped: " + Time.timeScale);
         pauser.DisplayMainMenu();
-        
-        //player.GetComponent<FreezeMovement>().Freeze();
     }
 
 
     public void StartGame() {
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), 2.0f));
-        //unfreeze player
-        //player.GetComponent<FreezeMovement>().UnFreeze();
         //disable menu
         pauser.HideMenu();
         pauser.Resume();
-        //canvas.SetActive(false); //this would be nice with animation
-        //isPaused = false;
+        //Debug.Log("Time resumed: "+ Time.timeScale);
     }
 
     public void LoadMainScene() {
@@ -107,14 +102,11 @@ public class SceneLoader : MonoBehaviour {
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
-            Debug.Log("Fade out Coroutine running. vol: " + audioSource.volume);
-            Debug.Log("time scale: " + Time.timeScale);
             yield return null;
 
         }
 
         audioSource.Stop();
         audioSource.volume = startVolume;
-        Debug.Log("Fade out Coroutine ended.");
     }
 }

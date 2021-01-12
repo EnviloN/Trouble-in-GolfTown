@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PauseGame : MonoBehaviour
 {
 
-    GameObject canvas;
+    public  GameObject canvas;
     public GameObject pause_menu;
-    GameObject main_menu;
+    public GameObject main_menu;
+    public GameObject settings_menu;
+
+    public GameObject resumeBtn, volumeBtn, quitBtnPause;
+    public GameObject playBtn, settingsBtn, quitBtn;
+    public GameObject volumeBtnSett, resumeBtnSett;
+
     GameObject player;
     public static bool isPaused;
 
@@ -16,8 +23,6 @@ public class PauseGame : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
-        main_menu = GameObject.Find("MainMenuXR");
         isPaused = false;
     }
 
@@ -35,8 +40,7 @@ public class PauseGame : MonoBehaviour
         }
 
         if (isPaused) {
-            PositionCanvas();
-            Debug.Log("Positionning canvas");
+            //Debug.Log("Picked:   " + EventSystem.current.currentSelectedGameObject);
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Game presumably ended.");
@@ -49,68 +53,60 @@ public class PauseGame : MonoBehaviour
     void PositionCanvas()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
-        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.5f;
+        canvas.transform.position = player.transform.position + player.transform.forward * 30.0f + Vector3.up * 1.5f;
         canvas.transform.rotation = player.transform.rotation;
     }
 
     public void DisplayMainMenu() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
-        main_menu = GameObject.Find("MainMenuXR");
-        canvas.SetActive(true);
-        main_menu.SetActive(true);
-        UnityEngine.EventSystems.EventSystem es = UnityEngine.EventSystems.EventSystem.current;
-        es.firstSelectedGameObject = GameObject.Find("SettingsButton");
+        this.canvas.SetActive(true);
+        this.main_menu.SetActive(true);
+        //clear
+        EventSystem.current.SetSelectedGameObject(null);
+        //set on play
+        EventSystem.current.SetSelectedGameObject(settingsBtn);
         PositionCanvas();
-        Debug.Log("Main menu displayed???");
+        //Debug.Log("Main menu displayed:"+ EventSystem.current.currentSelectedGameObject);
     }
 
     public void DisplayPauseMenu() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
-        main_menu = GameObject.Find("MainMenuXR");
-        canvas.SetActive(true);
-        pause_menu.SetActive(true);
-        UnityEngine.EventSystems.EventSystem es = UnityEngine.EventSystems.EventSystem.current;
-        es.firstSelectedGameObject = GameObject.Find("ResumeButton");
-        PositionCanvas();
+        this.canvas.SetActive(true);
+        this.pause_menu.SetActive(true);
+        this.main_menu.SetActive(false);
+        //clear
+        EventSystem.current.SetSelectedGameObject(null);
+        //set on resume
+        EventSystem.current.SetSelectedGameObject(quitBtnPause);
+        this.PositionCanvas();
+        //Debug.Log("Pause menu displayed." + EventSystem.current.currentSelectedGameObject);
     }
 
     public void HideMenu() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
-        main_menu = GameObject.Find("MainMenuXR");
-        canvas.SetActive(false);
-        pause_menu.SetActive(false);
-        main_menu.SetActive(false);
+        this.canvas.SetActive(false);
+        this.pause_menu.SetActive(false);
+        this.main_menu.SetActive(false);
+        this.settings_menu.SetActive(false);
+
+        //clear
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
 
     public void Pause() {
         isPaused = true;
-        player = GameObject.FindGameObjectWithTag("Player");
-        player.layer = 5;
-        Debug.Log("Game Paused");
+
         //freeze player
+        player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().Freeze();
-
-        //change hands layer 
-        //player.GetComponentInChildren< "XR Controller (Device-based)" > ();
-
-        //freeze time
         Time.timeScale = 0;
     }
 
 
     public void Resume() {
         Time.timeScale = 1;
-        player = GameObject.FindGameObjectWithTag("Player");
-        player.layer = 0;
-        //InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
-        Debug.Log("Resuming Game");
+        GameObject.FindGameObjectWithTag("Player").layer = 0;
         isPaused = false;
         //unfreeze player
+        player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
     }
 
