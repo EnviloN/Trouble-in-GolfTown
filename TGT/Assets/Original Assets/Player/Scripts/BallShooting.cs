@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallShooting : MonoBehaviour
 {
 
-    public Inventory    inventory;
+    public KeyboardPlayerInventory inventory;
     public KeyCode      interactKey;
     public Camera       cam;
 

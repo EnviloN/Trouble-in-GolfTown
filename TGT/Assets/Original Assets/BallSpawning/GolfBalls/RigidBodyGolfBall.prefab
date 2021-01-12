@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8166941931543847915}
   - component: {fileID: 6412546428793943399}
   - component: {fileID: -3324083250109021345}
+  - component: {fileID: 6604578315260279669}
   m_Layer: 0
   m_Name: RigidBodyGolfBall
   m_TagString: Untagged
@@ -123,3 +124,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6604578315260279669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171751765833609954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08e18cdf4c3096488c7cfe4b44d3e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
