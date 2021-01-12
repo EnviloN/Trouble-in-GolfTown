@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -6,6 +7,9 @@ public class XRPlayerInventory : AbstractInventory
 {
     public XRInteractions interactions;
     protected XRRayInteractor rayInteractor;
+
+    public GameObject ballCountCanvasPrefab;
+    protected GameObject ballCountCanvasObject = null;
 
     protected bool clubGrabbed = false;
 
@@ -127,8 +131,46 @@ public class XRPlayerInventory : AbstractInventory
         return rayInteractor.GetCurrentRaycastHit(out raycastHit);
     }
 
-    // Clubs
+    protected override void RaycastBallHere()
+    {
+        if (doRaycast(out RaycastHit raycastHit))
+        {
+            var placeableArea = raycastHit.collider.GetComponent<GolfBallPlaceableArea>();
+            if (placeableArea)
+            {
+                if (ballObject != null)
+                {
+                    MovePlaceholderBall(raycastHit.point);
+                }
+                else
+                {
+                    InstantiatePlaceholderBall(raycastHit.point);
+                }
+                ShowBallCounter(raycastHit.point);
+            }
+        }
+    }
 
+    public override void CancelRaycast(bool addBallBackToInventory = true)
+    {
+        if (raycasting)
+        {
+            raycasting = false;
+            if (addBallBackToInventory && ballObject != null)
+            {
+                Destroy(ballObject.gameObject);
+            }
+            else if (ballObject != null)
+            {
+                ReplacePlaceholderBallWithNormal();
+                removeBall();
+            }
+            HideBallCounter();
+            ballObject = null;
+        }
+    }
+
+    // Clubs
     protected override void InstantiatePutter()
     {
         InstantiateClub(putterPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
@@ -138,4 +180,44 @@ public class XRPlayerInventory : AbstractInventory
     {
         InstantiateClub(fiveIronPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
     }
+
+    #region Ball counter canvas methods
+
+    protected void ShowBallCounter(Vector3 position)
+    {
+        Vector3 relativePosFromBall = (transform.forward * 0.1f) + (transform.up * 0.2f);
+
+        if (ballCountCanvasObject == null)
+        {
+            ballCountCanvasObject = Instantiate(ballCountCanvasPrefab, position + relativePosFromBall, Quaternion.LookRotation(transform.position - position));
+            setCountOfBallsOnCanvas();
+        }
+        else
+        {
+            ballCountCanvasObject.transform.SetPositionAndRotation(position + relativePosFromBall, ballCountCanvasObject.transform.rotation);
+        }
+    }
+
+    protected void HideBallCounter()
+    {
+        if (ballCountCanvasObject != null)
+        {
+            Destroy(ballCountCanvasObject);
+        }
+    }
+
+    protected void setCountOfBallsOnCanvas()
+    {
+        if (ballCountCanvasObject != null)
+        {
+            string textBuilder = "You have " + numOfBalls + " ball";
+            if (numOfBalls > 1)
+            {
+                textBuilder += "s";
+            }
+            ballCountCanvasObject.GetComponentInChildren<Text>().text = textBuilder;
+        }
+    }
+
+    #endregion
 }
