@@ -16,13 +16,8 @@ public class PauseGame : MonoBehaviour
 {
 
     public  GameObject canvas;
-    public GameObject pause_menu;
     public GameObject main_menu;
     public GameObject settings_menu;
-
-    public GameObject resumeBtn, volumeBtn, quitBtnPause;
-    public GameObject playBtn, settingsBtn, quitBtn;
-    public GameObject volumeBtnSett, resumeBtnSett;
 
     GameObject player;
     public static bool isPaused;
@@ -60,7 +55,6 @@ public class PauseGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && isPaused == false)
         {
             Pause();
-            //DisplayPauseMenu();
             DisplayMainMenu();
         }
         else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
@@ -102,49 +96,28 @@ public class PauseGame : MonoBehaviour
     void PositionCanvas()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        canvas.transform.position = player.transform.position + player.transform.forward * 30.0f + Vector3.up * 1.5f;
+        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.5f;
         canvas.transform.rotation = player.transform.rotation;
     }
 
     public void DisplayMainMenu() {
         canvas.SetActive(true);
         main_menu.SetActive(true);
-        //clear
         EventSystem.current.SetSelectedGameObject(null);
-        //set on play
-        //EventSystem.current.SetSelectedGameObject(settingsBtn);
         PositionCanvas();
-        //Debug.Log("Main menu displayed:"+ EventSystem.current.currentSelectedGameObject);
     }
 
-    public void DisplayPauseMenu() {
-        canvas.SetActive(true);
-        pause_menu.SetActive(true);
-        main_menu.SetActive(false);
-        //clear
-        EventSystem.current.SetSelectedGameObject(null);
-        //set on resume
-        //EventSystem.current.SetSelectedGameObject(resumeBtn);
-        PositionCanvas();
-        //Debug.Log("Pause menu displayed." + EventSystem.current.currentSelectedGameObject);
-    }
 
     public void HideMenu() {
         canvas.SetActive(false);
-        pause_menu.SetActive(false);
         main_menu.SetActive(false);
         settings_menu.SetActive(false);
-
-        //clear
-        //EventSystem.current.SetSelectedGameObject(null);
     }
 
 
     public void Pause() {
         isPaused = true;
         Time.timeScale = 0;
-
-        //freeze player
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 5);
         hands = GameObject.FindGameObjectsWithTag("Hands");
@@ -155,7 +128,6 @@ public class PauseGame : MonoBehaviour
         }
 
         player.GetComponent<FreezeMovement>().Freeze();
-        
     }
 
 
@@ -171,7 +143,6 @@ public class PauseGame : MonoBehaviour
         }
 
         isPaused = false;
-        //unfreeze player
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
     }

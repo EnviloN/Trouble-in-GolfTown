@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour
     private GameObject loader;
 
     public void PlayGame() {
-        Debug.Log("Play.");
         
         loader = GameObject.FindGameObjectWithTag("SceneLoader");
         loader.GetComponent<SceneLoader>().StartGame();

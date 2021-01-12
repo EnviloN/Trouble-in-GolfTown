@@ -6,16 +6,14 @@ public class SceneLoader : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
     public GameObject MusicPlayer;
+    public float audioFadeOut = 1.0f;
 
     private GameObject player;
     private DialogueManager dm;
-    private GameObject canvas;
-    private bool isPaused;
     private PauseGame pauser;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
-        canvas = GameObject.FindGameObjectWithTag("Menu");
         dm = FindObjectOfType<DialogueManager>();
         pauser = gameObject.GetComponent<PauseGame>();
         LoadIntroScene();
@@ -37,22 +35,18 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Cemetery");
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
-
-
+        //prepare main menu
         pauser.Pause();
-        //Debug.Log("Time stopped: " + Time.timeScale);
-        pauser.HideMenu();
         pauser.DisplayMainMenu();
     }
 
 
     public void StartGame() {
         //fadeout audio
-        StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), 2.0f));
-        //disable menu
+        StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         pauser.HideMenu();
         pauser.Resume();
-        //Debug.Log("Time resumed: "+ Time.timeScale);
+  
     }
 
     public void LoadMainScene() {
