@@ -16,7 +16,7 @@ public abstract class AbstractInventory : MonoBehaviour
     public GameObject placeholderGolfBallPrefab;
 
     // Club in hand
-    protected int clubInHandState = 0;
+    public int clubInHandState = 0;
     protected GameObject clubObject = null;
 
     // Ball in hand
