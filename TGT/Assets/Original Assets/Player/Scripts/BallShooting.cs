@@ -37,27 +37,10 @@ public class BallShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool haveClubInHand = inventory.havePutterClub || inventory.have5IronClub;
+        bool haveClubInHand = inventory.clubInHandState != 0;
         if (!haveClubInHand)
         {
             return;
-        }
-        if (Input.GetKeyDown(interactKey))
-        {
-            if (!mInitialized)
-            {
-                GameObject objectToShoot = raycastToObject();
-                mStrength = 0f;
-                if (objectToShoot)
-                {
-                    mObj = objectToShoot;
-                }
-                mInitialized = true;
-            }
-        }
-        if (mInitialized)
-        {
-            mStrength += Time.deltaTime;
         }
         if ((mInitialized && Input.GetKeyUp(interactKey)) || mStrength > 2.0)
         {
@@ -72,19 +55,33 @@ public class BallShooting : MonoBehaviour
             Vector3 direction;
             RaycastHit hit;
             Physics.Raycast(transform.position, cam.transform.forward, out hit);
-            if (inventory.havePutterClub)
+            if (inventory.clubInHandState == 1)
             {
-                Debug.Log("Putter shot.");
                 direction = new Vector3(transform.forward.x, 0, transform.forward.z);
                 mObj.GetComponent<Rigidbody>().AddForce(direction.normalized * strength, ForceMode.Impulse);
             }
-            if (inventory.have5IronClub)
+            if (inventory.clubInHandState == 2)
             {
-                Debug.Log("5 Iron shot.");
                 direction = new Vector3(transform.forward.x, 1f, transform.forward.z);
                 mObj.GetComponent<Rigidbody>().AddForce(direction.normalized * strength, ForceMode.Impulse);
             }
             mObj = null;
+            return;
+        }
+        if (mInitialized)
+        {
+            mStrength += Time.deltaTime;
+            return;
+        }
+        if (Input.GetKeyDown(interactKey) && !mInitialized)
+        {
+            GameObject objectToShoot = raycastToObject();
+            mStrength = 0f;
+            if (objectToShoot)
+            {
+                mObj = objectToShoot;
+            }
+            mInitialized = true;
         }
     }
 }
