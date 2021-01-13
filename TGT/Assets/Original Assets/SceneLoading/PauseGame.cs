@@ -19,6 +19,9 @@ public class PauseGame : MonoBehaviour
     public GameObject main_menu;
     public GameObject settings_menu;
 
+    public GameObject MusicPlayer;
+    public float audioFadeOut = 1.0f;
+
     GameObject player;
     public static bool isPaused;
     public GameObject[] hands;
@@ -98,9 +101,8 @@ public class PauseGame : MonoBehaviour
 
     void PositionCanvas()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.5f;
-        canvas.transform.rotation = player.transform.rotation;
+        canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
+        canvas.transform.rotation = Camera.main.transform.rotation;
     }
 
     public void DisplayMainMenu()
@@ -122,6 +124,8 @@ public class PauseGame : MonoBehaviour
 
     public void Pause()
     {
+        //fadein music
+        StartCoroutine(AudioFadeIn(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -142,6 +146,8 @@ public class PauseGame : MonoBehaviour
     public void Resume() {
         Cursor.visible = false;
         Time.timeScale = 1;
+        //fadeout audio
+        StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         player = GameObject.FindGameObjectWithTag("Player");
         SetLayerRecursively(player, 0);
 
@@ -177,6 +183,39 @@ public class PauseGame : MonoBehaviour
         }
     }
 
+    public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
+    {
+
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
+            yield return null;
+
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public IEnumerator AudioFadeIn(AudioSource audioSource, float FadeTime)
+    {
+        audioSource.Play();
+        float startVolume = 0f;
+        audioSource.volume = 0f;
+
+        while (audioSource.volume < 0.5f)
+        {
+            audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
+            //Debug.Log("fading audio in. "+ audioSource.volume);
+        
+            yield return Time.fixedUnscaledDeltaTime;
+
+        }
+        
+        audioSource.volume = 0.5f;
+    }
 
 
 
