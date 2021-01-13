@@ -47,7 +47,7 @@ public class PauseGame : MonoBehaviour
 
     private bool PointerPressedDown()
     {
-        if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(1))
         {
             return true;
         }

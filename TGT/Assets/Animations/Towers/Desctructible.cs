@@ -42,6 +42,7 @@ public class Desctructible : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             });
+
         if (Input.GetKeyDown(KeyCode.K)) {
             tower = Instantiate(destroyedTower, transform.position, transform.rotation);
 
