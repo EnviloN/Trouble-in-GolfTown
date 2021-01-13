@@ -191,7 +191,8 @@ public class PauseGame : MonoBehaviour
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
-            yield return null;
+            //yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
 
         }
 
@@ -202,7 +203,7 @@ public class PauseGame : MonoBehaviour
     public IEnumerator AudioFadeIn(AudioSource audioSource, float FadeTime)
     {
         audioSource.Play();
-        float startVolume = 0f;
+        float startVolume = 0.5f;
         audioSource.volume = 0f;
 
         while (audioSource.volume < 0.5f)
@@ -210,7 +211,7 @@ public class PauseGame : MonoBehaviour
             audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
             //Debug.Log("fading audio in. "+ audioSource.volume);
         
-            yield return Time.fixedUnscaledDeltaTime;
+            yield return new WaitForSecondsRealtime(0.1f);
 
         }
         
