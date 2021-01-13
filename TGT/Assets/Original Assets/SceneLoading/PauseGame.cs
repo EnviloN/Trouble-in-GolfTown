@@ -22,7 +22,6 @@ public class PauseGame : MonoBehaviour
     GameObject player;
     public static bool isPaused;
     public GameObject[] hands;
-    public XRInteractions interactions;
     private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
@@ -59,6 +58,7 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        XRInteractions interactions = player.GetComponent<XRInteractions>();
         interactions.menuButtonPress.AddListener(pressed =>
         {
             if (pressed && !isPaused)
