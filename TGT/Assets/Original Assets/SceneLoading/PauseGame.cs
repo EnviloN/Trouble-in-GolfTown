@@ -25,6 +25,7 @@ public class PauseGame : MonoBehaviour
     GameObject player;
     public static bool isPaused;
     public GameObject[] hands;
+    private bool gameStarted = false;
 
     private static GameObject IsPointerOverUIObject()
     {
@@ -71,7 +72,7 @@ public class PauseGame : MonoBehaviour
             Pause();
             DisplayMainMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
+        else if (Input.GetKeyDown(KeyCode.P) && isPaused == true && gameStarted) {  
             Resume();
             Cursor.visible = false;
             HideMenu();
@@ -144,6 +145,7 @@ public class PauseGame : MonoBehaviour
 
 
     public void Resume() {
+        gameStarted = true;
         Cursor.visible = false;
         Time.timeScale = 1;
         //fadeout audio
@@ -186,7 +188,7 @@ public class PauseGame : MonoBehaviour
     public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
     {
 
-        float startVolume = audioSource.volume;
+        float startVolume = audioSource.volume;//.5f
 
         while (audioSource.volume > 0)
         {
@@ -197,7 +199,7 @@ public class PauseGame : MonoBehaviour
         }
 
         audioSource.Stop();
-        audioSource.volume = startVolume;
+        audioSource.volume = 0.0f;
     }
 
     public IEnumerator AudioFadeIn(AudioSource audioSource, float FadeTime)

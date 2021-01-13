@@ -5,15 +5,20 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
-    
+
+    public AudioClip doorOpeningSound;
+    public AudioClip doorClosingSound;
+
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
+    private AudioSource audioSource;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
         pauser = gameObject.GetComponent<PauseGame>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         LoadIntroScene();
     }
 
@@ -25,6 +30,7 @@ public class SceneLoader : MonoBehaviour {
     }
 
     private void LoadIntroScene() {
+        audioSource.volume = 0;
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
         LoadSceneAdditively("Dock");
@@ -43,6 +49,7 @@ public class SceneLoader : MonoBehaviour {
         
         pauser.HideMenu();
         pauser.Resume();
+        audioSource.volume = 1;
   
     }
 
@@ -66,6 +73,8 @@ public class SceneLoader : MonoBehaviour {
     }
 
     public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
+        audioSource.clip = doorOpeningSound;
+        audioSource.Play();
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
@@ -90,6 +99,8 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
+        audioSource.clip = doorClosingSound;
+        audioSource.Play();
     }
 
 
