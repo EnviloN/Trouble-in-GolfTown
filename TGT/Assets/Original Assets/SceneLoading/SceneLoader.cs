@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
-    public GameObject MusicPlayer;
-    public float audioFadeOut = 1.0f;
-
+    
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
@@ -42,8 +40,7 @@ public class SceneLoader : MonoBehaviour {
 
 
     public void StartGame() {
-        //fadeout audio
-        StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
+        
         pauser.HideMenu();
         pauser.Resume();
   
@@ -95,19 +92,5 @@ public class SceneLoader : MonoBehaviour {
         transition.SetTrigger("End");
     }
 
-    public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
-    {
 
-        float startVolume = audioSource.volume;
-
-        while (audioSource.volume > 0)
-        {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
-            yield return null;
-
-        }
-
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-    }
 }

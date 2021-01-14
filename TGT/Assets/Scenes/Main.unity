@@ -1387,6 +1387,7 @@ MonoBehaviour:
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  clubInHandState: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   interactions: {fileID: 765878780}
@@ -1507,6 +1508,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b43c4abebd9353469b163d7237432ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &765878784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765878775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21a9d0d80084f242aa199f2e76462f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 765878779}
+  isGrounded: 0
+  isOnTerrain: 0
+  isOnStructure: 0
+--- !u!114 &765878785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765878775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15934b83a49bca64dadd7ade61c9a5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkIfGrounded: {fileID: 832204692}
+  audioSource: {fileID: 765878786}
+  dirtClips:
+  - {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
+  - {fileID: 8300000, guid: fd944e20ee6444efa87cef28957898aa, type: 3}
+  - {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
+  - {fileID: 8300000, guid: 027dcff294339478d98ba358c0aeb528, type: 3}
+  woodClips:
+  - {fileID: 8300000, guid: 04e4402f821e6471094d05dd86ce31bf, type: 3}
+  - {fileID: 8300000, guid: 3b1990ebab39340b1b5b9868797919fc, type: 3}
+  - {fileID: 8300000, guid: fca8f0e6e6dee4a74ad60a9818eaa84e, type: 3}
+  - {fileID: 8300000, guid: 0014d196cabeb47c090691ff38da85fa, type: 3}
+  - {fileID: 8300000, guid: 83a657a7bb8d34d32925009e759abc8c, type: 3}
+  - {fileID: 8300000, guid: c8fb00ca048674372b2223b7378f4460, type: 3}
+  - {fileID: 8300000, guid: 6355f914973924103b21e248444ecfb5, type: 3}
+  - {fileID: 8300000, guid: 14473cf0621f64832b30c822c759815e, type: 3}
+  modifier: 0.5
+  StepFrequency: 2
+--- !u!82 &765878786
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765878775}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5886547086145145666, guid: 3c556575e2eb4eb459ee161b53846531,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &770247065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,8 +1699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 448663656}
   transitionTime: 0.5
-  MusicPlayer: {fileID: 1420199212}
-  audioFadeOut: 0.3
 --- !u!114 &770247068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,6 +1726,8 @@ MonoBehaviour:
   canvas: {fileID: 1601253191}
   main_menu: {fileID: 1662092509}
   settings_menu: {fileID: 627108498}
+  MusicPlayer: {fileID: 1420199212}
+  audioFadeOut: 0.5
   hands: []
 --- !u!1 &832204690 stripped
 GameObject:
@@ -1679,14 +1823,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallCountUI: {fileID: 1940149836}
   numOfBallsVar: 0
-  putterPrefab: {fileID: 210722126370726939, guid: 64601ecd9459e57468b19fdaa1a9026a,
+  putterPrefab: {fileID: 210722126370726939, guid: 99d8fd62398c4614f8e4042907627ba1,
     type: 3}
-  fiveIronPrefab: {fileID: 6302164973794587298, guid: 46528beebb2a46b488d0d7dd287c8e26,
+  fiveIronPrefab: {fileID: 6302164973794587298, guid: 6e7d54cde38454f4894aad1762429938,
     type: 3}
   spawnableGolfBallPrefab: {fileID: 171751765833609954, guid: 7475d78238214ce4b876b477637bf7bc,
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  clubInHandState: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   cancelKey: 27
@@ -1790,6 +1935,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &832204697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832204690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05018826d3f57343aaa1cd775707b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 832204695}
+  interactKey: 323
+  cam: {fileID: 1956934791}
+  maxStrength: 20
+  minStrength: 0
 --- !u!136 &832204698 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 13600000, guid: c6453f8e1f814744d8b94e5a6d1f9942,
@@ -2446,7 +2608,7 @@ AudioSource:
   m_GameObject: {fileID: 1420199212}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -4797089004583187247, guid: 50c22d020587fe04290850dacf100e08,
+  OutputAudioMixerGroup: {fileID: 1351577496168530230, guid: 3c556575e2eb4eb459ee161b53846531,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b4a57636a4cc64f6c822a6bd1aec36e9, type: 3}
   m_PlayOnAwake: 1
@@ -3293,7 +3455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9563fbc3de762a449d3467ec01cf15d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 50c22d020587fe04290850dacf100e08, type: 2}
+  mixer: {fileID: 24100000, guid: 3c556575e2eb4eb459ee161b53846531, type: 2}
 --- !u!224 &1660261605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3833,6 +3995,18 @@ PrefabInstance:
     - target: {fileID: 5400000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.ForwardSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.BackwardSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.StrafeSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4073183792553383946, guid: c6453f8e1f814744d8b94e5a6d1f9942,
         type: 3}

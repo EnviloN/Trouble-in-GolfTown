@@ -17,6 +17,7 @@ public class FreezeMovement : MonoBehaviour
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
         if (rigidbody) //PC Player
         {
+            rigidbody.constraints = RigidbodyConstraints.None;
             rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }
         else
@@ -35,6 +36,7 @@ public class FreezeMovement : MonoBehaviour
         if (rigidbody)
         {
             rigidbody.constraints = RigidbodyConstraints.None;
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
         else
         {
