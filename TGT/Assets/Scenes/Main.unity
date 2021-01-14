@@ -1367,6 +1367,7 @@ MonoBehaviour:
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  clubInHandState: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   interactions: {fileID: 765878780}
@@ -1802,14 +1803,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallCountUI: {fileID: 1940149836}
   numOfBallsVar: 0
-  putterPrefab: {fileID: 210722126370726939, guid: 64601ecd9459e57468b19fdaa1a9026a,
+  putterPrefab: {fileID: 210722126370726939, guid: 99d8fd62398c4614f8e4042907627ba1,
     type: 3}
-  fiveIronPrefab: {fileID: 6302164973794587298, guid: 46528beebb2a46b488d0d7dd287c8e26,
+  fiveIronPrefab: {fileID: 6302164973794587298, guid: 6e7d54cde38454f4894aad1762429938,
     type: 3}
   spawnableGolfBallPrefab: {fileID: 171751765833609954, guid: 7475d78238214ce4b876b477637bf7bc,
     type: 3}
   placeholderGolfBallPrefab: {fileID: 171751765833609954, guid: d2e5b5a1f52baf846a5fe9afb94cb92a,
     type: 3}
+  clubInHandState: 0
   havePutterClubVar: 0
   have5IronClubVar: 0
   cancelKey: 27
@@ -3973,6 +3975,18 @@ PrefabInstance:
     - target: {fileID: 5400000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.ForwardSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.BackwardSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.StrafeSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4073183792553383946, guid: c6453f8e1f814744d8b94e5a6d1f9942,
         type: 3}
