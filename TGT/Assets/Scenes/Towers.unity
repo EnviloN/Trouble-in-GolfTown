@@ -134,6 +134,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 624444033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &90499447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1973024484939912471, guid: 575483c5101e8eb4d87bb6d2716ae2ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1901816677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &90499448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90499447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55683fcc6881b3b4dbdeced57b92a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91232676
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +205,10 @@ MonoBehaviour:
   destroyedTower: {fileID: 1199890260159843235, guid: c02acfce892ac48419c7b18f223d928e,
     type: 3}
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
+  interactions: {fileID: 0}
   lifetime: 30
+  allreadyDone: 0
+  VRBuild: 0
 --- !u!65 &402923830
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -235,7 +256,10 @@ MonoBehaviour:
   destroyedTower: {fileID: 2856793119409493117, guid: dc6e0cc88788e0445b67d30bc3800409,
     type: 3}
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
+  interactions: {fileID: 0}
   lifetime: 30
+  allreadyDone: 0
+  VRBuild: 0
 --- !u!1001 &526648216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1883,7 +1907,10 @@ MonoBehaviour:
   destroyedTower: {fileID: 2856793119409493117, guid: dc6e0cc88788e0445b67d30bc3800409,
     type: 3}
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
+  interactions: {fileID: 0}
   lifetime: 30
+  allreadyDone: 0
+  VRBuild: 0
 --- !u!1001 &1476693530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2773,6 +2800,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1476693530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476693549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476693548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55683fcc6881b3b4dbdeced57b92a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1476693551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2818301043974952670, guid: 8a326f40455c31f49bd67d619befb921,
@@ -3010,7 +3049,10 @@ MonoBehaviour:
   destroyedTower: {fileID: 1199890260159843235, guid: c02acfce892ac48419c7b18f223d928e,
     type: 3}
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
+  interactions: {fileID: 0}
   lifetime: 30
+  allreadyDone: 0
+  VRBuild: 0
 --- !u!65 &1476693593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3024,6 +3066,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.955992, y: 19.57502, z: 9.269154}
   m_Center: {x: -0.060571186, y: 9.28751, z: 0.20146705}
+--- !u!1 &1600180867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1973024484939912471, guid: 575483c5101e8eb4d87bb6d2716ae2ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 624444033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1600180868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600180867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55683fcc6881b3b4dbdeced57b92a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1665723237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,6 +3118,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1700056768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6949560540069006468, guid: 8a326f40455c31f49bd67d619befb921,
+    type: 3}
+  m_PrefabInstance: {fileID: 526648216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700056769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700056768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55683fcc6881b3b4dbdeced57b92a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1721438222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6632895100171194188, guid: 575483c5101e8eb4d87bb6d2716ae2ca,
