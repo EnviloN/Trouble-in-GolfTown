@@ -209,7 +209,7 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (clubInHandState != 0)
         {
-            Destroy(putterObject);
+            HideClub();
             clubInHandState = 0;
         }
     }

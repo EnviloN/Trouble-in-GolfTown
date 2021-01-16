@@ -43,7 +43,6 @@ public class KeyboardPlayerInventory : AbstractInventory
                     break;
                 case 1: // Putter in player's hand
                     HideClub();
-
                     if (have5IronClub)
                     {
                         InstantiateFiveIron();
