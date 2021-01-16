@@ -8,7 +8,7 @@ public class KeyboardPlayerInventory : AbstractInventory
     public KeyCode interactKey;
 
     protected float relativeClubDistance = 0.3f;
-    protected Quaternion clubRotation = Quaternion.Euler(-145f, 20f, 0);
+    protected Quaternion clubRotation = Quaternion.Euler(-140.87f, -31.7f, 22f);
 
     override protected void Start()
     {
