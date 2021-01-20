@@ -1186,6 +1186,12 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 561343991}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &561343993 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 947993615130876597, guid: d12e4ae56c05d2047acbed7e9be01433,
+    type: 3}
+  m_PrefabInstance: {fileID: 561343991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &572145962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8301507646652354823, guid: b15d8226747419b419748b57989cd810,
@@ -1467,6 +1473,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rightTriggerButtonPress:
+    m_PersistentCalls:
+      m_Calls: []
+  menuButtonPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &765878781
@@ -3782,6 +3791,7 @@ GameObject:
   - component: {fileID: 1904069658}
   - component: {fileID: 1904069661}
   - component: {fileID: 1904069660}
+  - component: {fileID: 1904069662}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3843,6 +3853,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c678073755f0744b9d28ce60d131d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1904069662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904069657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252c503669cc42a49a8632a9dfbeeb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isXR: 0
+  VRPlayerController: {fileID: 765878775}
+  UICamera: {fileID: 561343993}
 --- !u!1 &1940149834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,6 +4037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497740085708467962, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: m_Name
+      value: UI Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8942557163826696467, guid: c6453f8e1f814744d8b94e5a6d1f9942,
         type: 3}

@@ -11,7 +11,6 @@ public class SceneLoader : MonoBehaviour {
     private PauseGame pauser;
 
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
         pauser = gameObject.GetComponent<PauseGame>();
         LoadIntroScene();
@@ -69,6 +68,7 @@ public class SceneLoader : MonoBehaviour {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
+        player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = warpPos;
         switch (sceneName) {
             case "World":

@@ -26,6 +26,7 @@ public class PauseGame : MonoBehaviour
     public static bool isPaused;
     public GameObject[] hands;
     private XRRayInteractor rayInteractor;
+    private bool isXR = false;
 
     private static GameObject IsPointerOverUIObject()
     {
@@ -54,30 +55,14 @@ public class PauseGame : MonoBehaviour
         else return false;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        XRInteractions interactions = player.GetComponent<XRInteractions>();
-        interactions.menuButtonPress.AddListener(pressed =>
-        {
-            if (pressed && !isPaused)
-            {
-                Pause();
-                DisplayMainMenu();
-            }
-            else if (pressed && isPaused)
-            {
-                Resume();
-                HideMenu();
-            }
-        });
+        TryInitializeXR();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && isPaused == false)
@@ -91,27 +76,52 @@ public class PauseGame : MonoBehaviour
             HideMenu();
         }
 
-        
-
-        if (isPaused) {
-
+        if (isPaused)
+        {
             if (!Cursor.visible)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-                       
-
+            
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Game presumably ended.");
                 Application.Quit();
             }
+        }
 
-            
+        if (!isXR)
+        {
+            TryInitializeXR();
         }
     }
 
+    void TryInitializeXR()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player.GetComponent<XRRig>())
+        {
+            isXR = true;
+            player.GetComponent<XRInteractions>().menuButtonPress.AddListener(pressed =>
+            {
+                if (pressed && !isPaused)
+                {
+                    Pause();
+                    DisplayMainMenu();
+                }
+                else if (pressed && isPaused)
+                {
+                    Resume();
+                    HideMenu();
+                }
+            });
+            if (isPaused)
+            {
+                SetRaycast(true);
+            }
+        }
+    }
 
     void PositionCanvas()
     {
@@ -136,14 +146,12 @@ public class PauseGame : MonoBehaviour
         PositionCanvas();
     }
 
-
     public void HideMenu()
     {
         canvas.SetActive(false);
         main_menu.SetActive(false);
         settings_menu.SetActive(false);
     }
-
 
     public void Pause()
     {
@@ -161,10 +169,8 @@ public class PauseGame : MonoBehaviour
         //     SetLayerRecursively(hand, 5);
         // }
         player.GetComponent<FreezeMovement>().Freeze();
-        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
-        rayInteractor.velocity = 50;
+        SetRaycast(true);
     }
-
 
     public void Resume() {
         Cursor.visible = false;
@@ -180,10 +186,16 @@ public class PauseGame : MonoBehaviour
         // }
         isPaused = false;
         player.GetComponent<FreezeMovement>().UnFreeze();
-        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
-        rayInteractor.velocity = 5;
+        SetRaycast(false);
     }
 
+    void SetRaycast(bool pause) {
+        if (player.GetComponent<XRRig>())
+        {
+            rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
+            rayInteractor.velocity = pause ? 50 : 5;
+        }
+    }
 
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
@@ -206,14 +218,12 @@ public class PauseGame : MonoBehaviour
 
     public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
     {
-
         float startVolume = audioSource.volume;
 
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
             yield return null;
-
         }
 
         audioSource.Stop();
@@ -230,14 +240,9 @@ public class PauseGame : MonoBehaviour
         {
             audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
             //Debug.Log("fading audio in. "+ audioSource.volume);
-        
             yield return Time.fixedUnscaledDeltaTime;
-
         }
         
         audioSource.volume = 0.5f;
     }
-
-
-
 }
