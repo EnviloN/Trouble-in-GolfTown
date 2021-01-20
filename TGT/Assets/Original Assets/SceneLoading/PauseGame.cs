@@ -15,7 +15,7 @@ public static class MouseOverUILayerObject
 public class PauseGame : MonoBehaviour
 {
 
-    public  GameObject canvas;
+    public GameObject canvas;
     public GameObject main_menu;
     public GameObject settings_menu;
 
@@ -24,9 +24,9 @@ public class PauseGame : MonoBehaviour
 
     GameObject player;
     public static bool isPaused;
-    public GameObject[] hands;
-    private XRRayInteractor rayInteractor;
     private bool isXR = false;
+    private GameObject[] hands;
+    private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
     {
@@ -60,7 +60,35 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        TryInitializeXR();
+        XRDetection detection = GameObject.Find("GameManager").GetComponent<XRDetection>();
+        if (detection.isXR)
+        {
+            XRSetup();
+        }
+        detection.XRReady.AddListener(ready => XRSetup());
+    }
+
+    void XRSetup() {
+        isXR = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<XRInteractions>().menuButtonPress.AddListener(pressed =>
+        {
+            if (pressed && !isPaused)
+            {
+                Pause();
+                DisplayMainMenu();
+            }
+            else if (pressed && isPaused)
+            {
+                Resume();
+                HideMenu();
+            }
+        });
+        if (isPaused)
+        {
+            SetLongRaycast(true);
+            SetVisibleHands(true);
+        }
     }
 
     void Update()
@@ -90,49 +118,18 @@ public class PauseGame : MonoBehaviour
                 Application.Quit();
             }
         }
-
-        if (!isXR)
-        {
-            TryInitializeXR();
-        }
-    }
-
-    void TryInitializeXR()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player.GetComponent<XRRig>())
-        {
-            isXR = true;
-            player.GetComponent<XRInteractions>().menuButtonPress.AddListener(pressed =>
-            {
-                if (pressed && !isPaused)
-                {
-                    Pause();
-                    DisplayMainMenu();
-                }
-                else if (pressed && isPaused)
-                {
-                    Resume();
-                    HideMenu();
-                }
-            });
-            if (isPaused)
-            {
-                SetRaycast(true);
-            }
-        }
     }
 
     void PositionCanvas()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (!player.GetComponent<XRRig>())
+        if (!isXR)
         {
             canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
             canvas.transform.rotation = Camera.main.transform.rotation;
         }
         else
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.2f;
             canvas.transform.rotation = player.transform.rotation;
         }
@@ -158,43 +155,39 @@ public class PauseGame : MonoBehaviour
         //fadein music
         StartCoroutine(AudioFadeIn(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         isPaused = true;
+        Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0;
         player = GameObject.FindGameObjectWithTag("Player");
-        // SetLayerRecursively(player, 5);
-        // hands = GameObject.FindGameObjectsWithTag("Hands");
-        // foreach (GameObject hand in hands)
-        // {
-        //     SetLayerRecursively(hand, 5);
-        // }
         player.GetComponent<FreezeMovement>().Freeze();
-        SetRaycast(true);
+        if (isXR) {
+            SetLongRaycast(true);
+            SetVisibleHands(true);
+        }
     }
 
     public void Resume() {
-        Cursor.visible = false;
-        Time.timeScale = 1;
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
-        player = GameObject.FindGameObjectWithTag("Player");
-        // SetLayerRecursively(player, 0);
-        // hands = GameObject.FindGameObjectsWithTag("Hands");
-        // foreach (GameObject hand in hands)
-        // {
-        //     SetLayerRecursively(hand, 0);
-        // }
         isPaused = false;
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
-        SetRaycast(false);
+        if (isXR) {
+            SetLongRaycast(false);
+            SetVisibleHands(false);
+        }
     }
 
-    void SetRaycast(bool pause) {
-        if (player.GetComponent<XRRig>())
-        {
-            rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
-            rayInteractor.velocity = pause ? 50 : 5;
-        }
+    void SetLongRaycast(bool value) {
+        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
+        rayInteractor.velocity = value ? 50 : 5;
+    }
+
+    void SetVisibleHands(bool value) {
+        GameObject.Find("LeftHand Controller").layer = value ? 5 : 0;
+        GameObject.Find("RightHand Controller").layer = value ? 5 : 0;
     }
 
     void SetLayerRecursively(GameObject obj, int newLayer)

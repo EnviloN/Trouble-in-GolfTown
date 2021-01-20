@@ -1,15 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR;
+
+[System.Serializable]
+public class XRReadyEvent : UnityEvent<bool> { }
 
 public class XRDetection : MonoBehaviour
 {
-	public bool isXR = false;
+	public bool isXR;
 	public GameObject VRPlayerController;
 	public Camera UICamera;
+	public XRReadyEvent XRReady;
 
-    void Start()
+    private void Awake()
     {
+    	isXR = false;
+    	XRReady = new XRReadyEvent();
         List<InputDevice> devices = new List<InputDevice>();
         InputDevices.GetDevices(devices);
         foreach(InputDevice device in devices)
@@ -22,11 +29,12 @@ public class XRDetection : MonoBehaviour
     {
         if (!isXR)
         {
-        	isXR = true;
         	GameObject PCPlayerController = GameObject.FindGameObjectWithTag("Player");
         	VRPlayerController.SetActive(true);
         	PCPlayerController.SetActive(false);
 			GameObject.Find("XRCanvas").GetComponent<Canvas>().worldCamera = UICamera;
+			XRReady.Invoke(true);
+        	isXR = true;
         }
     }
 }
