@@ -9,7 +9,7 @@ public class DrQuinn : MonoBehaviour {
 
         var sceneName = SceneManager.GetActiveScene().name;
         var tutorialStage = (int) GM.GetGameStatus("tutorialStage");
-        if (sceneName == "ChurchInterior" && (tutorialStage >= 2 && tutorialStage <= 4) ||
+        if (sceneName == "ChurchInterior" && (tutorialStage >= 2 && tutorialStage <= 5) ||
             sceneName == "World" && tutorialStage > 4) {
             gameObject.SetActive(false);
             return;
