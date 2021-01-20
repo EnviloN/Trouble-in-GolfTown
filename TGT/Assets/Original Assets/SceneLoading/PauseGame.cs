@@ -115,8 +115,17 @@ public class PauseGame : MonoBehaviour
 
     void PositionCanvas()
     {
-        canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
-        canvas.transform.rotation = Camera.main.transform.rotation;
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (!player.GetComponent<XRRig>())
+        {
+            canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
+            canvas.transform.rotation = Camera.main.transform.rotation;
+        }
+        else
+        {
+            canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.2f;
+            canvas.transform.rotation = player.transform.rotation;
+        }
     }
 
     public void DisplayMainMenu()
@@ -145,13 +154,12 @@ public class PauseGame : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0;
         player = GameObject.FindGameObjectWithTag("Player");
-        SetLayerRecursively(player, 5);
-        hands = GameObject.FindGameObjectsWithTag("Hands");
-
-        foreach (GameObject hand in hands)
-        {
-            SetLayerRecursively(hand, 5);
-        }
+        // SetLayerRecursively(player, 5);
+        // hands = GameObject.FindGameObjectsWithTag("Hands");
+        // foreach (GameObject hand in hands)
+        // {
+        //     SetLayerRecursively(hand, 5);
+        // }
         player.GetComponent<FreezeMovement>().Freeze();
         rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
         rayInteractor.velocity = 50;
@@ -164,17 +172,13 @@ public class PauseGame : MonoBehaviour
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         player = GameObject.FindGameObjectWithTag("Player");
-        SetLayerRecursively(player, 0);
-
-        hands = GameObject.FindGameObjectsWithTag("Hands");
-
-        foreach (GameObject hand in hands)
-        {
-            SetLayerRecursively(hand, 0);
-        }
-
+        // SetLayerRecursively(player, 0);
+        // hands = GameObject.FindGameObjectsWithTag("Hands");
+        // foreach (GameObject hand in hands)
+        // {
+        //     SetLayerRecursively(hand, 0);
+        // }
         isPaused = false;
-        player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
         rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
         rayInteractor.velocity = 5;

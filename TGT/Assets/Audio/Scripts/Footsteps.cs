@@ -14,6 +14,7 @@ public class Footsteps : MonoBehaviour
     AudioClip previousClip;
 
     Rigidbody character;
+    UnityEngine.CharacterController controller;
     float currentSpeed;
     private bool walking;
     private float distanceCovered;
@@ -28,12 +29,18 @@ public class Footsteps : MonoBehaviour
     void Start()
     {
         character = GetComponent<Rigidbody>();
+        controller = GetComponent<UnityEngine.CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentSpeed = character.velocity.magnitude;
+        if (character) {
+            currentSpeed = character.velocity.magnitude;
+        }
+        if (controller) {
+            currentSpeed = controller.velocity.magnitude;
+        }
         walking = CheckIfWalking();
 
         if (walking) {
