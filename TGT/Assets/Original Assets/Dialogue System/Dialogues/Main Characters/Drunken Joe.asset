@@ -63,12 +63,12 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 0
     sentences:
-    - The Town had always its ups and downs. But everything changed when the townfolks
+    - The Town always had its ups and downs. But everything changed when the townfolks
       discovered the game of minigolf.
     - "Everyone just became obsessed with the game. To be honest, I don\u2019t remember
       a single fight at the saloon since then."
-    - No one shoot anyone on the street. Now, every problem can be settled with a
-      minigolf tournament.
+    - No one shoots anyone on the street. Now, every problem can be settled with
+      a minigolf tournament.
     - "Everyone is in peace. And for me\u2026 the business got better. "
     - "People are eager to talk about their matches. And what\u2019s a better place
       for that than the saloon?"
@@ -79,17 +79,17 @@ MonoBehaviour:
     - But we can talk about that later, I guess.
     - 'You should talk to the Wild Docker and ask him if he or anyone at the dock
       found anything from the shipwreck. '
-    - He was the one that found you in fact.
+    - He was the one that found you, in fact.
     - '[player] Yes, I should probably do that.'
     - "Unfortunately for you, you\u2019ll have to spend some time in the town."
-    - "It\u2019s been some time since the railroad was blocked and since everyone
+    - "It\u2019s been some time since the railroad was blocked, and since everyone
       is busy playing minigolf, no one thought about fixing it."
-    - "Don\u2019t worry though. I have an empty room upstairs where you can stay."
+    - "Don\u2019t worry, though. I have an empty room upstairs where you can stay."
     - "But we\u2019ll have to talk about some\u2026 compensation."
     - "[player] Okay, Joe. Thank you. I\u2019ll go speak to the Wild Docker. Where
       will I find him?"
-    - "At the dock obviously! It\u2019s east from the town. He\u2019ll be probably
-      near the old supply depo."
+    - "At the dock, obviously! It\u2019s east of the town. He\u2019ll probably be
+      near the old supply depot."
     - '[status] quest1Stage=2'
 --- !u!114 &11400000
 MonoBehaviour:
@@ -185,7 +185,7 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Howdy partner! You must be the guy who were found after the boat wreckage.
+    - Howdy partner! You must be the guy who was found after the boat wreckage.
     - My name is Drunken Joe. Welcome to my saloon!
     - '[player] Hello... Mr. Drunken.'
     - Please, call me Joe...
@@ -250,8 +250,7 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Howdy partner! You must be the guy who were found after the boat wreckage.
-    - My name is Drunken Joe. Welcome to my saloon!
+    - Howdy partner! You must be the guy who was found after the boat wreckage.
     - My name is Drunken Joe. Welcome to my saloon!
     - I see you already have a putter. Have you tried to play minigolf?
     - '[player] Yes... but I still don''t get it. Why minigolf?'
@@ -381,7 +380,7 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Hello, Joe. Miss Quinn sent me to see you.
+    - '[player]  Hello, Joe. Miss Quinn sent me to see you.'
     - Howdy. I see you already have a putter. Have you tried to play minigolf?
     - '[player] Yes... but I still don''t get it. Why minigolf?'
     - Well, that is a tricky question. But let me explain.
@@ -446,8 +445,8 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 1
     sentences:
-    - "Have you spoken to the Docker? You\u2019ll find him at the dock."
-    - "Go speak to the docker. You can come back to the saloon afterwards. We\u2019ll
+    - "Have you spoken to the Wild Docker? You\u2019ll find him at the dock."
+    - "Go speak to the Wild Docker. You can come back to the saloon afterward. We\u2019ll
       have a drink!"
     - You should ask the Wild Docker about your belongings. Maybe they found something
       on the shore.
