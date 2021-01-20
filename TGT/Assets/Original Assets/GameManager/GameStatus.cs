@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 
 public class GameStatus : MonoBehaviour {
-    [SerializeField] private bool somethingHappenedVar;
-    public bool somethingHappened {
-        get => somethingHappenedVar;
-        set => somethingHappenedVar = value;
-    }
-
     [SerializeField] private int timesShotVar;
     public int timesShot {
         get => timesShotVar;

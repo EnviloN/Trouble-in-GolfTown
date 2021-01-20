@@ -23,10 +23,7 @@ MonoBehaviour:
       _node: {fileID: -3144227454370116695}
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Children 1
-        node: {fileID: -631162539105135140}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -66,7 +63,6 @@ MonoBehaviour:
     - In
     - Children
     - Children 0
-    - Children 1
     values:
     - _fieldName: In
       _node: {fileID: -631162539105135140}
@@ -98,25 +94,10 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: Children 1
-      _node: {fileID: -631162539105135140}
-      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: In
-        node: {fileID: -3144227454370116695}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
   Children:
   - property: ballsCollected
     type: 1
     number: 3
-  - property: somethingHappened
-    type: 0
-    number: 0
   dialogue:
     isSmallTalk: 0
     sentences:

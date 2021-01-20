@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Animator TalkIconAnimator;
 
     public GameStatus gameStatus;
+    public GameManager GM;
 
     private Queue<string> sentences; // Queue of sentences in active dialogue
     private string currentCharacterName; 
@@ -57,10 +58,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Displays next sentence from the queue if available. If not, dialogue ends.
-    public void DisplayNextSentence()
-    {
-        if (sentences.Count == 0)
-        {
+    public void DisplayNextSentence() {
+        if (sentences.Count == 0) {
             EndDialogue();
             return;
         }
@@ -69,6 +68,16 @@ public class DialogueManager : MonoBehaviour
         if (raw_sentence.StartsWith("[player]")) {
             nameText.text = "Player";
             dialogueText.text = raw_sentence.Remove(0, 8).Trim();
+        } else if (raw_sentence.StartsWith("[status]")) {
+            var statusSet = raw_sentence.Remove(0, 8).Trim();
+            EndDialogue();
+
+            foreach (var status in statusSet.Split('|')) {
+                var property = status.Split('=')[0];
+                var value = Convert.ToInt32(status.Split('=')[1]);
+                GM.SetGameStatus(property, value);
+            }
+            return;
         } else {
             nameText.text = currentCharacterName;
             dialogueText.text = raw_sentence;
@@ -115,10 +124,13 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void updateCurrentGUID(string name, string dialogueGUID) {
-        if (!currentDialogueNodes.ContainsKey(name)) {
-            currentDialogueNodes.Add(name, dialogueGUID);
-        } else {
-            currentDialogueNodes[name] = dialogueGUID;
+        currentDialogueNodes[name] = dialogueGUID;
+    }
+
+    public void RetreivePersistantStatuses() {
+        var talkatives = FindObjectsOfType<Talkative>();
+        foreach (var talkative in talkatives) {
+            talkative.RetrieveStatus();
         }
     }
 }

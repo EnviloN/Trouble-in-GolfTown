@@ -88,7 +88,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
-        dm.UpdateGraphs();
+        dm.RetreivePersistantStatuses();
 
         DummyPlayer dummyPlayerScript = player.GetComponent<DummyPlayer>();
         if (dummyPlayerScript)

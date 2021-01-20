@@ -2859,6 +2859,11 @@ PrefabInstance:
       propertyPath: gameStatus
       value: 
       objectReference: {fileID: 1904069660}
+    - target: {fileID: 3085416874411723960, guid: 06a7c5b964670bc469498b35a503664e,
+        type: 3}
+      propertyPath: GM
+      value: 
+      objectReference: {fileID: 1904069661}
     - target: {fileID: 3085416874411723961, guid: 06a7c5b964670bc469498b35a503664e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3807,10 +3812,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e826a0878d9bf468eed088fbe7e48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  somethingHappenedVar: 0
   timesShotVar: 0
   ballsCollectedVar: 0
   goldenBallsCollectedVar: 0
+  tutorialStageVar: 0
+  quest1StageVar: 0
+  givePutterVar: 0
+  give5IronVar: 0
+  metJoeVar: 0
+  metDixxiVar: 0
 --- !u!114 &1904069661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3823,6 +3833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c678073755f0744b9d28ce60d131d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
 --- !u!1 &1940149834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3978,7 +3989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.ForwardSpeed
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.BackwardSpeed
