@@ -10424,8 +10424,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.8, z: 0.3}
-  m_Center: {x: 0, y: 1, z: 0.2}
+  m_Size: {x: 0.6, y: 1.164992, z: 0.3}
+  m_Center: {x: 6.5300654e-10, y: 1.1824899, z: 0.19999997}
+--- !u!114 &1671324297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671324295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: 4adc1b3fa4b53c240ab1ccfde2c60441, type: 2}
 --- !u!1001 &1711602942
 PrefabInstance:
   m_ObjectHideFlags: 0

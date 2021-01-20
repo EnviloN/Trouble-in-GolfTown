@@ -65,6 +65,13 @@ public class GameStatus : MonoBehaviour {
         get => metDixxiVar;
         set => metDixxiVar = value;
     }
+
+    [SerializeField]
+    private int metBillyVar;
+    public int metBilly {
+        get => metBillyVar;
+        set => metBillyVar = value;
+    }
     #endregion
 
 

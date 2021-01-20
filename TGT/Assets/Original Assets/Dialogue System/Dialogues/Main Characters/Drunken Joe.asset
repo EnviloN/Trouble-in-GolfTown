@@ -18,6 +18,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -6203041108680619260}
@@ -43,30 +44,53 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -6203041108680619260}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8271338648507631508}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 1
   dialogue:
     isSmallTalk: 0
     sentences:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - The Town had always its ups and downs. But everything changed when the townfolks
+      discovered the game of minigolf.
+    - "Everyone just became obsessed with the game. To be honest, I don\u2019t remember
+      a single fight at the saloon since then."
+    - No one shoot anyone on the street. Now, every problem can be settled with a
+      minigolf tournament.
+    - "Everyone is in peace. And for me\u2026 the business got better. "
+    - "People are eager to talk about their matches. And what\u2019s a better place
+      for that than the saloon?"
+    - "[player] I see. So, if everyone is so obsessed about the minigolf, how come
+      I didn\u2019t see anyone playing minigolf on my way here?"
+    - "Well\u2026 the fact is that the town is not at its peak of prosperity right
+      now."
+    - But we can talk about that later, I guess.
+    - 'You should talk to the Wild Docker and ask him if he or anyone at the dock
+      found anything from the shipwreck. '
+    - He was the one that found you in fact.
+    - '[player] Yes, I should probably do that.'
+    - "Unfortunately for you, you\u2019ll have to spend some time in the town."
+    - "It\u2019s been some time since the railroad was blocked and since everyone
+      is busy playing minigolf, no one thought about fixing it."
+    - "Don\u2019t worry though. I have an empty room upstairs where you can stay."
+    - "But we\u2019ll have to talk about some\u2026 compensation."
+    - "[player] Okay, Joe. Thank you. I\u2019ll go speak to the Wild Docker. Where
+      will I find him?"
+    - "At the dock obviously! It\u2019s east from the town. He\u2019ll be probably
+      near the old supply depo."
+    - '[status] quest1Stage=2'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +109,8 @@ MonoBehaviour:
   - {fileID: 2675164402377995640}
   - {fileID: 4825641537056648337}
   - {fileID: -6203041108680619260}
+  - {fileID: 8271338648507631508}
+  - {fileID: 8359079001244855501}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -131,7 +157,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
-        node: {fileID: 2675164402377995640}
+        node: {fileID: 3447862222334328818}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -143,19 +169,19 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
-        node: {fileID: 3447862222334328818}
+        node: {fileID: 2675164402377995640}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
   Children:
-  - property: tutorialStage
-    type: 1
-    number: 5
   - property: metJoe
     type: 1
     number: 0
+  - property: tutorialStage
+    type: 1
+    number: 5
   dialogue:
     isSmallTalk: 0
     sentences:
@@ -189,7 +215,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 0
+      - fieldName: Children 1
         node: {fileID: 1658409910998133095}
         reroutePoints: []
       _direction: 0
@@ -256,7 +282,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 1
+      - fieldName: Children 0
         node: {fileID: 1658409910998133095}
         reroutePoints: []
       _direction: 0
@@ -360,3 +386,115 @@ MonoBehaviour:
     - '[player] Yes... but I still don''t get it. Why minigolf?'
     - Well, that is a tricky question. But let me explain.
     - '[status] quest1Stage=1'
+--- !u!114 &8271338648507631508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4088, y: -600}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 8271338648507631508}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -6203041108680619260}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8271338648507631508}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 8271338648507631508}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8359079001244855501}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 2
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - "Have you spoken to the Docker? You\u2019ll find him at the dock."
+    - "Go speak to the docker. You can come back to the saloon afterwards. We\u2019ll
+      have a drink!"
+    - You should ask the Wild Docker about your belongings. Maybe they found something
+      on the shore.
+    - By the way, you should be able to find some lost golf balls around the area.
+--- !u!114 &8359079001244855501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4712, y: -584}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: 8359079001244855501}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 8271338648507631508}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8359079001244855501}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Welcome Back!
+    - 
