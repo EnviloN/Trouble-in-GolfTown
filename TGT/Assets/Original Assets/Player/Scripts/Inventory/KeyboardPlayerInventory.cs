@@ -105,11 +105,15 @@ public class KeyboardPlayerInventory : AbstractInventory
     // Clubs
     protected void PositionClubInPlayersHand()
     {
-        if (putterObject != null)
+        if (clubInHandState == 1 && putterObject != null)
         {
             putterObject.transform.position = transform.position + (transform.right * relativeClubDistance);
             putterObject.transform.rotation = transform.rotation * clubRotation;
-
+        } 
+        if (clubInHandState == 2 && fiveIronObject != null)
+        {
+            fiveIronObject.transform.position = transform.position + (transform.right * relativeClubDistance);
+            fiveIronObject.transform.rotation = transform.rotation * clubRotation;
         }
     }
 

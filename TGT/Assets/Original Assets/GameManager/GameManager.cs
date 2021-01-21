@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
     public HoleTriggeredEvent holeTriggered;
     public ArrayList completedCourses;
 
+    public TowerHitEvent towerHitTriggered;
+
     // Start is called before the first frame update
     void Awake() {
         gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
@@ -27,6 +29,12 @@ public class GameManager : MonoBehaviour {
         {
             holeTriggered = new HoleTriggeredEvent();
         }
+
+        if (towerHitTriggered == null)
+        {
+            towerHitTriggered = new TowerHitEvent();
+        }
+
         completedCourses = new ArrayList();
     }
 
@@ -48,6 +56,16 @@ public class GameManager : MonoBehaviour {
             if (!completedCourses.Contains(courseId))
             {
                 completedCourses.Add(courseId);
+            }
+        });
+
+        towerHitTriggered.AddListener(towerObject =>
+        {
+            Desctructible destructible = towerObject.GetComponent<Desctructible>();
+            if (destructible != null)
+            {
+                destructible.destroyThisTower();
+                gameStatus.numOfTowersDestroyed++;
             }
         });
     }
