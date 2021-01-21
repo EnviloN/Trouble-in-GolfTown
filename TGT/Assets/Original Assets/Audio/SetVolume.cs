@@ -12,12 +12,13 @@ public class SetVolume : MonoBehaviour
         sliderValue = sliderValue * 10;
         float volume = sliderValue; // / 10.0f;
 
-        if (sliderValue == 0) {
-            volume = 0.0001f;
-        }
-        //-40 to 10
-        volume = -30.0f + volume; //Mathf.Log10(volume) * 20;
+        //-30 to 10
+        volume = -40.0f + volume;
         mixer.SetFloat("MasterVolume", volume);
-        //Debug.Log("New volume set at:" + volume);
+
+        //-80
+        if (sliderValue < 1) {
+            mixer.SetFloat("MasterVolume", -80.0f);
+        }
     }
 }
