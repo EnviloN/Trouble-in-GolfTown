@@ -71,6 +71,12 @@ public class GameStatus : MonoBehaviour {
         get => talkedToAustinVar;
         set => talkedToAustinVar = value;
     }
+
+    private int talkedToDixxiVar;
+    public int talkedToDixxi {
+        get => talkedToDixxiVar;
+        set => talkedToDixxiVar = value;
+    }
     #endregion
 
     #region Meetings

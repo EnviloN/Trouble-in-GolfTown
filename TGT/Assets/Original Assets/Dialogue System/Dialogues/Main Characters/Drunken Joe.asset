@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8129177337466118555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7208, y: -520}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -8129177337466118555}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 3986300470999029162}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -8129177337466118555}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Remember, if you are out of balls, just search for them. You can find them
+      almost everywhere.
+    - Just make sure you can handle a putter and some balls.
+    - We need some more time to plan the thing. You should practice minigolf.
+    - Make sure you are in top shape. Have you tried some of the more difficult holes
+      north-east of the town?
 --- !u!114 &-6203041108680619260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +228,8 @@ MonoBehaviour:
   - {fileID: 8359079001244855501}
   - {fileID: -5443084851111647208}
   - {fileID: 2236476459762789561}
+  - {fileID: 3986300470999029162}
+  - {fileID: -8129177337466118555}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -275,6 +327,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: 2236476459762789561}
@@ -297,18 +350,40 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: 2236476459762789561}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 3986300470999029162}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 0
+    number: 8
   dialogue:
     isSmallTalk: 0
     sentences:
     - '[player] This seems useless.'
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - You can't blame them. Everyone is pretty upset about the situation.
+    - And they surely have their own personal problems you can't help them with.
+    - If only we could do something about the Scrooge and his stupid oil rigs!
+    - Maybe we could somehow... Wait a minute!
+    - I might have an idea... And we could use you!
+    - '[player] Me?! What idea?'
+    - I need to think this through! Probably with the Wild Docker and some other
+      folks...
+    - Go tell the Docker to meet me at the saloon as soon as possible.
+    - Tell him it's about Scrooge and that I promise it is not about the ghosts again.
+    - '[player] Ghosts?'
+    - 'Go! And until I think this through with the Docker, you should practice minigolf. '
+    - When you think you get the hold of it, come back to see me!
+    - '[status] quest1Stage=9'
 --- !u!114 &2675164402377995640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +514,69 @@ MonoBehaviour:
       rising that someone finds out.
     - Have you tried minigolf yet? If no, don't say it out loud. Go see Dr. Quinn.
     - Isn't Dr. Quinn waiting for you?
+--- !u!114 &3986300470999029162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6549.7485, y: -521.33154}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 3986300470999029162}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 2236476459762789561}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 3986300470999029162}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 3986300470999029162}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -8129177337466118555}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 9
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Go tell the Docker to come to see me!
+    - I need to meet with the Wild Docker.
+    - The Wild Docker hasn't been here yet. Have you told him to come?
 --- !u!114 &4825641537056648337
 MonoBehaviour:
   m_ObjectHideFlags: 0

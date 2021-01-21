@@ -66,6 +66,55 @@ MonoBehaviour:
     - "I guess there are also some made up stories about me since I\u2019ve earned
       such a\u2026 distinguished name. "
     - '[status] quest1Stage=3'
+--- !u!114 &-6980255964714021273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3928, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -6980255964714021273}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 9178703331620042582}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -6980255964714021273}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Sure, I'll go to the saloon! It better not be another stupid joke.
+    - I'll go to the saloon when I'm done here at the docks. At least they won't
+      expect me in case they want to scare me.
+    - Don't worry, I didn't forget about it. I'll go to the saloon as soon as I can.
+    - I'll go to the saloon, don't worry.
 --- !u!114 &-5033376556313975810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +280,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -212987791053175250}
@@ -253,7 +303,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -212987791053175250}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 9178703331620042582}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 8
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -281,6 +346,8 @@ MonoBehaviour:
   - {fileID: -7754528274923597395}
   - {fileID: 2669039653640380349}
   - {fileID: -212987791053175250}
+  - {fileID: 9178703331620042582}
+  - {fileID: -6980255964714021273}
   CharacterName: Billy
 --- !u!114 &2669039653640380349
 MonoBehaviour:
@@ -460,3 +527,81 @@ MonoBehaviour:
       land, I tell you!
     - "I didn\u2019t even believe you could make it."
     - '[status] quest1Stage=3'
+--- !u!114 &9178703331620042582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3352, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -212987791053175250}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6980255964714021273}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 9
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] Howdy, Billy! Joe sent me to tell you he needs to meet you at the
+      saloon as soon as possible.'
+    - Oh, I ain't falling for that again! Tell him he can kiss my arse.
+    - '[player] He told me it is about Scrooge, and he promises that it''s not about
+      the ghosts.'
+    - 'The Scrooge you say... well, you know how it goes: "Fool me once, shame on
+      me... fool me twice, shame on you."'
+    - But when he fooled me the fifth time... he has lost my trust.
+    - I might go there since it is about Scrooge, but I'll go there after my work
+      is done here.
+    - '[player] May I ask what''s up with the ghosts?'
+    - I know what I saw!
+    - One night there were ghosts playing minigolf at the cemetery. But no one believes
+      me, and they just make fun of me.
+    - '[player] ...'
+    - Whatever...
+    - '[player] No, sure! Thanks for letting me know, Billy. I''ll be on the lookout.'
+    - '[status] quest1Stage=10'
