@@ -91,6 +91,55 @@ MonoBehaviour:
     - "At the dock, obviously! It\u2019s east of the town. He\u2019ll probably be
       near the old supply depot."
     - '[status] quest1Stage=2'
+--- !u!114 &-5443084851111647208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5320, y: -568}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -5443084851111647208}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 8359079001244855501}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -5443084851111647208}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Ask the people around the saloon what you can do to help them.
+    - Try asking people what you can do for them.
+    - If you want to help me, I'll be glad if someone cleaned the storage behind
+      the bar. But after the saloon closes.
+    - Have you asked the people in the saloon?
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +160,7 @@ MonoBehaviour:
   - {fileID: -6203041108680619260}
   - {fileID: 8271338648507631508}
   - {fileID: 8359079001244855501}
+  - {fileID: -5443084851111647208}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -441,7 +491,7 @@ MonoBehaviour:
   Children:
   - property: quest1Stage
     type: 1
-    number: 2
+    number: 3
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -469,6 +519,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: 8359079001244855501}
@@ -491,9 +542,34 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: 8359079001244855501}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -5443084851111647208}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 4
   dialogue:
     isSmallTalk: 0
     sentences:
-    - Welcome Back!
-    - 
+    - Welcome Back! How's it going?
+    - '[player] Not great. None of my belongings were found, and Billy told me about
+      the oil magnate.'
+    - Ah, The Scrooge! Well, he's been a pain in the arse lately. Got building oil
+      rigs all around our minigolf courses.
+    - And we can only guess what happened to the mayor. He is either under the ground
+      dead or somewhere else filthy rich.
+    - '[player] What can I do for the people here in Gold Town?'
+    - I don't know everyone got their own problems. How about you ask them? Unless
+      you can do something about the oil under the town.
+    - '[player] Okay, I''ll ask people around the saloon.'
+    - '[status] quest1Stage=5'

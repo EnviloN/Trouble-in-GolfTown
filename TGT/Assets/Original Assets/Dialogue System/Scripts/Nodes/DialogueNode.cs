@@ -57,7 +57,6 @@ public class DialogueNode : Node {
         public int number;
 
         public bool Evaluate(DialogueGraph graph) {
-            Debug.Log("Property: " + property);
             switch (type) {
                 case ConstraintType.IsTrue:
                     var boolValue = (bool) graph.gameStatus[property];
