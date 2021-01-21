@@ -2119,6 +2119,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07f2639790b666f4a89aaff6a03e630d, type: 2}
+    - target: {fileID: 771428260347673773, guid: 24362449162558a49bc6904c0fda923a,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.0604727
+      objectReference: {fileID: 0}
+    - target: {fileID: 771428260347673773, guid: 24362449162558a49bc6904c0fda923a,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.2197636
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24362449162558a49bc6904c0fda923a, type: 3}
 --- !u!1001 &76423435
@@ -19916,6 +19926,20 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 766343332}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1123140900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123140897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: 7b86fa4d931aa614ea07c717e4965d70, type: 2}
 --- !u!1001 &1128141926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20657,6 +20681,20 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 74638139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1201903136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201903133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: 68d7cd88645310248a41bbeb72adfa1d, type: 2}
 --- !u!1001 &1203832444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28167,6 +28205,20 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1790924277}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1707007484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707007481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: 8ac12514cf30b4442bb222b59b2d0031, type: 2}
 --- !u!1001 &1707123397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30277,8 +30329,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.8, z: 0.3}
-  m_Center: {x: 0.15, y: 1.35, z: -0.35}
+  m_Size: {x: 0.5694078, y: 0.99751806, z: 0.3}
+  m_Center: {x: 0.09029583, y: 1.251241, z: -0.35}
 --- !u!114 &1799368171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30297,6 +30349,20 @@ MonoBehaviour:
   probabilities:
   - 15
   range: 100
+--- !u!114 &1799368172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799368168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: 65f7b9ce79dc6b84d9a36825a25c83df, type: 2}
 --- !u!1001 &1802572571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30695,6 +30761,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 760015125}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1822457133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822457132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: d4290e9012730a144852333fd8df408a, type: 2}
 --- !u!95 &1822457134 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95217205003396926, guid: e169e4d9dbd157b498e582065a5f9302,
