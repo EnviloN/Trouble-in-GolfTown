@@ -6,7 +6,8 @@ public class DrunkenJoe : MonoBehaviour {
     void Start() {
         GM = FindObjectOfType<GameManager>();
         var quest1Stage = (int) GM.GetGameStatus("quest1Stage");
-        if (!GM.debugMode && quest1Stage == 4)
+        var quest2Stage = (int) GM.GetGameStatus("quest2Stage");
+        if (!GM.debugMode && (quest1Stage == 4 || quest2Stage == 1))
             transform.gameObject.GetComponent<Animator>().SetBool("NeedsAttention", true);
     }
 }
