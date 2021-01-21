@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -408, y: -232}
+  position: {x: 2680, y: 216}
   ports:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -8188082361320688719}
@@ -37,6 +38,74 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -8188082361320688719}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 203702103604317528}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 4
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Hey there, big guns!
+    - Having a good time?
+    - How about a drink for a fine girl like me?
+    - Would you like me to take a look at your putter?
+    - How about we go upstairs and take a look at your putter? It looks like it could
+      use some polishing.
+    - It's been weeks since I've touched someone's club.
+    - My club polisher has been dry for weeks!
+    - I would polish your club any time. Free of charge!
+--- !u!114 &-1561155334517103761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3816, y: 216}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -1561155334517103761}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 203702103604317528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -1561155334517103761}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   Children: []
   dialogue:
     isSmallTalk: 1
@@ -44,13 +113,12 @@ MonoBehaviour:
     - Hey there, big guns!
     - Having a good time?
     - How about a drink for a fine girl like me?
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - Would you like me to take a look at your putter?
+    - How about we go upstairs and take a look at your putter? It looks like it could
+      use some polishing.
+    - It's been weeks since I've touched someone's club.
+    - My club polisher has been dry for weeks!
+    - I would polish your club any time. Free of charge!
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,4 +133,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -8188082361320688719}
+  - {fileID: 203702103604317528}
+  - {fileID: -1561155334517103761}
   CharacterName: Dixxi
+--- !u!114 &203702103604317528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3240, y: 216}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 203702103604317528}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -8188082361320688719}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 203702103604317528}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 203702103604317528}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -1561155334517103761}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: talkedToDixxi
+    type: 1
+    number: 0
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Hey there, big guns! How's your club? Does it need some tender woman's touch?
+    - '[player] Are you talking about my...'
+    - 'Your putter? Yes! '
+    - Unless you stole it from Miss Quinn... Then it is not your putter.
+    - '[player] She gave it to me... How do you know that''s her putter?'
+    - I know every club in town, silly. In fact, I've touched every club in the town!
+    - '[player] That''s an odd thing to say...'
+    - Oh, but why? As the only minigolf club specialist in Golf Town, I think it
+      would be odd to say the opposite.
+    - '[player] Minigolf club specialist...'
+    - Self-thought! If there is something with your putter, I am the go-to person.
+    - I can repair almost anything unless you snap your club in half! Even if you
+      only need some polishing.
+    - Matter of fact... most of my customers come to have their club polished several
+      times a week.
+    - And... they enjoy watching me polish their club!
+    - '[player] But minigolf club specialist? Aren''t you a saloon girl?'
+    - Gotta make money somehow! Especially when men in this town are more interested
+      in minigolf than in a fine girl like me.
+    - And it's for the better, I guess...
+    - '[player] I see. Anyway, is there anything I could help you with?'
+    - I don't think so. My customers are not so interested in my services now because
+      they are not happy about the oil rigs.
+    - Oh, and the fact that this town will soon be transformed into an oil mining
+      city.
+    - And I'm afraid there is nothing you can do with that.
+    - '[incStatus] quest1Stage|talkedToDixxi'
