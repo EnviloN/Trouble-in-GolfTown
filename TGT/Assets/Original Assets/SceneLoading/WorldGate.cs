@@ -6,7 +6,7 @@
         if (tutorialStage == 2)
             gm.SetGameStatus("tutorialStage", 3);
 
-        if ((int) FindObjectOfType<GameManager>().GetGameStatus("tutorialStage") >= 2)
+        if (GM.debugMode || (int) FindObjectOfType<GameManager>().GetGameStatus("tutorialStage") >= 2)
             StartCoroutine(SceneLoader.LoadScene("World", warpPosition));
     }
 }

@@ -78,7 +78,16 @@ public class DialogueManager : MonoBehaviour
                 GM.SetGameStatus(property, value);
             }
             return;
-        } else {
+        } else if (raw_sentence.StartsWith("[incStatus]")) {
+        var statusSet = raw_sentence.Remove(0, 11).Trim();
+        EndDialogue();
+
+        foreach (var property in statusSet.Split('|')) {
+            var value = (int) GM.GetGameStatus(property) + 1;
+            GM.SetGameStatus(property, value);
+        }
+        return;
+    } else {
             nameText.text = currentCharacterName;
             dialogueText.text = raw_sentence;
         }
