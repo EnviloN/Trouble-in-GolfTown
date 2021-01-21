@@ -4499,6 +4499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dr. Quinn
       objectReference: {fileID: 0}
+    - target: {fileID: 699479653693175084, guid: 5f49b90f67aa69242b924a7b1af59741,
+        type: 3}
+      propertyPath: m_TagString
+      value: DrQuinn
+      objectReference: {fileID: 0}
     - target: {fileID: 701453503447470310, guid: 5f49b90f67aa69242b924a7b1af59741,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -4929,8 +4934,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.8, z: 0.3}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.6, y: 1.717905, z: 0.3}
+  m_Center: {x: -0, y: 0.9343209, z: 0}
+--- !u!114 &966910664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966910662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: b89d5dd8601fa504d8e9ca17b631900f, type: 2}
+--- !u!114 &966910665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966910662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630cc16d62bee544ca2f409772873425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &971957521
 PrefabInstance:
   m_ObjectHideFlags: 0

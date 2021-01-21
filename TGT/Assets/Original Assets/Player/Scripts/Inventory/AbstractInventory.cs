@@ -148,7 +148,8 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (ballObject != null)
         {
-            Instantiate(spawnableGolfBallPrefab, ballObject.transform.position + new Vector3(0, moveUpBy, 0), ballObject.transform.rotation);
+            GameObject ball = Instantiate(spawnableGolfBallPrefab, ballObject.transform.position + new Vector3(0, moveUpBy, 0), ballObject.transform.rotation);
+            Physics.IgnoreCollision(ball.GetComponent<Collider>(), GetComponent<Collider>());
             Destroy(ballObject.gameObject);
         }
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +9,11 @@ public class SceneLoader : MonoBehaviour {
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
+    private GameManager GM;
 
     private void Start() {
         dm = FindObjectOfType<DialogueManager>();
+        GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
         LoadIntroScene();
     }
@@ -39,10 +41,14 @@ public class SceneLoader : MonoBehaviour {
 
 
     public void StartGame() {
-        
+        if (GM.debugMode) {
+            LoadMainScene();
+        } else {
+            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
+            //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+        }
         pauser.HideMenu();
         pauser.Resume();
-  
     }
 
     public void LoadMainScene() {
@@ -81,7 +87,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
-        dm.UpdateGraphs();
+        dm.RetreivePersistantStatuses();
 
         DummyPlayer dummyPlayerScript = player.GetComponent<DummyPlayer>();
         if (dummyPlayerScript)
@@ -91,6 +97,4 @@ public class SceneLoader : MonoBehaviour {
 
         transition.SetTrigger("End");
     }
-
-
 }
