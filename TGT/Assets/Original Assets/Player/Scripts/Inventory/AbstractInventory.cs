@@ -112,7 +112,12 @@ public abstract class AbstractInventory : MonoBehaviour
             clubObject.transform.SetPositionAndRotation(position, rotation);
             clubObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             clubObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            clubObject.GetComponent<MeshCollider>().enabled = true;
+
+            MeshCollider collider = clubObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = true;
+            }
             clubObject.SetActive(true);
         }
     }
@@ -121,12 +126,20 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (putterObject != null && putterObject.activeInHierarchy) {
             putterObject.SetActive(false);
-            putterObject.GetComponent<MeshCollider>().enabled = false;
+            MeshCollider collider = putterObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
             putterObject.GetComponent<Rigidbody>().useGravity = false;
         }
         if (fiveIronObject != null && fiveIronObject.activeInHierarchy) {
             fiveIronObject.SetActive(false);
-            fiveIronObject.GetComponent<MeshCollider>().enabled = false;
+            MeshCollider collider = fiveIronObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
             fiveIronObject.GetComponent<Rigidbody>().useGravity = false;
         }
     }
