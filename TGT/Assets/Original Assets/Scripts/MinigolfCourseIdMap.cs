@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-public class MinigolfCourseIdMap
+﻿public class MinigolfCourseIdMap
 {
     public const string CemeteryCourse1 = "cemetery_1";
 

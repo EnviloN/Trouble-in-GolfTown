@@ -21,6 +21,14 @@ public class GameStatus : MonoBehaviour {
         set => goldenBallsCollectedVar = value;
     }
 
+    [SerializeField]
+    private int numOfTowersDestroyedVar = 0;
+    public int numOfTowersDestroyed
+    {
+        get => numOfTowersDestroyedVar;
+        set => numOfTowersDestroyedVar = value;
+    }
+
     #region Quests
     [SerializeField]
     private int tutorialStageVar;
