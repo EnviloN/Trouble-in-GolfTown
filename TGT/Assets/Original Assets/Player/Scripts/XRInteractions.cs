@@ -15,6 +15,8 @@ public class RightSecondaryButtonEvent : UnityEvent<bool> { }
 public class LeftTriggerButtonEvent : UnityEvent<bool> { }
 [System.Serializable]
 public class RightTriggerButtonEvent : UnityEvent<bool> { }
+[System.Serializable]
+public class MenuButtonEvent : UnityEvent<bool> { }
 
 public class XRInteractions : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class XRInteractions : MonoBehaviour
     public RightSecondaryButtonEvent rightSecondaryButtonPress;
     public LeftTriggerButtonEvent leftTriggerButtonPress;
     public RightTriggerButtonEvent rightTriggerButtonPress;
+    public MenuButtonEvent menuButtonPress;
 
     private bool lastLeftPrimaryButtonState = false;
     private bool lastRightPrimaryButtonState = false;
@@ -31,6 +34,7 @@ public class XRInteractions : MonoBehaviour
     private bool lastRightSecondaryButtonState = false;
     private bool lastLeftTriggerButtonState = false;
     private bool lastRightTriggerButtonState = false;
+    private bool lastMenuButtonState = false;
 
     public List<InputDevice> leftDevices;
     public List<InputDevice> rightDevices;
@@ -49,6 +53,8 @@ public class XRInteractions : MonoBehaviour
         	leftTriggerButtonPress = new LeftTriggerButtonEvent();
         if (rightTriggerButtonPress == null) 
         	rightTriggerButtonPress = new RightTriggerButtonEvent();
+        if (menuButtonPress == null) 
+            menuButtonPress = new MenuButtonEvent();
 
         leftDevices = new List<InputDevice>();
     	rightDevices = new List<InputDevice>();
@@ -104,12 +110,14 @@ public class XRInteractions : MonoBehaviour
         bool tempRightSecondaryState = false;
         bool tempLeftTriggerState = false;
         bool tempRightTriggerState = false;
+        bool tempMenuState = false;
 
         foreach (var device in leftDevices)
         {
             bool primaryButtonState = false;
             bool secondaryButtonState = false;
             bool triggerButtonState = false;
+            bool menuButtonState = false;
             tempLeftPrimaryState = device.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonState)
                         && primaryButtonState
                         || tempLeftPrimaryState;
@@ -119,6 +127,9 @@ public class XRInteractions : MonoBehaviour
             tempLeftTriggerState = device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonState)
                         && triggerButtonState
                         || tempLeftTriggerState;
+            tempMenuState = device.TryGetFeatureValue(CommonUsages.menuButton, out menuButtonState)
+                        && menuButtonState
+                        || tempMenuState;
         }
 
         foreach (var device in rightDevices)
@@ -166,6 +177,11 @@ public class XRInteractions : MonoBehaviour
         {
             rightTriggerButtonPress.Invoke(tempRightTriggerState);
             lastRightTriggerButtonState = tempRightTriggerState;
+        }
+        if (tempMenuState != lastMenuButtonState)
+        {
+            menuButtonPress.Invoke(tempMenuState);
+            lastMenuButtonState = tempMenuState;
         }
     }
 

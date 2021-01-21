@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +12,6 @@ public class SceneLoader : MonoBehaviour {
     private GameManager GM;
 
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
         GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
@@ -50,7 +49,6 @@ public class SceneLoader : MonoBehaviour {
         }
         pauser.HideMenu();
         pauser.Resume();
-  
     }
 
     public void LoadMainScene() {
@@ -76,6 +74,7 @@ public class SceneLoader : MonoBehaviour {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
+        player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = warpPos;
         switch (sceneName) {
             case "World":
@@ -98,6 +97,4 @@ public class SceneLoader : MonoBehaviour {
 
         transition.SetTrigger("End");
     }
-
-
 }
