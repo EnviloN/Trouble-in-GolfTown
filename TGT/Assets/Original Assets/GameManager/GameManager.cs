@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -13,12 +14,44 @@ public class GameManager : MonoBehaviour {
     [NonSerialized]
     public int MaxNumberOfGoldenBalls = 3;
 
+    public HoleTriggeredEvent holeTriggered;
+    public ArrayList completedCourses;
+
     // Start is called before the first frame update
     void Awake() {
         gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
         dialogueManager = FindObjectOfType<DialogueManager>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        if (holeTriggered == null)
+        {
+            holeTriggered = new HoleTriggeredEvent();
+        }
+        completedCourses = new ArrayList();
     }
+
+    private void Start()
+    {
+        // Use constants on MinigolfCourseIdMap when referencing courseIds
+        holeTriggered.AddListener(courseId =>
+        {
+            if (courseId == MinigolfCourseIdMap.CemeteryCourse1 && gameStatus.tutorialStage == 4)
+            {
+                gameStatus.tutorialStage = 5;
+            }
+
+            if (gameStatus.quest1Stage == 8)
+            {
+                gameStatus.quest1StageBalls++;
+            }
+
+            if (!completedCourses.Contains(courseId))
+            {
+                completedCourses.Add(courseId);
+            }
+        });
+    }
+
     private void Update() {
         // Nothing to see here, move along...
 
