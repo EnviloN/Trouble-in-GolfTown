@@ -48,9 +48,11 @@ public class GameManager : MonoBehaviour {
                 gameStatus.tutorialStage = 5;
             }
 
-            if (gameStatus.quest1Stage == 8)
+            if (gameStatus.quest1Stage == 10)
             {
                 gameStatus.quest1StageBalls++;
+                if (gameStatus.quest1StageBalls == 3)
+                    gameStatus.quest2Stage = 1;
             }
 
             if (!completedCourses.Contains(courseId))
