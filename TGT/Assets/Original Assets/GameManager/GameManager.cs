@@ -57,11 +57,13 @@ public class GameManager : MonoBehaviour {
 
         if (gameStatus.givePutter == 1) {
             gameStatus.givePutter = 0;
+            player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<AbstractInventory>().havePutterClub = true;
         }
 
         if (gameStatus.give5Iron == 1) {
             gameStatus.give5Iron = 0;
+            player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<AbstractInventory>().have5IronClub = true;
         }
 
