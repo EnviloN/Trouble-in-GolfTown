@@ -57,7 +57,7 @@ MonoBehaviour:
   dialogue:
     isSmallTalk: 1
     sentences:
-    - Hey there, big guns!
+    - Hey there, cowboy!
     - Having a good time?
     - How about a drink for a fine girl like me?
     - Would you like me to take a look at your putter?
@@ -84,6 +84,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -1561155334517103761}
@@ -106,11 +107,26 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -1561155334517103761}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6409323605617322346}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 1
   dialogue:
     isSmallTalk: 1
     sentences:
-    - Hey there, big guns!
+    - Hey there, cowboy!
     - Having a good time?
     - How about a drink for a fine girl like me?
     - Would you like me to take a look at your putter?
@@ -135,6 +151,7 @@ MonoBehaviour:
   - {fileID: -8188082361320688719}
   - {fileID: 203702103604317528}
   - {fileID: -1561155334517103761}
+  - {fileID: 6409323605617322346}
   CharacterName: Dixxi
 --- !u!114 &203702103604317528
 MonoBehaviour:
@@ -155,6 +172,7 @@ MonoBehaviour:
     - In
     - Children
     - Children 0
+    - Children 1
     values:
     - _fieldName: In
       _node: {fileID: 203702103604317528}
@@ -189,10 +207,27 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: Children 1
+      _node: {fileID: 203702103604317528}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 6409323605617322346}
+        reroutePoints:
+        - {x: 3810.005, y: 151.25647}
+        - {x: 4351.005, y: 162.25647}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
   Children:
   - property: talkedToDixxi
     type: 1
     number: 0
+  - property: quest2Stage
+    type: 1
+    number: 1
   dialogue:
     isSmallTalk: 0
     sentences:
@@ -223,3 +258,80 @@ MonoBehaviour:
       city.
     - And I'm afraid there is nothing you can do with that.
     - '[incStatus] quest1Stage|talkedToDixxi'
+--- !u!114 &6409323605617322346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4504, y: 232}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 6409323605617322346}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -1561155334517103761}
+        reroutePoints: []
+      - fieldName: Children 1
+        node: {fileID: 203702103604317528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 6409323605617322346}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 6409323605617322346}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 2
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Howdy, partner! Came for my new toy?
+    - '[player] Yes, I was supposed to get some club from you.'
+    - Well, you are a lucky man! Because this invention is a game-changer. It will
+      literally change the minigolf forever. It's crazy!
+    - It makes the balls fly up instead of rolling forwards. I don't know how no
+      one has ever thought of this!
+    - Imagine all the course obstacles you could jump the ball over. I call this
+      club the 5-iron.
+    - '[player] The 5-iron?'
+    - Well... it's the fifth prototype, and it's made of iron. It's more of a technical
+      project name.
+    - '[player] Ah...'
+    - Anyway, I just polished it, and no one but me ever held such a club in their
+      hands.
+    - I hope you'll enjoy using it. Let me know how it feels. Any feedback is welcome!
+    - '[player] Sure, If I''ll be able to come back alive, I''ll let you know.'
+    - '[status] quest2Stage=3|give5Iron=1'
