@@ -136,14 +136,24 @@ public class XRPlayerInventory : AbstractInventory
         }
     }
 
-    protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
+    protected override bool doRaycastPickBall(out RaycastHit[] hits, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
+    {
+        bool validHit = rayInteractor.GetCurrentRaycastHit(out RaycastHit raycastHit);
+
+        hits = new RaycastHit[] { raycastHit };
+
+        return validHit;
+    }
+
+    protected override bool doRaycastPlaceBall(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
         return rayInteractor.GetCurrentRaycastHit(out raycastHit);
     }
 
     protected override void RaycastBallHere()
     {
-        if (doRaycast(out RaycastHit raycastHit))
+
+        if (doRaycastPlaceBall(out RaycastHit raycastHit))
         {
             var placeableArea = raycastHit.collider.GetComponent<GolfBallPlaceableArea>();
             if (placeableArea)

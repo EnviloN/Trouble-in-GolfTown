@@ -92,7 +92,14 @@ public class KeyboardPlayerInventory : AbstractInventory
 
 
     // Balls
-    protected override bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
+    protected override bool doRaycastPickBall(out RaycastHit[] hits, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
+    {
+        hits = Physics.RaycastAll(GetRay(), interactionDistance);
+
+        return hits.Length > 0;
+    }
+
+    protected override bool doRaycastPlaceBall(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
     {
         return Physics.Raycast(GetRay(), out raycastHit, interactionDistance);
     }
