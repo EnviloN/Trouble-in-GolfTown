@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
     public Animator transition;
+    public Animator XRTransition;
     public float transitionTime = 1f;
     
     private GameObject player;
@@ -74,6 +75,7 @@ public class SceneLoader : MonoBehaviour {
 
     public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
         transition.SetTrigger("Start");
+        XRTransition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -104,5 +106,6 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
+        XRTransition.SetTrigger("End");
     }
 }
