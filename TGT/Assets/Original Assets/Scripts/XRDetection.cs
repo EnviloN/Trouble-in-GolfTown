@@ -9,7 +9,8 @@ public class XRReadyEvent : UnityEvent<bool> { }
 public class XRDetection : MonoBehaviour
 {
 	public bool isXR;
-	public GameObject VRPlayerController;
+	public GameObject XRPlayerController;
+    public GameObject XRDialogCanvas;
 	public Camera UICamera;
 	public XRReadyEvent XRReady;
 
@@ -30,8 +31,9 @@ public class XRDetection : MonoBehaviour
         if (!isXR)
         {
         	GameObject PCPlayerController = GameObject.FindGameObjectWithTag("Player");
-        	VRPlayerController.SetActive(true);
+        	XRPlayerController.SetActive(true);
         	PCPlayerController.SetActive(false);
+            XRDialogCanvas.SetActive(true);
 			GameObject.Find("XRCanvas").GetComponent<Canvas>().worldCamera = UICamera;
 			XRReady.Invoke(true);
         	isXR = true;

@@ -25,7 +25,7 @@ public class PauseGame : MonoBehaviour
     GameObject player;
     public static bool isPaused;
     private bool gameStarted = false;
-    private bool isXR = false;
+    private bool isXR;
     private GameObject[] hands;
     private XRRayInteractor rayInteractor;
 
@@ -61,6 +61,8 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        isXR = false;
         XRDetection detection = GameObject.Find("GameManager").GetComponent<XRDetection>();
         if (detection.isXR)
         {

@@ -10,9 +10,16 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    public Text XRNameText;
+    public Text XRDialogueText;
+
     // Animator handling animations of UI
     public Animator DialogBoxAnimator;
     public Animator TalkIconAnimator;
+
+    public GameObject XRDialogBox;
+    public GameObject XRTalkIcon;
+    public GameObject XRDialogCanvas;
 
     public GameStatus gameStatus;
     public GameManager GM;
@@ -23,19 +30,31 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, string> currentDialogueNodes;
 
+    private XRDetection detection;
+
     void Start()
     {
         // initialize
         sentences = new Queue<string>();
         currentDialogueNodes = new Dictionary<string, string>();
         dialogueActive = false;
+        XRDialogBox.SetActive(false);
+        XRTalkIcon.SetActive(false);
+        detection = FindObjectOfType<XRDetection>();
     }
 
     // Starts a given dialog
     public void StartDialogue(string characterName, Dialogue dialogue)
     {
         HideInteractability();
-        DialogBoxAnimator.SetBool("isOpen", true);
+        if (detection.isXR)
+        {
+            XRDialogBox.SetActive(true);
+        }
+        else
+        {
+            DialogBoxAnimator.SetBool("isOpen", true);
+        }
 
         // Fill the queue
         if (dialogue.isSmallTalk) {
@@ -68,6 +87,8 @@ public class DialogueManager : MonoBehaviour
         if (raw_sentence.StartsWith("[player]")) {
             nameText.text = "Player";
             dialogueText.text = raw_sentence.Remove(0, 8).Trim();
+            XRNameText.text = "Player";
+            XRDialogueText.text = raw_sentence.Remove(0, 8).Trim();
         } else if (raw_sentence.StartsWith("[status]")) {
             var statusSet = raw_sentence.Remove(0, 8).Trim();
             EndDialogue();
@@ -90,6 +111,8 @@ public class DialogueManager : MonoBehaviour
     } else {
             nameText.text = currentCharacterName;
             dialogueText.text = raw_sentence;
+            XRNameText.text = currentCharacterName;
+            XRDialogueText.text = raw_sentence;
         }
     }
 
@@ -97,23 +120,45 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         dialogueActive = false;
-        DialogBoxAnimator.SetBool("isOpen", false);
+        if (detection.isXR)
+        {
+            XRDialogBox.SetActive(false);
+        }
+        else
+        {
+            DialogBoxAnimator.SetBool("isOpen", false);
+        }
         sentences.Clear(); // Clean all remaining sentences
     }
 
     public bool IsDialogueActive() { return dialogueActive; }
 
-    public void DisplayInteractability()
+    public void DisplayInteractability(Talkative talkative)
     {
         if (!dialogueActive)
         {
-            TalkIconAnimator.SetBool("isVisible", true);
+            if (detection.isXR)
+            {
+                XRTalkIcon.SetActive(true);
+                XRDialogCanvas.GetComponent<Canvas>().transform.position = talkative.transform.position + Vector3.up * 1f + talkative.transform.forward * 0.5f;
+            }
+            else
+            {
+                TalkIconAnimator.SetBool("isVisible", true);
+            }
         }
     }
 
     public void HideInteractability()
     {
-        TalkIconAnimator.SetBool("isVisible", false);
+        if (detection.isXR)
+        {
+            XRTalkIcon.SetActive(false);
+        }
+        else
+        {
+            TalkIconAnimator.SetBool("isVisible", false);
+        }
     }
 
     public void UpdateGraphs() {

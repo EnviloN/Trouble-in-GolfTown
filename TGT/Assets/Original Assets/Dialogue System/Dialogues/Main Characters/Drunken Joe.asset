@@ -18,6 +18,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -8129177337466118555}
@@ -40,7 +41,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -8129177337466118555}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -3905196777166043699}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 0
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -206,6 +222,187 @@ MonoBehaviour:
     - If you want to help me, I'll be glad if someone cleaned the storage behind
       the bar. But after the saloon closes.
     - Have you asked the people in the saloon?
+--- !u!114 &-5268352254755337687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 8456, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -5268352254755337687}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -3905196777166043699}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -5268352254755337687}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Blow up as many oil rigs as you can.
+    - Remember to be careful with the special balls.
+    - Hope you'll succeed. The whole town is counting on you!
+    - Don't tell the sheriff... he wouldn't like this idea. But we have to take the
+      law into our own hands.
+    - When you are finished come to see me here.
+--- !u!114 &-3905196777166043699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7880, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -3905196777166043699}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -8129177337466118555}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -3905196777166043699}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -3905196777166043699}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -5268352254755337687}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 1
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Howdy, cowboy! Ready for your first ride?
+    - '[player] Ride?'
+    - 'I have a special job for you. Something that would help the Gold Town greatly. '
+    - I planned it all with the Wild Docker. And we have already started with the
+      execution, so there is no turning back.
+    - '[player] Uhhh... Okay? It doesn''t sound very safe and easy the way you put
+      it...'
+    - But you cannot tell anyone because it is a secret operation and it would ruin
+      the plan!
+    - '[player] That''s why we discuss it in the saloon?'
+    - Well... it's actually secret only for the Scrooge. Probably the sheriff too...
+    - '[player] Now it even doesn''t sound legal.'
+    - We are going to sabotage the oil rigs! Blow them up to pieces.
+    - '[player] And by we...'
+    - Well, mostly you... but there's a reason for it! Here's the plan.
+    - The oil rigs have been running for weeks now, but with the railroad blocked,
+      the Scrooge cannot export the oil.
+    - I bet he is working on getting the railroad working, but until then, they store
+      the oil in barrels around the oil rigs.
+    - And that's a lot of explosive stuff, if you know what I mean.
+    - '[player] And how do you want to set it on fire?'
+    - '[player] And how do you want to set it on fire?'
+    - '[player] I mean... how do you want me to set it on fire and not to die?'
+    - Don't worry! You'll be at a safe distance from the explosion! All is thought
+      through.
+    - The first stage is already done. We have paid some bribable workers at each
+      oil rig to cause a little... let's say... accident!
+    - They will spill a generous amount of the oil around the rig. Because it is
+      hard to set it on fire when it's all in barrels.
+    - You'll only have to set in on fire from a safe-ish distance. For that, we have
+      prepared...
+    - '[player] Wait, why do I play such a big role in this?'
+    - If anyone else from the town was to try this, they wouldn't probably be able
+      to get close enough to the rig.
+    - The workers know us because we are giving them a hard time. They have actually
+      shot at us once or twice.
+    - '[player] And we are going to hope they don''t shoot at me?'
+    - Exactly! Well... I think it is less of a gamble than poker. They don't know
+      you. You could be a new coworker for all they know.
+    - '[player] Uhh... so how do I do this?'
+    - Have you met our saloon girl Dixxi? She might not look like it, but she knows
+      everything about minigolf clubs.
+    - She's been working on a new prototype of a minigolf club for some time, and
+      it will work perfectly for this job.
+    - Go talk to her, she knows about our plan and will give you the new toy.
+    - Then you'll have to visit the Wild Docker. But on your way there, I recommend
+      you to try the new club.
+    - You need to get used to it first. You don't want to end up in a situation where
+      you are in danger and don't know how to use it.
+    - '[player] I still can''t see where this is going... Am I supposed to challenge
+      the oil rigs at a minigolf tournament?'
+    - That's because we're just getting to the most exciting part!
+    - When you meet with the Wild Docker, he will exchange some of your golf balls
+      for modified balls. These have a special... flavor.
+    - So make sure you bring plenty.
+    - And whatever you do, do not drop the modified balls!
+    - And if you do drop them, just run!
+    - '[player] So he will give me dynamite... balls...'
+    - Well... I think it is more complicated than dynamite. We bought the balls from
+      the foreign supplier at the dock.
+    - And it seems he got it from China. Apparently, Chinese people are very good
+      with fireworks and blowing things out.
+    - '[player] So you want me to get a prototype of a new minigolf club that has
+      not been tested, Chinese explosive balls...'
+    - '[player] ...and blow up some oil rigs from far enough to stay alive?'
+    - The balls are more of an incendiary, from what I heard. But the burst radius
+      seems to be somewhat unpredictable.
+    - '[player] Great! I can''t wait...'
+    - Don't worry, you'll be fine... You just survived a shipwreck!
+    - Come to see me when you're done.
+    - '[status] quest2Stage=2'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +427,8 @@ MonoBehaviour:
   - {fileID: 2236476459762789561}
   - {fileID: 3986300470999029162}
   - {fileID: -8129177337466118555}
+  - {fileID: -3905196777166043699}
+  - {fileID: -5268352254755337687}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -364,7 +563,7 @@ MonoBehaviour:
       _dynamic: 1
   Children:
   - property: quest1Stage
-    type: 0
+    type: 1
     number: 8
   dialogue:
     isSmallTalk: 0
