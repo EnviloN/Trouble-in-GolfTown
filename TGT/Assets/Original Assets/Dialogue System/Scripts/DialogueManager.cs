@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, string> currentDialogueNodes;
 
-    void Start()
+    void Awake()
     {
         // initialize
         sentences = new Queue<string>();

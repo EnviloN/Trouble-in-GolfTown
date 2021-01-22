@@ -240,6 +240,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -5268352254755337687}
@@ -262,7 +263,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -5268352254755337687}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -1701984428177090567}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 0
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -358,8 +374,8 @@ MonoBehaviour:
       through.
     - The first stage is already done. We have paid some bribable workers at each
       oil rig to cause a little... let's say... accident!
-    - They will spill a generous amount of the oil around the rig. Because it is
-      hard to set it on fire when it's all in barrels.
+    - They will spill a generous amount of the oil around the rig. Because it doesn't
+      burn so well when it is all in barrels.
     - You'll only have to set in on fire from a safe-ish distance. For that, we have
       prepared...
     - '[player] Wait, why do I play such a big role in this?'
@@ -402,6 +418,134 @@ MonoBehaviour:
     - Don't worry, you'll be fine... You just survived a shipwreck!
     - Come to see me when you're done.
     - '[status] quest2Stage=2'
+--- !u!114 &-1701984428177090567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 9064, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -5268352254755337687}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -458345508324114404}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 3
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - What are you doing here? We need to destroy the oil rigs before Scrooge can
+      do anything about it!
+    - The explosions are super loud! But you have to destroy more of them and quickly!
+    - Why are you here?! You have to destroy them quickly, or Scrooge will get all
+      of us.
+--- !u!114 &-458345508324114404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 9704, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -458345508324114404}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -1701984428177090567}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -458345508324114404}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Is it done? I've counted four explosions! The whole building was shaking.
+    - '[player] Yes, all of the oil rigs are destroyed. I can''t believe we''ve done
+      this. I could have died there!'
+    - But you didn't! You did great, and all the folks in the town will be very thankful.
+    - 'There will surely be a statue of you in front of the town hall! '
+    - Heck! I bet you could run for a new mayor in this town.
+    - If the sheriff won't put us all in jail for this, of course. But he'll hopefully
+      come to his senses and come drink here once again.
+    - But we're not done yet.
+    - '[player] What do you mean we are not done yet?'
+    - The Scrooge is probably insanely mad right now. But we have to send him a message.
+    - He has to know this was not a silly accident. He has to know we don't want
+      him in this town!
+    - '[player] You want me to kill him?!'
+    - 'No, no, no! '
+    - Well, it is an option... But this town was in peace for so long, I don't want
+      to bring the shooting back! Not again.
+    - '[TODO]'
+    - '[status] quest3Stage=1'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +572,8 @@ MonoBehaviour:
   - {fileID: -8129177337466118555}
   - {fileID: -3905196777166043699}
   - {fileID: -5268352254755337687}
+  - {fileID: -1701984428177090567}
+  - {fileID: -458345508324114404}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:

@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour {
                 gameStatus.quest1Stage = 8;
             }
 
+            gameStatus.ballsCollected = player.GetComponent<AbstractInventory>().numOfBalls;
+
             dialogueManager.UpdateGraphs();
             framesToUpdateGraphs = 1f;
         }
