@@ -10,11 +10,13 @@ public class SceneLoader : MonoBehaviour {
     private DialogueManager dm;
     private PauseGame pauser;
     private GameManager GM;
+    private XRDetection detection;
 
     private void Start() {
         dm = FindObjectOfType<DialogueManager>();
         GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
+        detection = FindObjectOfType<XRDetection>();
         LoadIntroScene();
     }
 
@@ -75,7 +77,13 @@ public class SceneLoader : MonoBehaviour {
         yield return new WaitForSeconds(transitionTime);
 
         player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = warpPos;
+        if (detection.isXR) {
+            player.transform.position = warpPos + Vector3.down;
+        }
+        else
+        {
+            player.transform.position = warpPos;
+        }
         switch (sceneName) {
             case "World":
                 LoadMainScene();

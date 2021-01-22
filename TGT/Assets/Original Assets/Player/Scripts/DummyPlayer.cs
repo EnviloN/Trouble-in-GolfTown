@@ -7,17 +7,21 @@ public class DummyPlayer : MonoBehaviour
 
     public Camera mainCamera;
     public XRInteractions interactions;
-    private bool rightTriggerButtonIsPressed = false;
 
     private DialogueManager dm;
     private AbstractInventory inventory;
+
+    private Talkative talkative;
+    private SceneGate sceneGate;
 
     // Start is called before the first frame update
     void Start()
     {
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<AbstractInventory>();
-        interactions.rightTriggerButtonPress.AddListener(pressed => rightTriggerButtonIsPressed = pressed);
+        interactions.rightTriggerButtonPress.AddListener(pressed => XRButtonPress(pressed));
+        talkative = null;
+        sceneGate = null;
     }
 
     // Update is called once per frame
@@ -29,25 +33,38 @@ public class DummyPlayer : MonoBehaviour
         dm.HideInteractability();
         if (Physics.Raycast(ray, out var simpleHit, interactionRayDistance))
         {
-            var talkative = simpleHit.collider.GetComponent<Talkative>();
+            talkative = simpleHit.collider.GetComponent<Talkative>();
             if (talkative)
             {
-                dm.DisplayInteractability();
+                dm.DisplayInteractability(talkative);
 
                 // if interact Key is pressed
-                if (Input.GetKeyDown(interactKey) || rightTriggerButtonIsPressed)
+                if (Input.GetKeyDown(interactKey))
                 {
                     talkative.TriggerDialogue();
                 }
             }
 
-            var gate = simpleHit.collider.GetComponent<SceneGate>();
-            if (gate)
+            sceneGate = simpleHit.collider.GetComponent<SceneGate>();
+            if (sceneGate)
             {
-                if (Input.GetKeyDown(interactKey) || rightTriggerButtonIsPressed)
+                if (Input.GetKeyDown(interactKey))
                 {
-                    gate.LoadScene();
+                    sceneGate.LoadScene();
                 }
+            }
+        }
+    }
+
+    private void XRButtonPress(bool pressed) {
+        if (pressed) {
+            if (talkative)
+            {
+                talkative.TriggerDialogue();
+            }
+            if (sceneGate)
+            {
+                sceneGate.LoadScene();
             }
         }
     }
