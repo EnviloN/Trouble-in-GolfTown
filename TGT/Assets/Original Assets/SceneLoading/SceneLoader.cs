@@ -12,12 +12,14 @@ public class SceneLoader : MonoBehaviour {
     private PauseGame pauser;
     private GameManager GM;
     private XRDetection detection;
+    private bool start;
 
     private void Start() {
         dm = FindObjectOfType<DialogueManager>();
         GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
         detection = FindObjectOfType<XRDetection>();
+        start = true;
         LoadIntroScene();
     }
 
@@ -44,9 +46,9 @@ public class SceneLoader : MonoBehaviour {
 
 
     public void StartGame() {
-        if (GM.debugMode) {
-            LoadMainScene();
-        } else {
+        if (start && !GM.debugMode)
+        {
+            start = false;
             StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
             //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
         }
@@ -63,7 +65,6 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Cemetery");
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
-        
     }
 
     private void LoadSaloonScene() {
@@ -75,11 +76,15 @@ public class SceneLoader : MonoBehaviour {
 
     public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
         transition.SetTrigger("Start");
-        XRTransition.SetTrigger("Start");
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("Start");
+        }
         yield return new WaitForSeconds(transitionTime);
 
         player = GameObject.FindGameObjectWithTag("Player");
-        if (detection.isXR) {
+        if (detection.isXR)
+        {
             player.transform.position = warpPos + Vector3.down;
         }
         else
@@ -106,6 +111,9 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
-        XRTransition.SetTrigger("End");
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("End");
+        }
     }
 }
