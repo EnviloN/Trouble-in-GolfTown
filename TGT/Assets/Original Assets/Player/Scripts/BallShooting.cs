@@ -42,8 +42,8 @@ public class BallShooting : MonoBehaviour
         {
             return;
         }
-        if ((mInitialized && Input.GetKeyUp(interactKey)) || mStrength > 2.0)
-        {
+        if ((mInitialized && Input.GetKeyUp(interactKey)) || mStrength > 2.0) {
+            mObj = raycastToObject();
             if (mObj == null)
             {
                 mInitialized = false;
@@ -53,8 +53,6 @@ public class BallShooting : MonoBehaviour
             mInitialized = false;
             float strength = minStrength + (mStrength / 2f) * (maxStrength - minStrength);
             Vector3 direction;
-            RaycastHit hit;
-            Physics.Raycast(transform.position, cam.transform.forward, out hit);
             if (inventory.clubInHandState == 1)
             {
                 direction = new Vector3(transform.forward.x, 0, transform.forward.z);
@@ -75,12 +73,7 @@ public class BallShooting : MonoBehaviour
         }
         if (Input.GetKeyDown(interactKey) && !mInitialized)
         {
-            GameObject objectToShoot = raycastToObject();
             mStrength = 0f;
-            if (objectToShoot)
-            {
-                mObj = objectToShoot;
-            }
             mInitialized = true;
         }
     }

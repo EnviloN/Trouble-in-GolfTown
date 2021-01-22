@@ -17,7 +17,8 @@ public abstract class AbstractInventory : MonoBehaviour
 
     // Club in hand
     public int clubInHandState = 0;
-    protected GameObject clubObject = null;
+    protected GameObject putterObject = null;
+    protected GameObject fiveIronObject = null;
 
     // Ball in hand
     protected bool raycasting = false;
@@ -103,9 +104,44 @@ public abstract class AbstractInventory : MonoBehaviour
 
     abstract protected void InstantiateFiveIron();
 
-    protected void InstantiateClub(GameObject clubPrefab, Vector3 position, Quaternion rotation)
+    protected void InstantiateClub(GameObject clubPrefab, ref GameObject clubObject, Vector3 position, Quaternion rotation)
     {
-        clubObject = Instantiate(clubPrefab, position, rotation);
+        if (clubObject == null) {
+            clubObject = Instantiate(clubPrefab, position, rotation);
+        } else {
+            clubObject.transform.SetPositionAndRotation(position, rotation);
+            clubObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            clubObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+            MeshCollider collider = clubObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = true;
+            }
+            clubObject.SetActive(true);
+        }
+    }
+
+    public void HideClub()
+    {
+        if (putterObject != null && putterObject.activeInHierarchy) {
+            putterObject.SetActive(false);
+            MeshCollider collider = putterObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+            putterObject.GetComponent<Rigidbody>().useGravity = false;
+        }
+        if (fiveIronObject != null && fiveIronObject.activeInHierarchy) {
+            fiveIronObject.SetActive(false);
+            MeshCollider collider = fiveIronObject.GetComponent<MeshCollider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+            fiveIronObject.GetComponent<Rigidbody>().useGravity = false;
+        }
     }
 
     protected void InstantiatePlaceholderBall(Vector3 position)
@@ -125,7 +161,8 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (ballObject != null)
         {
-            Instantiate(spawnableGolfBallPrefab, ballObject.transform.position + new Vector3(0, moveUpBy, 0), ballObject.transform.rotation);
+            GameObject ball = Instantiate(spawnableGolfBallPrefab, ballObject.transform.position + new Vector3(0, moveUpBy, 0), ballObject.transform.rotation);
+            Physics.IgnoreCollision(ball.GetComponent<Collider>(), GetComponent<Collider>());
             Destroy(ballObject.gameObject);
         }
     }
@@ -186,7 +223,7 @@ public abstract class AbstractInventory : MonoBehaviour
     {
         if (clubInHandState != 0)
         {
-            Destroy(clubObject);
+            HideClub();
             clubInHandState = 0;
         }
     }
@@ -197,9 +234,9 @@ public abstract class AbstractInventory : MonoBehaviour
 
     public void resetInventory()
     {
-        havePutterClubVar = false;
-        have5IronClubVar = false;
-        numOfBallsVar = 0;
+        //havePutterClubVar = false;
+        //have5IronClubVar = false;
+        //numOfBallsVar = 0;
         UpdateUI();
     }
 

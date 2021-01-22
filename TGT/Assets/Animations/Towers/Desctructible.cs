@@ -9,52 +9,35 @@ public class Desctructible : MonoBehaviour
     public float lifetime = 30.0f;
     private int smoke_number = 7;
 
-    private GameObject tower;
-
-    public bool allreadyDone = false;
-
-    public bool VRBuild = false;
+    protected GameManager gameManager;
+    public string towerId;
 
     private void Start()
     {
-        if (VRBuild)
-        {
-            bool allreadyDone = false;
-            interactions = GameObject.Find("VRPlayerController").GetComponent<XRInteractions>();
-        }
+        gameManager = FindObjectOfType<GameManager>();
     }
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (VRBuild && interactions)
-            interactions.rightTriggerButtonPress.AddListener(pressed =>
-            {
-                if (pressed && !allreadyDone)
-                {
-                    allreadyDone = true;
-                    tower = Instantiate(destroyedTower, transform.position, transform.rotation);
-                    ParticleSystem[] clones = new ParticleSystem[smoke_number + 1];
-                    for (var i = 0; i < smoke_number; i++)
-                    {
-                        clones[i] = Instantiate(smoke, transform.position + Vector3.right * Random.Range(-8, 8) + Vector3.down * Random.Range(-2, 10) + Vector3.back * Random.Range(-7, 7), smoke.transform.rotation);
-                    }
-                    clones[smoke_number] = Instantiate(smoke, transform.position + Vector3.down, smoke.transform.rotation);
-                    Destroy(this.gameObject);
-                }
-            });
-
-        if (Input.GetKeyDown(KeyCode.K)) {
-            tower = Instantiate(destroyedTower, transform.position, transform.rotation);
-
-            ParticleSystem[] clones = new ParticleSystem[smoke_number+1];
-            
-            for (var i = 0; i < smoke_number; i++) {
-                clones[i] = Instantiate(smoke, transform.position + Vector3.right * Random.Range(-8,8) + Vector3.down * Random.Range(-2, 10) + Vector3.back * Random.Range(-7, 7), smoke.transform.rotation);
-            }
-            clones[smoke_number] = Instantiate(smoke, transform.position + Vector3.down , smoke.transform.rotation);
-
-            Destroy(this.gameObject);
+        bool hasShootable = (other.GetComponent<Shootable>() != null);
+        if (hasShootable)
+        {
+            gameManager.towerHitTriggered.Invoke(this.gameObject);
         }
     }
 
+    public void destroyThisTower()
+    {
+        Instantiate(destroyedTower, transform.position, transform.rotation);
+
+        ParticleSystem[] clones = new ParticleSystem[smoke_number + 1];
+
+        for (var i = 0; i < smoke_number; i++)
+        {
+            clones[i] = Instantiate(smoke, transform.position + Vector3.right * Random.Range(-8, 8) + Vector3.down * Random.Range(-2, 10) + Vector3.back * Random.Range(-7, 7), smoke.transform.rotation);
+        }
+        clones[smoke_number] = Instantiate(smoke, transform.position + Vector3.down, smoke.transform.rotation);
+
+        Destroy(this.gameObject);
+    }
 }

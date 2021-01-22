@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,10 +13,11 @@ public class SceneLoader : MonoBehaviour {
     private DialogueManager dm;
     private PauseGame pauser;
     private AudioSource audioSource;
+    private GameManager GM;
 
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
+        GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
         audioSource = gameObject.GetComponent<AudioSource>();
         LoadIntroScene();
@@ -28,6 +29,7 @@ public class SceneLoader : MonoBehaviour {
     private static void LoadSceneAdditively(string sceneName) {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
+
 
     private void LoadIntroScene() {
         audioSource.volume = 0;
@@ -46,11 +48,16 @@ public class SceneLoader : MonoBehaviour {
 
 
     public void StartGame() {
-        
+        if (GM.debugMode) {
+            LoadMainScene();
+        } else {
+            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
+            //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+        }
         pauser.HideMenu();
         pauser.Resume();
         audioSource.volume = 1;
-  
+ 
     }
 
     public void LoadMainScene() {
@@ -78,6 +85,7 @@ public class SceneLoader : MonoBehaviour {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
+        player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = warpPos;
         switch (sceneName) {
             case "World":
@@ -90,7 +98,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
-        dm.UpdateGraphs();
+        dm.RetreivePersistantStatuses();
 
         DummyPlayer dummyPlayerScript = player.GetComponent<DummyPlayer>();
         if (dummyPlayerScript)
@@ -102,6 +110,4 @@ public class SceneLoader : MonoBehaviour {
         audioSource.clip = doorClosingSound;
         audioSource.Play();
     }
-
-
 }

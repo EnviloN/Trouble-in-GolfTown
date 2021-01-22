@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public static class MouseOverUILayerObject
@@ -15,7 +15,7 @@ public static class MouseOverUILayerObject
 public class PauseGame : MonoBehaviour
 {
 
-    public  GameObject canvas;
+    public GameObject canvas;
     public GameObject main_menu;
     public GameObject settings_menu;
 
@@ -24,8 +24,10 @@ public class PauseGame : MonoBehaviour
 
     GameObject player;
     public static bool isPaused;
-    public GameObject[] hands;
     private bool gameStarted = false;
+    private bool isXR = false;
+    private GameObject[] hands;
+    private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
     {
@@ -54,17 +56,42 @@ public class PauseGame : MonoBehaviour
         else return false;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
+        XRDetection detection = GameObject.Find("GameManager").GetComponent<XRDetection>();
+        if (detection.isXR)
+        {
+            XRSetup();
+        }
+        detection.XRReady.AddListener(ready => XRSetup());
     }
 
-    // Update is called once per frame
+    void XRSetup() {
+        isXR = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<XRInteractions>().menuButtonPress.AddListener(pressed =>
+        {
+            if (pressed && !isPaused)
+            {
+                Pause();
+                DisplayMainMenu();
+            }
+            else if (pressed && isPaused)
+            {
+                Resume();
+                HideMenu();
+            }
+        });
+        if (isPaused)
+        {
+            SetLongRaycast(true);
+            SetVisibleHands(true);
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && isPaused == false)
@@ -78,32 +105,35 @@ public class PauseGame : MonoBehaviour
             HideMenu();
         }
 
-        
-
-        if (isPaused) {
-
+        if (isPaused)
+        {
             if (!Cursor.visible)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-                       
-
+            
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Game presumably ended.");
                 Application.Quit();
             }
-
-            
         }
     }
 
-
     void PositionCanvas()
     {
-        canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
-        canvas.transform.rotation = Camera.main.transform.rotation;
+        if (!isXR)
+        {
+            canvas.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 10.0f + Vector3.up * 1.2f;
+            canvas.transform.rotation = Camera.main.transform.rotation;
+        }
+        else
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            canvas.transform.position = player.transform.position + player.transform.forward * 10.0f + Vector3.up * 1.2f;
+            canvas.transform.rotation = player.transform.rotation;
+        }
     }
 
     public void DisplayMainMenu()
@@ -114,7 +144,6 @@ public class PauseGame : MonoBehaviour
         PositionCanvas();
     }
 
-
     public void HideMenu()
     {
         canvas.SetActive(false);
@@ -122,27 +151,21 @@ public class PauseGame : MonoBehaviour
         settings_menu.SetActive(false);
     }
 
-
     public void Pause()
     {
         //fadein music
         StartCoroutine(AudioFadeIn(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         isPaused = true;
+        Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0;
         player = GameObject.FindGameObjectWithTag("Player");
-        SetLayerRecursively(player, 5);
-        hands = GameObject.FindGameObjectsWithTag("Hands");
-
-        foreach (GameObject hand in hands)
-        {
-            SetLayerRecursively(hand, 5);
-        }
-
         player.GetComponent<FreezeMovement>().Freeze();
+        if (isXR) {
+            SetLongRaycast(true);
+            SetVisibleHands(true);
+        }
     }
-
 
     public void Resume() {
         gameStarted = true;
@@ -150,21 +173,26 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1;
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
-        player = GameObject.FindGameObjectWithTag("Player");
-        SetLayerRecursively(player, 0);
-
-        hands = GameObject.FindGameObjectsWithTag("Hands");
-
-        foreach (GameObject hand in hands)
-        {
-            SetLayerRecursively(hand, 0);
-        }
-
         isPaused = false;
+        Time.timeScale = 1;
+        Cursor.visible = false;
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FreezeMovement>().UnFreeze();
+        if (isXR) {
+            SetLongRaycast(false);
+            SetVisibleHands(false);
+        }
     }
 
+    void SetLongRaycast(bool value) {
+        rayInteractor = GameObject.Find("LeftHand Controller").GetComponent<XRRayInteractor>();
+        rayInteractor.velocity = value ? 50 : 5;
+    }
+
+    void SetVisibleHands(bool value) {
+        GameObject.Find("LeftHand Controller").layer = value ? 5 : 0;
+        GameObject.Find("RightHand Controller").layer = value ? 5 : 0;
+    }
 
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
@@ -211,15 +239,10 @@ public class PauseGame : MonoBehaviour
         while (audioSource.volume < 0.5f)
         {
             audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
-            //Debug.Log("fading audio in. "+ audioSource.volume);
         
             yield return new WaitForSecondsRealtime(0.1f);
-
         }
         
         audioSource.volume = 0.5f;
     }
-
-
-
 }
