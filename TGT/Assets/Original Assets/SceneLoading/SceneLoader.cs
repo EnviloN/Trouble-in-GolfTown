@@ -56,8 +56,7 @@ public class SceneLoader : MonoBehaviour {
         if (start && !GM.debugMode)
         {
             start = false;
-            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
-            //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f), true));
         }
         pauser.HideMenu();
         pauser.Resume();
@@ -83,9 +82,13 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene("ChurchInterior", LoadSceneMode.Single);
     }
 
-    public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
-        audioSource.clip = doorOpeningSound;
-        audioSource.Play();
+    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false) {
+
+        if (mute == false) {
+            audioSource.clip = doorOpeningSound;
+            audioSource.Play();
+        }
+        
         transition.SetTrigger("Start");
         if (detection.isXR)
         {
@@ -122,8 +125,11 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
-        audioSource.clip = doorClosingSound;
-        audioSource.Play();
+        if (mute == false) {
+            audioSource.clip = doorClosingSound;
+            audioSource.Play();
+        }
+        
         if (detection.isXR)
         {
             XRTransition.SetTrigger("End");
