@@ -44,6 +44,12 @@ public class GameStatus : MonoBehaviour {
         set => quest1StageVar = value;
     }
 
+    private int quest1TalkedVar;
+    public int quest1Talked {
+        get => quest1TalkedVar;
+        set => quest1TalkedVar = value;
+    }
+
     public int quest1StageBallsVar = 0;
     public int quest1StageBalls
     {
