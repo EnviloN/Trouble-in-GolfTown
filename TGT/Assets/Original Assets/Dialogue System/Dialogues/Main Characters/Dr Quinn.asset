@@ -64,6 +64,54 @@ MonoBehaviour:
     - It's easy! You'll figure it out in no time!
     - This hole should be pretty straight forward.
     - Just place the ball somewhere on the square with no walls and start playing.
+--- !u!114 &-5019082037914881586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5212.898, y: -237.62404}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -5019082037914881586}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 8418220036540031109}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -5019082037914881586}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - I heard some explosions. What happened?
+    - Where did the oil rigs go? Were those explosions from those?
+    - Did the oil rigs explode? All of them?
+    - Is anyone injured from the explosions?
 --- !u!114 &-1764282685889206973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +204,9 @@ MonoBehaviour:
   - {fileID: 2060842035647105457}
   - {fileID: 5446372755440803649}
   - {fileID: 8780166706221440299}
+  - {fileID: 8881772674405158962}
+  - {fileID: 8418220036540031109}
+  - {fileID: -5019082037914881586}
   CharacterName: Dr. Quinn
 --- !u!114 &2060842035647105457
 MonoBehaviour:
@@ -175,6 +226,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: 2060842035647105457}
@@ -197,7 +249,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: 2060842035647105457}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8881772674405158962}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 0
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -344,6 +411,71 @@ MonoBehaviour:
     - Go on! Have a walk around the church. See if you feel any dizziness or if you
       feel any pain.
     - '[status] tutorialStage=1'
+--- !u!114 &8418220036540031109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4584, y: -248}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 8418220036540031109}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 8881772674405158962}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8418220036540031109}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 8418220036540031109}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -5019082037914881586}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 3
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - I've heard some explosions! Is anyone hurt?
+    - Oh no! I've heard an explosion. I don't have enough painkillers if they bring
+      wounded!
+    - Is everyone okay? I heard a loud boom!
+    - I heard an explosion! Was that at the saloon?
 --- !u!114 &8713770992974607258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,3 +612,66 @@ MonoBehaviour:
     - And now, you are only missing one thing!
     - Come! Let's meet outside by the cemetery.
     - '[status] tutorialStage=2'
+--- !u!114 &8881772674405158962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3965.307, y: -244.61098}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 8881772674405158962}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 2060842035647105457}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8881772674405158962}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 8881772674405158962}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8418220036540031109}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 0
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - What are you up to? Not doing anything dangerous I hope.
+    - Stay safe for me, okay? My supplies are running thin.
+    - I'll be here if you ever need me.

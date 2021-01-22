@@ -154,7 +154,7 @@ MonoBehaviour:
     - "But we\u2019ll have to talk about some\u2026 compensation."
     - "[player] Okay, Joe. Thank you. I\u2019ll go speak to the Wild Docker. Where
       will I find him?"
-    - "At the dock, obviously! It\u2019s east of the town. He\u2019ll probably be
+    - "At the dock, obviously! It\u2019s south of the town. He\u2019ll probably be
       near the old supply depot."
     - '[status] quest1Stage=2'
 --- !u!114 &-5443084851111647208
@@ -240,6 +240,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -5268352254755337687}
@@ -262,7 +263,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -5268352254755337687}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -1701984428177090567}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 0
   dialogue:
     isSmallTalk: 1
     sentences:
@@ -353,14 +369,13 @@ MonoBehaviour:
       the oil in barrels around the oil rigs.
     - And that's a lot of explosive stuff, if you know what I mean.
     - '[player] And how do you want to set it on fire?'
-    - '[player] And how do you want to set it on fire?'
     - '[player] I mean... how do you want me to set it on fire and not to die?'
     - Don't worry! You'll be at a safe distance from the explosion! All is thought
       through.
     - The first stage is already done. We have paid some bribable workers at each
       oil rig to cause a little... let's say... accident!
-    - They will spill a generous amount of the oil around the rig. Because it is
-      hard to set it on fire when it's all in barrels.
+    - They will spill a generous amount of the oil around the rig. Because it doesn't
+      burn so well when it is all in barrels.
     - You'll only have to set in on fire from a safe-ish distance. For that, we have
       prepared...
     - '[player] Wait, why do I play such a big role in this?'
@@ -383,7 +398,7 @@ MonoBehaviour:
       you are in danger and don't know how to use it.
     - '[player] I still can''t see where this is going... Am I supposed to challenge
       the oil rigs at a minigolf tournament?'
-    - That's because we're just getting to the most exciting part!
+    - That's because we're only getting to the most exciting part!
     - When you meet with the Wild Docker, he will exchange some of your golf balls
       for modified balls. These have a special... flavor.
     - So make sure you bring plenty.
@@ -397,12 +412,140 @@ MonoBehaviour:
     - '[player] So you want me to get a prototype of a new minigolf club that has
       not been tested, Chinese explosive balls...'
     - '[player] ...and blow up some oil rigs from far enough to stay alive?'
-    - The balls are more of an incendiary, from what I heard. But the burst radius
-      seems to be somewhat unpredictable.
+    - The balls are more of an incendiary, from what I heard. The burst radius, however,
+      seems to be somewhat unpredictable. But yes...
     - '[player] Great! I can''t wait...'
     - Don't worry, you'll be fine... You just survived a shipwreck!
     - Come to see me when you're done.
     - '[status] quest2Stage=2'
+--- !u!114 &-1701984428177090567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 9064, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -5268352254755337687}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -1701984428177090567}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -458345508324114404}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 3
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - What are you doing here? We need to destroy the oil rigs before Scrooge can
+      do anything about it!
+    - The explosions are super loud! But you have to destroy more of them and quickly!
+    - Why are you here?! You have to destroy them quickly, or Scrooge will get all
+      of us.
+--- !u!114 &-458345508324114404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 9704, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -458345508324114404}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -1701984428177090567}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -458345508324114404}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Is it done? I've counted four explosions! The whole building was shaking.
+    - '[player] Yes, all of the oil rigs are destroyed. I can''t believe we''ve done
+      this. I could have died there!'
+    - But you didn't! You did great, and all the folks in the town will be very thankful.
+    - 'There will surely be a statue of you in front of the town hall! '
+    - Heck! I bet you could run for a new mayor in this town.
+    - If the sheriff won't put us all in jail for this, of course. But he'll hopefully
+      come to his senses and come drink here once again.
+    - But we're not done yet.
+    - '[player] What do you mean we are not done yet?'
+    - The Scrooge is probably insanely mad right now. But we have to send him a message.
+    - He has to know this was not a silly accident. He has to know we don't want
+      him in this town!
+    - '[player] You want me to kill him?!'
+    - 'No, no, no! '
+    - Well, it is an option... But this town was in peace for so long, I don't want
+      to bring the shooting back! Not again.
+    - '[TODO]'
+    - '[status] quest3Stage=1'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +572,8 @@ MonoBehaviour:
   - {fileID: -8129177337466118555}
   - {fileID: -3905196777166043699}
   - {fileID: -5268352254755337687}
+  - {fileID: -1701984428177090567}
+  - {fileID: -458345508324114404}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -975,7 +1120,7 @@ MonoBehaviour:
     - And we can only guess what happened to the mayor. He is either under the ground
       dead or somewhere else filthy rich.
     - '[player] What can I do for the people here in Gold Town?'
-    - I don't know everyone got their own problems. How about you ask them? Unless
+    - I don't know... everyone got their own problems. How about you ask them? Unless
       you can do something about the oil under the town.
     - '[player] Okay, I''ll ask people around the saloon.'
     - '[status] quest1Stage=5'
