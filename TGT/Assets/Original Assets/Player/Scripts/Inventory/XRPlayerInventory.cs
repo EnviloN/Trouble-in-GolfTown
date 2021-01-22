@@ -51,8 +51,8 @@ public class XRPlayerInventory : AbstractInventory
                         }
                         break;
                     case 1: // Putter in player's hand
-                        Destroy(clubObject);
-
+                        // Destroy(clubObject.gameObject); - generates wierd error about MeshCollider not found
+                        HideClub();
                         if (have5IronClub)
                         {
                             InstantiateFiveIron();
@@ -64,7 +64,8 @@ public class XRPlayerInventory : AbstractInventory
                         }
                         break;
                     case 2: // 5Iron in player's hand
-                        Destroy(clubObject);
+                        // Destroy(clubObject.gameObject); - generates wierd error about MeshCollider not found
+                        HideClub();
                         clubInHandState = 0;
                         break;
                 }
@@ -105,15 +106,24 @@ public class XRPlayerInventory : AbstractInventory
         {
             clubGrabbed = true;
             interactions.SendHapticImpulseToRightController(0.5f, 0.2f);
-            interactable.GetComponent<MeshCollider>().enabled = false;
+            MeshCollider collider = interactable.GetComponent<MeshCollider>();
+            if (collider != null) {
+                collider.enabled = false;
+            }
         });
 
         directInteractor.onSelectExited.AddListener(interactable =>
         {
+            if (interactable == null) {
+                return;
+            }
             Rigidbody rigidbody = interactable.GetComponent<Rigidbody>();
             rigidbody.useGravity = true;
             clubGrabbed = false;
-            interactable.GetComponent<MeshCollider>().enabled = true;
+            MeshCollider collider = interactable.GetComponent<MeshCollider>();
+            if (collider != null) {
+                collider.enabled = true;
+            }
         });
     }
 
@@ -173,12 +183,12 @@ public class XRPlayerInventory : AbstractInventory
     // Clubs
     protected override void InstantiatePutter()
     {
-        InstantiateClub(putterPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
+        InstantiateClub(putterPrefab, ref putterObject, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
     }
 
     protected override void InstantiateFiveIron()
     {
-        InstantiateClub(fiveIronPrefab, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
+        InstantiateClub(fiveIronPrefab, ref fiveIronObject, transform.position + (transform.forward * 0.5f) + (transform.up * 1), transform.rotation);
     }
 
     #region Ball counter canvas methods

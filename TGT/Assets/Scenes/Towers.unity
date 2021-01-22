@@ -207,8 +207,7 @@ MonoBehaviour:
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
   interactions: {fileID: 0}
   lifetime: 30
-  allreadyDone: 0
-  VRBuild: 0
+  towerId: mainarea
 --- !u!65 &402923830
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,11 +235,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470446654}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 25, z: 6}
-  m_Center: {x: -0.3, y: 15, z: 0.26}
+  m_Size: {x: 8.2369995, y: 28.083485, z: 7.82666}
+  m_Center: {x: 0.02407837, y: 13.458258, z: -0.023254395}
 --- !u!114 &470446656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +257,7 @@ MonoBehaviour:
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
   interactions: {fileID: 0}
   lifetime: 30
-  allreadyDone: 0
-  VRBuild: 0
+  towerId: trainstation
 --- !u!1001 &526648216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1887,11 +1885,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451290215}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 25, z: 6}
-  m_Center: {x: -0.3, y: 15, z: 0.26}
+  m_Size: {x: 8.237, y: 28.083, z: 7.826}
+  m_Center: {x: 0.02, y: 13.45, z: -0.02}
 --- !u!114 &1451290217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,8 +1907,7 @@ MonoBehaviour:
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
   interactions: {fileID: 0}
   lifetime: 30
-  allreadyDone: 0
-  VRBuild: 0
+  towerId: island
 --- !u!1001 &1476693530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3051,8 +3048,7 @@ MonoBehaviour:
   smoke: {fileID: 198481382623467212, guid: 6dda2886fab22964a994a65a7416e00e, type: 3}
   interactions: {fileID: 0}
   lifetime: 30
-  allreadyDone: 0
-  VRBuild: 0
+  towerId: coast
 --- !u!65 &1476693593
 BoxCollider:
   m_ObjectHideFlags: 0

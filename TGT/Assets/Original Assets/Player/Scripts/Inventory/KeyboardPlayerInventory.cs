@@ -42,8 +42,7 @@ public class KeyboardPlayerInventory : AbstractInventory
                     }
                     break;
                 case 1: // Putter in player's hand
-                    Destroy(clubObject);
-
+                    HideClub();
                     if (have5IronClub)
                     {
                         InstantiateFiveIron();
@@ -55,7 +54,7 @@ public class KeyboardPlayerInventory : AbstractInventory
                     }
                     break;
                 case 2: // 5Iron in player's hand
-                    Destroy(clubObject);
+                    HideClub();
                     clubInHandState = 0;
                     break;
             }
@@ -106,21 +105,25 @@ public class KeyboardPlayerInventory : AbstractInventory
     // Clubs
     protected void PositionClubInPlayersHand()
     {
-        if (clubObject != null)
+        if (clubInHandState == 1 && putterObject != null)
         {
-            clubObject.transform.position = transform.position + (transform.right * relativeClubDistance);
-            clubObject.transform.rotation = transform.rotation * clubRotation;
-
+            putterObject.transform.position = transform.position + (transform.right * relativeClubDistance);
+            putterObject.transform.rotation = transform.rotation * clubRotation;
+        } 
+        if (clubInHandState == 2 && fiveIronObject != null)
+        {
+            fiveIronObject.transform.position = transform.position + (transform.right * relativeClubDistance);
+            fiveIronObject.transform.rotation = transform.rotation * clubRotation;
         }
     }
 
     protected override void InstantiatePutter()
     {
-        InstantiateClub(putterPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+        InstantiateClub(putterPrefab, ref putterObject, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 
     protected override void InstantiateFiveIron()
     {
-        InstantiateClub(fiveIronPrefab, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
+        InstantiateClub(fiveIronPrefab, ref fiveIronObject, transform.position + (transform.right * relativeClubDistance), transform.rotation * clubRotation);
     }
 }

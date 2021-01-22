@@ -1,19 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
     public Animator transition;
+    public Animator XRTransition;
     public float transitionTime = 1f;
     
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
+    private GameManager GM;
+    private XRDetection detection;
+    private bool start;
 
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
         dm = FindObjectOfType<DialogueManager>();
+        GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
+        detection = FindObjectOfType<XRDetection>();
+        start = true;
         LoadIntroScene();
     }
 
@@ -40,10 +46,14 @@ public class SceneLoader : MonoBehaviour {
 
 
     public void StartGame() {
-        
+        if (start && !GM.debugMode)
+        {
+            start = false;
+            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
+            //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+        }
         pauser.HideMenu();
         pauser.Resume();
-  
     }
 
     public void LoadMainScene() {
@@ -55,7 +65,6 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Cemetery");
         LoadSceneAdditively("MinigolfCourses");
         LoadSceneAdditively("Towers");
-        
     }
 
     private void LoadSaloonScene() {
@@ -67,9 +76,21 @@ public class SceneLoader : MonoBehaviour {
 
     public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
         transition.SetTrigger("Start");
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("Start");
+        }
         yield return new WaitForSeconds(transitionTime);
 
-        player.transform.position = warpPos;
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (detection.isXR)
+        {
+            player.transform.position = warpPos + Vector3.down;
+        }
+        else
+        {
+            player.transform.position = warpPos;
+        }
         switch (sceneName) {
             case "World":
                 LoadMainScene();
@@ -81,7 +102,7 @@ public class SceneLoader : MonoBehaviour {
                 LoadChurchScene();
                 break;
         }
-        dm.UpdateGraphs();
+        dm.RetreivePersistantStatuses();
 
         DummyPlayer dummyPlayerScript = player.GetComponent<DummyPlayer>();
         if (dummyPlayerScript)
@@ -90,7 +111,9 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("End");
+        }
     }
-
-
 }

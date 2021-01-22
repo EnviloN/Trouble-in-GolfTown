@@ -1,0 +1,737 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7754528274923597395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1480, y: 728}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -7754528274923597395}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -3881079824865666698}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -7754528274923597395}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -7754528274923597395}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 2669039653640380349}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 2
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] Hello, Billy. I am looking for someone called the Wild Docker.'
+    - The Wild Docker? I believe that would be me.
+    - "Everyone in town calls me the Wild Docker for some reason\u2026"
+    - "I guess there are also some made up stories about me since I\u2019ve earned
+      such a\u2026 distinguished name. "
+    - '[status] quest1Stage=3'
+--- !u!114 &-6980255964714021273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3928, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -6980255964714021273}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 9178703331620042582}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -6980255964714021273}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -6980255964714021273}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4460664270172339373}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 1
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Sure, I'll go to the saloon! It better not be another stupid joke.
+    - I'll go to the saloon when I'm done here at the docks. At least they won't
+      expect me in case they want to scare me.
+    - Don't worry, I didn't forget about it. I'll go to the saloon as soon as I can.
+    - I'll go to the saloon, don't worry.
+--- !u!114 &-5033376556313975810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 8}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    - Children 1
+    values:
+    - _fieldName: In
+      _node: {fileID: -5033376556313975810}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -5033376556313975810}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -5033376556313975810}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -3881079824865666698}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 1
+      _node: {fileID: -5033376556313975810}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 2975866531909647659}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: metBilly
+    type: 1
+    number: 0
+  - property: quest1Stage
+    type: 1
+    number: 1
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - I can't believe I see you walking around. I honestly didn't believe you'd make
+      it.
+    - Well, Miss Quinn is truly a natural in medicine.
+    - I am Billy, the local ferryman.
+    - '[player] Nice to meet you, Billy.'
+    - I would surely like to talk with you, but I have some things I need to get
+      done.
+    - Maybe you could come to see me later.
+    - '[player] Sure, no problem.'
+    - '[status] metBilly=1'
+--- !u!114 &-4460664270172339373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4504, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -4460664270172339373}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -6980255964714021273}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -4460664270172339373}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -4460664270172339373}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4036485896263119901}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2Stage
+    type: 1
+    number: 2
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Why are you here? According to the plan, you had to pick up something from
+      Dixxi and then come to me.
+    - Go get the take the prototype club from Dixxi, and make sure you get used to
+      it! Then come back for the balls.
+    - Where's the club from Dixxi? Haven't you talked to her first?
+    - Go talk to Dixxi first. She'll give you the prototype of a new minigolf club.
+    - Come talk to me when you have the club from Dixxi.
+--- !u!114 &-4036485896263119901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5248.7656, y: -166.56892}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -4036485896263119901}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -4460664270172339373}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -4036485896263119901}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - TODO (give balls, increase stage)
+--- !u!114 &-3881079824865666698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: 728}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -3881079824865666698}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -5033376556313975810}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -3881079824865666698}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -3881079824865666698}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -7754528274923597395}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 1
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Sorry, I don't have time for you at the moment.
+    - I'm waiting for someone. We'll talk later.
+    - I have some work to do. Sorry. We can talk later.
+    - I am busy right now.
+--- !u!114 &-212987791053175250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2760, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -212987791053175250}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 2669039653640380349}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -212987791053175250}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -212987791053175250}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 9178703331620042582}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 8
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - If you plan on start playing minigolf, here at the dock, we have the easiest
+      minigolf courses.
+    - You should play some minigolf while you still can.
+    - Soon, there will be nowhere to play minigolf.
+    - Near the dock are some minigolf courses for beginners.
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e8611e4754c76488c50e0342ae5a4c, type: 3}
+  m_Name: Wild Docker
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 2975866531909647659}
+  - {fileID: -5033376556313975810}
+  - {fileID: -3881079824865666698}
+  - {fileID: -7754528274923597395}
+  - {fileID: 2669039653640380349}
+  - {fileID: -212987791053175250}
+  - {fileID: 9178703331620042582}
+  - {fileID: -6980255964714021273}
+  - {fileID: -4460664270172339373}
+  - {fileID: -4036485896263119901}
+  CharacterName: Billy
+--- !u!114 &2669039653640380349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2216, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 2669039653640380349}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -7754528274923597395}
+        reroutePoints: []
+      - fieldName: Children 0
+        node: {fileID: 2975866531909647659}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 2669039653640380349}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 2669039653640380349}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -212987791053175250}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 3
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] I heard you were the one who found me. I''m very thankful, Billy.'
+    - Well, don't thank me... You should mostly thank Miss Quinn.
+    - I see she also gave you her old putter. That's nothing you'd see here very
+      often.
+    - I bet other townfolks in the town will also welcome you to the Golf Town with
+      open arms.
+    - Even in these difficult times when the town is in trouble. Maybe you could
+      come up with something that would help everyone.
+    - '[player] What do you mean the town is in trouble? Joe at the saloon also mentioned
+      that something''s up.'
+    - Oil.
+    - Oil, greed, and thirst for power and wealth.
+    - I lived in Golf Town my whole life. I even remember the gold rush.
+    - We mined gold in these very mountains, and the entire town was gaining from
+      the industry.
+    - We built the railroad, the church, even many buildings in the town were repaired
+      from the income.
+    - Everyone worked together for one common goal.
+    - But with oil, it's different. Some individuals see it as an opportunity to
+      get filthy rich and powerful.
+    - These oil-thirsty people are now searching the lands in the hope to find every
+      drop of the black liquid.
+    - A few weeks ago, one such oil magnate came to Gold Town and found some oil
+      deposits under our town.
+    - And in just a few days, he built a new mansion near the town and oil rigs all
+      around our minigolf courses!
+    - And the town could not do anything about it!
+    - Mayor went suddenly missing, the sheriff cannot do anything, and more and more
+      rigs and workers are heading to the town.
+    - '[player] That is terrible! No wonder no one is playing on the minigolf courses
+      now.'
+    - And that's not all... The oil magnate will soon buy the whole land and transform
+      our little town into an oil city.
+    - People will lose home and their businesses. So, everyone lost their hope.
+    - '[player] I''m sorry to hear that. Is there anything we can do?'
+    - I... I don't know. There might be nothing we can do.
+    - '[player] ...'
+    - Well, anyway, it was nice to see you alive. You might want to enjoy some minigolf
+      since it might all be gone soon.
+    - '[player] Sure. Thanks, Billy. By the way, did anyone at the dock found anything
+      from the boat? I''m missing some of my belongings.'
+    - No... I'm afraid it is forever lost in the sea.
+    - '[player] What a pity... Well, I''ll see you later, Billy.'
+    - See ya'.
+    - '[status] quest1Stage=4'
+--- !u!114 &2975866531909647659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1144, y: -72}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 2975866531909647659}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 1
+        node: {fileID: -5033376556313975810}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 2975866531909647659}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 2975866531909647659}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 2669039653640380349}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 2
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] Good day to you, sir. Are you the Wild Docker?'
+    - The Wild Docker? I believe I am, yeah. My name is Billy, though.
+    - "I am the local ferryman. But everyone in town calls me the Wild Docker for
+      some reason\u2026"
+    - "I guess there are also some made up stories about me since I\u2019ve earned
+      such a\u2026 distinguished name. "
+    - You must be the young man from the shipwreck. You are lucky to walk on this
+      land, I tell you!
+    - "I didn\u2019t even believe you could make it."
+    - '[status] quest1Stage=3'
+--- !u!114 &9178703331620042582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3352, y: -184}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -212987791053175250}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 9178703331620042582}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6980255964714021273}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest1Stage
+    type: 1
+    number: 9
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - '[player] Howdy, Billy! Joe sent me to tell you he needs to meet you at the
+      saloon as soon as possible.'
+    - Oh, I ain't falling for that again! Tell him he can kiss my arse.
+    - '[player] He told me it is about Scrooge, and he promises that it''s not about
+      the ghosts.'
+    - 'The Scrooge you say... well, you know how it goes: "Fool me once, shame on
+      me... fool me twice, shame on you."'
+    - But when he fooled me the fifth time... he has lost my trust.
+    - I might go there since it is about Scrooge, but I'll go there after my work
+      is done here.
+    - '[player] May I ask what''s up with the ghosts?'
+    - I know what I saw!
+    - One night there were ghosts playing minigolf at the cemetery. But no one believes
+      me, and they just make fun of me.
+    - '[player] ...'
+    - Whatever...
+    - '[player] No, sure! Thanks for letting me know, Billy. I''ll be on the lookout.'
+    - '[status] quest1Stage=10'
