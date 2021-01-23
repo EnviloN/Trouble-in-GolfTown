@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
     public TowerHitEvent towerHitTriggered;
 
+    public MagnateHitEvent magnateHitTriggered;
+
     // Start is called before the first frame update
     void Awake() {
         gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour {
         if (towerHitTriggered == null)
         {
             towerHitTriggered = new TowerHitEvent();
+        }
+
+        if (magnateHitTriggered == null)
+        {
+            magnateHitTriggered = new MagnateHitEvent();
         }
 
         completedCourses = new ArrayList();
@@ -69,6 +76,13 @@ public class GameManager : MonoBehaviour {
                 destructible.destroyThisTower();
                 gameStatus.numOfTowersDestroyed++;
             }
+        });
+
+        magnateHitTriggered.AddListener((magnateObject) =>
+        {
+            // TODO - do something with magnate after hit, this is just testing example
+            magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
+
         });
     }
 
