@@ -26,10 +26,12 @@ public class BallShooting : MonoBehaviour
     private GameObject raycastToObject()
     {
         RaycastHit hit;
-        Physics.Raycast(cam.transform.position, cam.transform.forward, out hit);
-        if (hit.collider.gameObject.GetComponent<Shootable>())
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
         {
-            return hit.collider.gameObject;
+            if (hit.collider.gameObject.GetComponent<Shootable>())
+            {
+                return hit.collider.gameObject;
+            }
         }
         return null;
     }
@@ -73,8 +75,11 @@ public class BallShooting : MonoBehaviour
         }
         if (Input.GetKeyDown(interactKey) && !mInitialized)
         {
-            mStrength = 0f;
-            mInitialized = true;
+            if (raycastToObject() != null)
+            {
+                mStrength = 0f;
+                mInitialized = true;
+            }
         }
     }
 }
