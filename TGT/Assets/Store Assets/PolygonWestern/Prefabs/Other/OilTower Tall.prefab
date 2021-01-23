@@ -9275,6 +9275,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6632895100171194188}
+  - component: {fileID: -8064281991769312550}
+  - component: {fileID: -2753442215762986600}
   m_Layer: 0
   m_Name: OilTower Tall
   m_TagString: Untagged
@@ -9310,6 +9312,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &-8064281991769312550
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632895100171194189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2646347593184596614, guid: 8dac7af8c4f25b24abc6927d0909d4c7, type: 3}
+--- !u!64 &-2753442215762986600
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632895100171194189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3943388670031234623, guid: 8dac7af8c4f25b24abc6927d0909d4c7, type: 3}
 --- !u!1 &6632895100336218962
 GameObject:
   m_ObjectHideFlags: 0
