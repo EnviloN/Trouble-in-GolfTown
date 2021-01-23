@@ -4360,14 +4360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e826a0878d9bf468eed088fbe7e48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timesShotVar: 0
   ballsCollectedVar: 0
   goldenBallsCollectedVar: 0
-  numOfTowersDestroyedVar: 0
   tutorialStageVar: 0
   quest1StageVar: 0
   quest1StageBallsVar: 0
   quest2StageVar: 0
+  numOfTowersDestroyedVar: 0
   quest3StageVar: 0
   gameEndVar: 0
 --- !u!114 &1904069661
@@ -4565,7 +4564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.ForwardSpeed
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.BackwardSpeed
