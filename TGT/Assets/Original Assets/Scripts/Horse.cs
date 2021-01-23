@@ -8,10 +8,16 @@ public class Horse : MonoBehaviour
 
     NavMeshAgent _agent;
     Animator _animator;
+    AudioSource _audio_source;
+
 
     private GameObject Player;
 
     public float safeDistance = 10.0f;
+
+    public AudioClip walkAudio;
+
+    private AudioClip defaultAudio;
 
     private float waitTime = 15.0f;
 
@@ -43,12 +49,20 @@ public class Horse : MonoBehaviour
             _agent.acceleration = 2.0f;
             _agent.SetDestination(selectRandomDestination());
             _animator.Play("Run_inPlace");
+            _audio_source.clip = walkAudio;
+            _audio_source.loop = true;
+            _audio_source.volume = 1.0f;
+            _audio_source.Play();
         }
         else
         {
             _agent.enabled = false;
             _animator.Play(animations[animation_index]);
             _agent.velocity = Vector3.zero;
+            _audio_source.clip = defaultAudio;
+            _audio_source.loop = false;
+            _audio_source.volume = 0.9f;
+            //_audio_source.Play();
         }
     }
 
@@ -58,6 +72,8 @@ public class Horse : MonoBehaviour
     {
         _agent = this.GetComponent<NavMeshAgent>();
         Player = GameObject.FindWithTag("Player");
+        _audio_source = gameObject.GetComponent<AudioSource>();
+        defaultAudio = _audio_source.clip;
 
         if (!_agent.isOnNavMesh)
         {

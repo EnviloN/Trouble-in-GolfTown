@@ -6,10 +6,14 @@ public class SceneLoader : MonoBehaviour {
     public Animator transition;
     public Animator XRTransition;
     public float transitionTime = 1f;
-    
+
+    public AudioClip doorOpeningSound;
+    public AudioClip doorClosingSound;
+
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
+    private AudioSource audioSource;
     private GameManager GM;
     private XRDetection detection;
     private bool start;
@@ -18,6 +22,7 @@ public class SceneLoader : MonoBehaviour {
         dm = FindObjectOfType<DialogueManager>();
         GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         detection = FindObjectOfType<XRDetection>();
         start = true;
         LoadIntroScene();
@@ -30,7 +35,9 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
+
     private void LoadIntroScene() {
+        audioSource.volume = 0;
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
         LoadSceneAdditively("Dock");
@@ -49,11 +56,12 @@ public class SceneLoader : MonoBehaviour {
         if (start && !GM.debugMode)
         {
             start = false;
-            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f)));
-            //player.transform.position = new Vector3(-1.74f, 1.34f, -1.93f); // church by the bed
+            StartCoroutine(LoadScene("ChurchInterior", new Vector3(-1.74f, 1.34f, -1.93f), true));
         }
         pauser.HideMenu();
         pauser.Resume();
+        audioSource.volume = 1;
+ 
     }
 
     public void LoadMainScene() {
@@ -74,7 +82,13 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene("ChurchInterior", LoadSceneMode.Single);
     }
 
-    public IEnumerator LoadScene(string sceneName, Vector3 warpPos) {
+    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false) {
+
+        if (mute == false) {
+            audioSource.clip = doorOpeningSound;
+            audioSource.Play();
+        }
+        
         transition.SetTrigger("Start");
         if (detection.isXR)
         {
@@ -111,6 +125,11 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
+        if (mute == false) {
+            audioSource.clip = doorClosingSound;
+            audioSource.Play();
+        }
+        
         if (detection.isXR)
         {
             XRTransition.SetTrigger("End");
