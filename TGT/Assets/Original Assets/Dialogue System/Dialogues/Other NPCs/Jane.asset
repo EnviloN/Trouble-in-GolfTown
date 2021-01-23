@@ -19,6 +19,8 @@ MonoBehaviour:
     - In
     - Children
     - Children 0
+    - Children 1
+    - Children 2
     values:
     - _fieldName: In
       _node: {fileID: -5530344408692715551}
@@ -44,6 +46,35 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
+        node: {fileID: -4515072824843386257}
+        reroutePoints:
+        - {x: 292.57336, y: -131.0529}
+        - {x: 1399.4205, y: -178.90295}
+        - {x: 2037.8411, y: -154.97797}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 1
+      _node: {fileID: -5530344408692715551}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4842528262713994682}
+        reroutePoints:
+        - {x: 297.61032, y: -17.723959}
+        - {x: 803.8135, y: -49.204254}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 2
+      _node: {fileID: -5530344408692715551}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
         node: {fileID: -3187913727176824403}
         reroutePoints: []
       _direction: 1
@@ -51,6 +82,12 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   Children:
+  - property: gameEnd
+    type: 1
+    number: 0
+  - property: numOfTowersDestroyed
+    type: 1
+    number: 0
   - property: metJane
     type: 1
     number: 0
@@ -97,6 +134,9 @@ MonoBehaviour:
       connections:
       - fieldName: Children 0
         node: {fileID: -3187913727176824403}
+        reroutePoints: []
+      - fieldName: Children 1
+        node: {fileID: -5530344408692715551}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -161,6 +201,9 @@ MonoBehaviour:
       - fieldName: Children 0
         node: {fileID: 967432081243181843}
         reroutePoints: []
+      - fieldName: Children 0
+        node: {fileID: -5530344408692715551}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -209,7 +252,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 0
+      - fieldName: Children 2
         node: {fileID: -5530344408692715551}
         reroutePoints: []
       _direction: 0
