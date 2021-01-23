@@ -41,4 +41,13 @@ public class Desctructible : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
+    /*
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            destroyThisTower();
+        }
+    }
+    */
 }
