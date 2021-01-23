@@ -218,8 +218,8 @@ MonoBehaviour:
     - "But we\u2019ll have to talk about some\u2026 compensation."
     - "[player] Okay, Joe. Thank you. I\u2019ll go speak to the Wild Docker. Where
       will I find him?"
-    - "At the dock, obviously! It\u2019s south of the town. He\u2019ll probably be
-      near the old supply depot."
+    - "At the dock, obviously! A path leads there from the town. He\u2019ll probably
+      be near the old supply depot."
     - '[status] quest1Stage=2'
 --- !u!114 &-5443084851111647208
 MonoBehaviour:
@@ -660,7 +660,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   Children:
-  - property: '[status] quest3Stage=1'
+  - property: quest3Stage
     type: 1
     number: 0
   dialogue:
@@ -683,12 +683,12 @@ MonoBehaviour:
     - 'No, no, no! '
     - Well, it is an option... But this town was in peace for so long, I don't want
       to bring the shooting back! Not again.
-    - I would suggest more of a temporary source of pain.
+    - I would suggest a temporary source of pain.
     - You should go there and hit him with a golf ball right in his pie hole!
     - That will teach him that this town lives by minigolf, and we don't want his
       stupid oil rigs here.
-    - Right... Can I remind you that I just recently picked up minigolf? I was pretty
-      happy when I managed to hit the oil rigs.
+    - '[player] Right... Can I remind you that I just recently picked up minigolf?
+      I was pretty happy when I managed to hit the oil rigs.'
     - It doesn't matter... It's about the message. You hit him to the leg, he won't
       forget that.
     - I bet he'll think twice about his life when a golfball flies around his head.
