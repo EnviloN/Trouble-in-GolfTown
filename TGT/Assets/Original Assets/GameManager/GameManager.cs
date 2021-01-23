@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
     public int MaxNumberOfGoldenBalls = 3;
 
     public HoleTriggeredEvent holeTriggered;
-    public ArrayList completedCourses;
 
     public TowerHitEvent towerHitTriggered;
 
@@ -41,8 +40,6 @@ public class GameManager : MonoBehaviour {
         {
             magnateHitTriggered = new MagnateHitEvent();
         }
-
-        completedCourses = new ArrayList();
     }
 
     private void Start()
@@ -61,11 +58,6 @@ public class GameManager : MonoBehaviour {
                 if (gameStatus.quest1StageBalls == 3)
                     gameStatus.quest2Stage = 1;
             }
-
-            if (!completedCourses.Contains(courseId))
-            {
-                completedCourses.Add(courseId);
-            }
         });
 
         towerHitTriggered.AddListener(towerObject =>
@@ -80,8 +72,13 @@ public class GameManager : MonoBehaviour {
 
         magnateHitTriggered.AddListener((magnateObject) =>
         {
-            // TODO - do something with magnate after hit, this is just testing example
-            magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
+            if (gameStatus.quest3Stage == 1 || debugMode) {
+                gameStatus.quest3Stage++;
+                gameStatus.gameEnd = 1;
+                //magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
+                Debug.Log("HIT!");
+                // Pause, open end menu, play explosion and music
+            }
 
         });
     }
