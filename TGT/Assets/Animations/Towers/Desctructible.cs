@@ -15,6 +15,12 @@ public class Desctructible : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+
+        // Check if should be destroyed already
+        if (gameManager.destroyedTowers.Contains(towerId))
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
