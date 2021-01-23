@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     private XRDetection detection;
 
-    void Start()
+    void Awake()
     {
         // initialize
         sentences = new Queue<string>();
