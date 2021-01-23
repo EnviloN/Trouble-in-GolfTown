@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour {
                 gameStatus.gameEnd = 1;
                 magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
                 // Pause, open end menu, play explosion and music
+
+
+
             }
 
         });
