@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 
 public class GameStatus : MonoBehaviour {
-    [SerializeField] private int timesShotVar;
-    public int timesShot {
-        get => timesShotVar;
-        set => timesShotVar = value;
-    }
-
     [SerializeField] private int ballsCollectedVar;
     public int ballsCollected {
         get => ballsCollectedVar;
