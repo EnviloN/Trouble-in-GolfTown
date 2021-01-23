@@ -3,9 +3,12 @@
 public class KeyboardPlayerInventory : AbstractInventory
 {
     public KeyCode cancelKey;
-    public KeyCode switchClubKey;
     public KeyCode showBallKey;
     public KeyCode interactKey;
+
+    public KeyCode clubsEmptyHands;
+    public KeyCode clubsPutter;
+    public KeyCode clubsFiveiron;
 
     protected float relativeClubDistance = 0.3f;
     protected Quaternion clubRotation = Quaternion.Euler(-140.87f, -31.7f, 22f);
@@ -25,39 +28,78 @@ public class KeyboardPlayerInventory : AbstractInventory
         }
 
         // Club in hand
-        if (Input.GetKeyDown(switchClubKey))
+        if (getMouseWheelInput() > 0)
         {
             switch (clubInHandState)
             {
                 case 0: // Neither of clubs is in player hand
                     if (havePutterClub)
                     {
-                        InstantiatePutter();
-                        clubInHandState = 1;
+                        goToClubState(1);
                     }
                     else if (have5IronClub)
                     {
-                        InstantiateFiveIron();
-                        clubInHandState = 2;
+                        goToClubState(2);
                     }
                     break;
                 case 1: // Putter in player's hand
-                    HideClub();
                     if (have5IronClub)
                     {
-                        InstantiateFiveIron();
-                        clubInHandState = 2;
+                        goToClubState(2);
                     }
                     else
                     {
-                        clubInHandState = 0;
+                        goToClubState(0);
                     }
                     break;
                 case 2: // 5Iron in player's hand
-                    HideClub();
-                    clubInHandState = 0;
+                    goToClubState(0);
                     break;
             }
+        }
+
+        if (getMouseWheelInput() < 0)
+        {
+            switch (clubInHandState)
+            {
+                case 0: // Neither of clubs is in player hand
+                    if (have5IronClub)
+                    {
+                        goToClubState(2);
+                    }
+                    else if (havePutterClub)
+                    {
+                        goToClubState(1);
+                    }
+                    break;
+                case 1: // Putter in player's hand
+                    goToClubState(0);
+                    break;
+                case 2: // 5Iron in player's hand
+                    if (havePutterClub)
+                    {
+                        goToClubState(1);
+                    } else
+                    {
+                        goToClubState(0);
+                    }
+                    break;
+            }
+        }
+
+        if (Input.GetKeyDown(clubsEmptyHands))
+        {
+            goToClubState(0);
+        }
+
+        if (Input.GetKeyDown(clubsPutter))
+        {
+            goToClubState(1);
+        }
+
+        if (Input.GetKeyDown(clubsFiveiron))
+        {
+            goToClubState(2);
         }
 
 
@@ -90,6 +132,43 @@ public class KeyboardPlayerInventory : AbstractInventory
         PositionClubInPlayersHand();
     }
 
+    protected float getMouseWheelInput()
+    {
+        return Input.mouseScrollDelta.y;
+    }
+
+    protected void goToClubState(int state)
+    {
+        if (clubInHandState == state)
+        {
+            return;
+        }
+        switch(state)
+        {
+            case 0:
+                HideClub();
+                clubInHandState = 0;
+                break;
+            case 1:
+                if (!havePutterClub)
+                {
+                    break;
+                }
+                HideClub();
+                InstantiatePutter();
+                clubInHandState = 1;
+                break;
+            case 2:
+                if (!have5IronClub)
+                {
+                    break;
+                }
+                HideClub();
+                InstantiateFiveIron();
+                clubInHandState = 2;
+                break;
+        }
+    }
 
     // Balls
     protected override bool doRaycastPickBall(out RaycastHit[] hits, float interactionDistance = DEFAULT_INTERACTION_DISTANCE)
