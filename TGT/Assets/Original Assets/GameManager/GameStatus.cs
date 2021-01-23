@@ -21,7 +21,6 @@ public class GameStatus : MonoBehaviour {
         set => goldenBallsCollectedVar = value;
     }
 
-    [SerializeField]
     private int numOfTowersDestroyedVar = 0;
     public int numOfTowersDestroyed
     {
@@ -44,6 +43,12 @@ public class GameStatus : MonoBehaviour {
         set => quest1StageVar = value;
     }
 
+    private int quest1TalkedVar;
+    public int quest1Talked {
+        get => quest1TalkedVar;
+        set => quest1TalkedVar = value;
+    }
+
     public int quest1StageBallsVar = 0;
     public int quest1StageBalls
     {
@@ -56,6 +61,19 @@ public class GameStatus : MonoBehaviour {
     public int quest2Stage {
         get => quest2StageVar;
         set => quest2StageVar = value;
+    }
+
+    private int quest2DixxiTalkVar;
+    public int quest2DixxiTalk {
+        get => quest2DixxiTalkVar;
+        set => quest2DixxiTalkVar = value;
+    }
+
+    [SerializeField]
+    private int quest3StageVar;
+    public int quest3Stage {
+        get => quest3StageVar;
+        set => quest3StageVar = value;
     }
 
     private int givePutterVar;
