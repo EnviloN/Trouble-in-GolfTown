@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public ArrayList completedCourses;
 
     public TowerHitEvent towerHitTriggered;
+    public ArrayList destroyedTowers;
 
     public MagnateHitEvent magnateHitTriggered;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour {
         }
 
         completedCourses = new ArrayList();
+        destroyedTowers = new ArrayList();
     }
 
     private void Start()
@@ -75,6 +77,10 @@ public class GameManager : MonoBehaviour {
             {
                 destructible.destroyThisTower();
                 gameStatus.numOfTowersDestroyed++;
+                if (!destroyedTowers.Contains(destructible.towerId))
+                {
+                    destroyedTowers.Add(destructible.towerId);
+                }
             }
         });
 
