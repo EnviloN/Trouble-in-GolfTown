@@ -24,7 +24,9 @@ public class PauseGame : MonoBehaviour
 
     GameObject player;
     public static bool isPaused;
+    private bool gameStarted = false;
     private bool isXR;
+    private GameObject[] hands;
     private XRRayInteractor rayInteractor;
 
     private static GameObject IsPointerOverUIObject()
@@ -47,7 +49,7 @@ public class PauseGame : MonoBehaviour
 
     private bool PointerPressedDown()
     {
-        if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))// || Input.GetKeyDown(KeyCode.H) || Input.GetMouseButtonDown(1))
         {
             return true;
         }
@@ -99,7 +101,7 @@ public class PauseGame : MonoBehaviour
             Pause();
             DisplayMainMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.P) && isPaused == true) {  
+        else if (Input.GetKeyDown(KeyCode.P) && isPaused == true && gameStarted) {  
             Resume();
             Cursor.visible = false;
             HideMenu();
@@ -168,6 +170,9 @@ public class PauseGame : MonoBehaviour
     }
 
     public void Resume() {
+        gameStarted = true;
+        Cursor.visible = false;
+        Time.timeScale = 1;
         //fadeout audio
         StartCoroutine(AudioFadeOut(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut));
         isPaused = false;
@@ -212,29 +217,32 @@ public class PauseGame : MonoBehaviour
 
     public IEnumerator AudioFadeOut(AudioSource audioSource, float FadeTime)
     {
-        float startVolume = audioSource.volume;
+
+        float startVolume = audioSource.volume;//.5f
 
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
-            yield return null;
+            //yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
+
         }
 
         audioSource.Stop();
-        audioSource.volume = startVolume;
+        audioSource.volume = 0.0f;
     }
 
     public IEnumerator AudioFadeIn(AudioSource audioSource, float FadeTime)
     {
         audioSource.Play();
-        float startVolume = 0f;
+        float startVolume = 0.5f;
         audioSource.volume = 0f;
 
         while (audioSource.volume < 0.5f)
         {
             audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
-            //Debug.Log("fading audio in. "+ audioSource.volume);
-            yield return Time.fixedUnscaledDeltaTime;
+        
+            yield return new WaitForSecondsRealtime(0.1f);
         }
         
         audioSource.volume = 0.5f;

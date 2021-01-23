@@ -15,4 +15,9 @@ public class Shootable : MonoBehaviour
     {
         
     }
+
+    void OnCollisionEnter()  //Plays Sound Whenever collision detected
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

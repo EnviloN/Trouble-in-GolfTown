@@ -31,6 +31,11 @@ public class AnimWithNav : MonoBehaviour
     public string isMovingVarsName;
     public string[] isSitingVarsName;
 
+    //[Header("Audio Handling")]
+    private AudioSource audioSource;
+    private float clipDuration;
+
+
     private static GameObject[] GetTopLevelChildren(Transform parent)
     {
         GameObject[] children = new GameObject[parent.childCount];
@@ -143,6 +148,7 @@ public class AnimWithNav : MonoBehaviour
         else
             mIsAtSittingPos = false;
         agent.SetDestination(mTargets[mIndex].transform.position);
+        audioSource.Play();
     }
 
     private bool TryStopNav()
@@ -164,6 +170,7 @@ public class AnimWithNav : MonoBehaviour
             }
             agent.enabled = false;
             mAnimationDelay = new Delay(rollCooldown + sc + Random.Range(rollCooldownRangeMin, rollCooldownRangeMax));
+            audioSource.Stop();
             return true;
         }
         return false;
@@ -207,6 +214,7 @@ public class AnimWithNav : MonoBehaviour
         mIsStopped = false;
         mTargets = GetTopLevelChildren(targetsGameObject.transform);
         agent.enabled = false;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
