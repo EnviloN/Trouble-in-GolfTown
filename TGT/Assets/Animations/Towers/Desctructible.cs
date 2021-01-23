@@ -23,6 +23,7 @@ public class Desctructible : MonoBehaviour
         if (hasShootable)
         {
             gameManager.towerHitTriggered.Invoke(this.gameObject);
+            Destroy(other.gameObject);
         }
     }
 

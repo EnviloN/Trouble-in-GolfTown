@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
     public TowerHitEvent towerHitTriggered;
 
+    public MagnateHitEvent magnateHitTriggered;
+
     // Start is called before the first frame update
     void Awake() {
         gameStatus = FindObjectOfType<GameStatus>(); // Game status should be created here and should not be a mono behavior
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour {
         if (towerHitTriggered == null)
         {
             towerHitTriggered = new TowerHitEvent();
+        }
+
+        if (magnateHitTriggered == null)
+        {
+            magnateHitTriggered = new MagnateHitEvent();
         }
 
         completedCourses = new ArrayList();
@@ -70,6 +77,13 @@ public class GameManager : MonoBehaviour {
                 gameStatus.numOfTowersDestroyed++;
             }
         });
+
+        magnateHitTriggered.AddListener((magnateObject) =>
+        {
+            // TODO - do something with magnate after hit, this is just testing example
+            magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
+
+        });
     }
 
     private void Update() {
@@ -86,8 +100,16 @@ public class GameManager : MonoBehaviour {
             player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<AbstractInventory>().have5IronClub = true;
         }
-
+        
         if (framesToUpdateGraphs <= 0) {
+            // Hot fix of the story, can be fixed in dialogues
+            if (gameStatus.quest1Talked == 3) {
+                gameStatus.quest1Talked += 1;
+                gameStatus.quest1Stage = 8;
+            }
+
+            gameStatus.ballsCollected = player.GetComponent<AbstractInventory>().numOfBalls;
+
             dialogueManager.UpdateGraphs();
             framesToUpdateGraphs = 1f;
         }
