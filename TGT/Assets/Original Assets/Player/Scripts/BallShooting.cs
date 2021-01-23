@@ -16,11 +16,15 @@ public class BallShooting : MonoBehaviour
     public float       maxStrength;
     public float       minStrength;
 
+    protected PowerBarController powerBar;
+
     // Start is called before the first frame update
     void Start()
     {
         mInitialized = false;
         mStrength = 0f;
+
+        powerBar = FindObjectOfType<PowerBarController>();
     }
 
     private GameObject raycastToObject()
@@ -49,6 +53,7 @@ public class BallShooting : MonoBehaviour
             if (mObj == null)
             {
                 mInitialized = false;
+                powerBar.SetBarToPercents(0f);
                 return;
             }
             mStrength = Mathf.Clamp(mStrength, 0f, 2f);
@@ -66,11 +71,13 @@ public class BallShooting : MonoBehaviour
                 mObj.GetComponent<Rigidbody>().AddForce(direction.normalized * strength, ForceMode.Impulse);
             }
             mObj = null;
+            powerBar.SetBarToPercents(0f);
             return;
         }
         if (mInitialized)
         {
             mStrength += Time.deltaTime;
+            powerBar.SetBarToPercents(mStrength / (2f / 100));
             return;
         }
         if (Input.GetKeyDown(interactKey) && !mInitialized)
@@ -78,8 +85,10 @@ public class BallShooting : MonoBehaviour
             if (raycastToObject() != null)
             {
                 mStrength = 0f;
+                powerBar.SetBarToPercents(0f);
                 mInitialized = true;
             }
+            
         }
     }
 }
