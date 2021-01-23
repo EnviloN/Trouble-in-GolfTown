@@ -25,7 +25,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 0
+      - fieldName: Children 2
         node: {fileID: 8755652615427331409}
         reroutePoints: []
       _direction: 0
@@ -222,6 +222,9 @@ MonoBehaviour:
       - fieldName: Children 0
         node: {fileID: 2140238127170904166}
         reroutePoints: []
+      - fieldName: Children 0
+        node: {fileID: 8755652615427331409}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -293,6 +296,9 @@ MonoBehaviour:
       connections:
       - fieldName: Children 0
         node: {fileID: -3859832669871492836}
+        reroutePoints: []
+      - fieldName: Children 1
+        node: {fileID: 8755652615427331409}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -415,6 +421,8 @@ MonoBehaviour:
     - In
     - Children
     - Children 0
+    - Children 1
+    - Children 2
     values:
     - _fieldName: In
       _node: {fileID: 8755652615427331409}
@@ -440,6 +448,39 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
+        node: {fileID: -2245991152889225368}
+        reroutePoints:
+        - {x: 266.04327, y: -189.33429}
+        - {x: 525.59454, y: -323.43576}
+        - {x: 1142.7498, y: -346.507}
+        - {x: 2263.146, y: -316.226}
+        - {x: 3051.8936, y: -291.71286}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 1
+      _node: {fileID: 8755652615427331409}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 156230154112168520}
+        reroutePoints:
+        - {x: 286.23062, y: -163.37918}
+        - {x: 599.13403, y: -274.40942}
+        - {x: 1322.9937, y: -261.43185}
+        - {x: 1447.0015, y: -241.24455}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 2
+      _node: {fileID: 8755652615427331409}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
         node: {fileID: -7658547011788943707}
         reroutePoints: []
       _direction: 1
@@ -447,6 +488,12 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   Children:
+  - property: gameEnd
+    type: 1
+    number: 0
+  - property: quest2Stage
+    type: 1
+    number: 1
   - property: quest1Stage
     type: 1
     number: 4

@@ -30,7 +30,7 @@ public class BallShooting : MonoBehaviour
     private GameObject raycastToObject()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 3f))
         {
             if (hit.collider.gameObject.GetComponent<Shootable>())
             {
@@ -48,7 +48,7 @@ public class BallShooting : MonoBehaviour
         {
             return;
         }
-        if ((mInitialized && Input.GetKeyUp(interactKey)) || mStrength > 2.0) {
+        if (mInitialized && Input.GetKeyUp(interactKey)) {
             mObj = raycastToObject();
             if (mObj == null)
             {
@@ -82,13 +82,9 @@ public class BallShooting : MonoBehaviour
         }
         if (Input.GetKeyDown(interactKey) && !mInitialized)
         {
-            if (raycastToObject() != null)
-            {
-                mStrength = 0f;
-                powerBar.SetBarToPercents(0f);
-                mInitialized = true;
-            }
-            
+            mStrength = 0f;
+            mInitialized = true;
+            powerBar.SetBarToPercents(0f);
         }
     }
 }

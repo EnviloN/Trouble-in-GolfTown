@@ -66,6 +66,70 @@ MonoBehaviour:
     - We need some more time to plan the thing. You should practice minigolf.
     - Make sure you are in top shape. Have you tried some of the more difficult holes
       north-east of the town?
+--- !u!114 &-6556500695995765019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 10280, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -6556500695995765019}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -458345508324114404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -6556500695995765019}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -6556500695995765019}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -5282621063111828405}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: gameEnd
+    type: 1
+    number: 0
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Quickly before he hides somewhere! We have to make sure he knows he's not welcome
+      here.
+    - Soon he'll figure out the oil rigs were not an accident. You have to act fast!
+    - Quick before, he'll go after us, or he'll bribe the sheriff.
 --- !u!114 &-6203041108680619260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +218,8 @@ MonoBehaviour:
     - "But we\u2019ll have to talk about some\u2026 compensation."
     - "[player] Okay, Joe. Thank you. I\u2019ll go speak to the Wild Docker. Where
       will I find him?"
-    - "At the dock, obviously! It\u2019s south of the town. He\u2019ll probably be
-      near the old supply depot."
+    - "At the dock, obviously! A path leads there from the town. He\u2019ll probably
+      be near the old supply depot."
     - '[status] quest1Stage=2'
 --- !u!114 &-5443084851111647208
 MonoBehaviour:
@@ -222,6 +286,62 @@ MonoBehaviour:
     - If you want to help me, I'll be glad if someone cleaned the storage behind
       the bar. But after the saloon closes.
     - Have you asked the people in the saloon?
+--- !u!114 &-5282621063111828405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 10936, y: -1144}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: -5282621063111828405}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -6556500695995765019}
+        reroutePoints: []
+      - fieldName: Children 0
+        node: {fileID: 1658409910998133095}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -5282621063111828405}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - I can't believe we've done this, my friend. We'll be telling to our children
+      someday.
+    - You'll always be welcome to stay in the saloon for as long as you need. For
+      free, of course!
+    - You'll always be welcome to stay in the saloon for as long as you need. For
+      free, of course! But you'll still pay for the drinks.
+    - Welcome back, my friend. What can I get you?
+    - We should take care of the blocked railroad next. I feel like we can achieve
+      anything when we work together.
 --- !u!114 &-5268352254755337687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +435,9 @@ MonoBehaviour:
       connections:
       - fieldName: Children 0
         node: {fileID: -8129177337466118555}
+        reroutePoints: []
+      - fieldName: Children 1
+        node: {fileID: 1658409910998133095}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -501,6 +624,7 @@ MonoBehaviour:
     keys:
     - In
     - Children
+    - Children 0
     values:
     - _fieldName: In
       _node: {fileID: -458345508324114404}
@@ -523,7 +647,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Children: []
+    - _fieldName: Children 0
+      _node: {fileID: -458345508324114404}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -6556500695995765019}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest3Stage
+    type: 1
+    number: 0
   dialogue:
     isSmallTalk: 0
     sentences:
@@ -544,7 +683,21 @@ MonoBehaviour:
     - 'No, no, no! '
     - Well, it is an option... But this town was in peace for so long, I don't want
       to bring the shooting back! Not again.
-    - '[TODO]'
+    - I would suggest a temporary source of pain.
+    - You should go there and hit him with a golf ball right in his pie hole!
+    - That will teach him that this town lives by minigolf, and we don't want his
+      stupid oil rigs here.
+    - '[player] Right... Can I remind you that I just recently picked up minigolf?
+      I was pretty happy when I managed to hit the oil rigs.'
+    - It doesn't matter... It's about the message. You hit him to the leg, he won't
+      forget that.
+    - I bet he'll think twice about his life when a golfball flies around his head.
+      He'll run for his life.
+    - '[player] Well, I guess I can try.'
+    - Okay, go after him! He'll surely be somewhere around his mansion.
+    - Just make sure you hit him with the regular balls.
+    - '[player] About that...'
+    - Good luck! It's now or never, cowboy!
     - '[status] quest3Stage=1'
 --- !u!114 &11400000
 MonoBehaviour:
@@ -574,6 +727,8 @@ MonoBehaviour:
   - {fileID: -5268352254755337687}
   - {fileID: -1701984428177090567}
   - {fileID: -458345508324114404}
+  - {fileID: -6556500695995765019}
+  - {fileID: -5282621063111828405}
   CharacterName: Drunken Joe
 --- !u!114 &1658409910998133095
 MonoBehaviour:
@@ -595,6 +750,8 @@ MonoBehaviour:
     - Children
     - Children 0
     - Children 1
+    - Children 2
+    - Children 3
     values:
     - _fieldName: In
       _node: {fileID: 1658409910998133095}
@@ -620,13 +777,46 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
+        node: {fileID: -5282621063111828405}
+        reroutePoints:
+        - {x: 2205.0425, y: -760.51135}
+        - {x: 2448.0896, y: -1134.0013}
+        - {x: 3020.031, y: -1187.5162}
+        - {x: 10466.696, y: -1308.2825}
+        - {x: 10852.283, y: -1243.4183}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 1
+      _node: {fileID: 1658409910998133095}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -3905196777166043699}
+        reroutePoints:
+        - {x: 2310.4316, y: -553.2988}
+        - {x: 2562.757, y: -954.2812}
+        - {x: 3347.1177, y: -1020.78564}
+        - {x: 7518.9233, y: -1090.3123}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Children 2
+      _node: {fileID: 1658409910998133095}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
         node: {fileID: 3447862222334328818}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: Children 1
+    - _fieldName: Children 3
       _node: {fileID: 1658409910998133095}
       _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -639,6 +829,12 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   Children:
+  - property: gameEnd
+    type: 1
+    number: 0
+  - property: quest2Stage
+    type: 1
+    number: 0
   - property: metJoe
     type: 1
     number: 0
@@ -753,7 +949,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 1
+      - fieldName: Children 3
         node: {fileID: 1658409910998133095}
         reroutePoints: []
       _direction: 0
@@ -819,7 +1015,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Children 0
+      - fieldName: Children 2
         node: {fileID: 1658409910998133095}
         reroutePoints: []
       _direction: 0

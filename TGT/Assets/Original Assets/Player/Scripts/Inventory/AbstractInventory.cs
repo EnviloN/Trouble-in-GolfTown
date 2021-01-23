@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public abstract class AbstractInventory : MonoBehaviour
 {
-    public const float DEFAULT_INTERACTION_DISTANCE = 4f;
+    public const float DEFAULT_INTERACTION_DISTANCE = 2.5f;
 
     public Text BallCountUI;
 
