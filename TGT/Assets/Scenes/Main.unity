@@ -2334,9 +2334,11 @@ MonoBehaviour:
   havePutterClubVar: 0
   have5IronClubVar: 0
   cancelKey: 27
-  switchClubKey: 49
-  showBallKey: 50
+  showBallKey: 113
   interactKey: 101
+  clubsEmptyHands: 49
+  clubsPutter: 50
+  clubsFiveiron: 51
 --- !u!82 &832204696
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4367,6 +4369,7 @@ MonoBehaviour:
   quest1StageBallsVar: 0
   quest2StageVar: 0
   quest3StageVar: 0
+  gameEndVar: 0
 --- !u!114 &1904069661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4379,7 +4382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c678073755f0744b9d28ce60d131d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
 --- !u!114 &1904069662
 MonoBehaviour:
   m_ObjectHideFlags: 0
