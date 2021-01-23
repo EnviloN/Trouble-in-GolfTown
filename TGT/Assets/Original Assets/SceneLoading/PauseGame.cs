@@ -18,6 +18,7 @@ public class PauseGame : MonoBehaviour
     public GameObject canvas;
     public GameObject main_menu;
     public GameObject settings_menu;
+    public GameObject help_menu;
 
     public GameObject MusicPlayer;
     public float audioFadeOut = 1.0f;
@@ -115,7 +116,7 @@ public class PauseGame : MonoBehaviour
                 Cursor.visible = true;
             }
             
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("Game presumably ended.");
                 Application.Quit();
@@ -151,6 +152,7 @@ public class PauseGame : MonoBehaviour
         canvas.SetActive(false);
         main_menu.SetActive(false);
         settings_menu.SetActive(false);
+        help_menu.SetActive(false);
     }
 
     public void Pause()
