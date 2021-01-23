@@ -66,6 +66,78 @@ MonoBehaviour:
     - It's been weeks since I've touched someone's club.
     - My club polisher has been dry for weeks!
     - I would polish your club any time. Free of charge!
+--- !u!114 &-4530070020863575390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6264, y: 264}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: -4530070020863575390}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 3410881084861829947}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: -4530070020863575390}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: -4530070020863575390}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 8263317302337281899}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: quest2DixxiTalk
+    type: 1
+    number: 0
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - Is it over yet? Are you alright?
+    - '[player] I guess so... my ears are ringing.'
+    - Poor soul! A tumbler of whiskey will make you better. It's on me!
+    - How was the new club? Is it easy to use?
+    - '[player] It''s amazing! It really seems like the ball is defying the laws
+      of nature!'
+    - I told you so! It's crazy. I can't wait when it's finished, and I introduce
+      it as a new product.
+    - '[player] Good luck with that! You''ll probably be pretty famous.'
+    - I hope so. You keep this one! I am already working on a new prototype!
+    - '[player] Thanks, Dixxi.'
+    - '[status] quest2DixxiTalk=1'
 --- !u!114 &-1561155334517103761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +224,10 @@ MonoBehaviour:
   - {fileID: 203702103604317528}
   - {fileID: -1561155334517103761}
   - {fileID: 6409323605617322346}
+  - {fileID: 8107445803731428450}
+  - {fileID: 3410881084861829947}
+  - {fileID: -4530070020863575390}
+  - {fileID: 8263317302337281899}
   CharacterName: Dixxi
 --- !u!114 &203702103604317528
 MonoBehaviour:
@@ -257,7 +333,70 @@ MonoBehaviour:
     - Oh, and the fact that this town will soon be transformed into an oil mining
       city.
     - And I'm afraid there is nothing you can do with that.
-    - '[incStatus] quest1Stage|talkedToDixxi'
+    - '[incStatus] quest1Talked|talkedToDixxi'
+--- !u!114 &3410881084861829947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5688, y: 248}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 3410881084861829947}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 8107445803731428450}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 3410881084861829947}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 3410881084861829947}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -4530070020863575390}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 0
+    number: 3
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Oh my goodness! We can hear the explosions from outside!
+    - The loud explosions are shaking the ground.
+    - All the glasses are clinging from how the saloon is shaking.
 --- !u!114 &6409323605617322346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +445,10 @@ MonoBehaviour:
       _node: {fileID: 6409323605617322346}
       _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: In
+        node: {fileID: 8107445803731428450}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -335,3 +477,122 @@ MonoBehaviour:
     - I hope you'll enjoy using it. Let me know how it feels. Any feedback is welcome!
     - '[player] Sure, If I''ll be able to come back alive, I''ll let you know.'
     - '[status] quest2Stage=3|give5Iron=1'
+--- !u!114 &8107445803731428450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5111.3345, y: 241.19489}
+  ports:
+    keys:
+    - In
+    - Children
+    - Children 0
+    values:
+    - _fieldName: In
+      _node: {fileID: 8107445803731428450}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: 6409323605617322346}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8107445803731428450}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children 0
+      _node: {fileID: 8107445803731428450}
+      _typeQualifiedName: DialogueNode+ConstraintPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: 3410881084861829947}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Children:
+  - property: numOfTowersDestroyed
+    type: 0
+    number: 1
+  dialogue:
+    isSmallTalk: 1
+    sentences:
+    - Good luck to you, my hero!
+    - Remember to tell me how the new club was.
+    - I hope the new club will serve you well.
+    - Go kick their butts!
+    - I hope you'll come back in one piece!
+--- !u!114 &8263317302337281899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd61126e5951640947c59f04cc48b6, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6856, y: 264}
+  ports:
+    keys:
+    - In
+    - Children
+    values:
+    - _fieldName: In
+      _node: {fileID: 8263317302337281899}
+      _typeQualifiedName: DialogueNode+EmptyPort, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Children 0
+        node: {fileID: -4530070020863575390}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Children
+      _node: {fileID: 8263317302337281899}
+      _typeQualifiedName: DialogueNode+ConstraintPort[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Children: []
+  dialogue:
+    isSmallTalk: 0
+    sentences:
+    - You should help me some time with the testing of my new minigolf clubs.
+    - We should go play minigolf together. We could test what the new minigolf clubs
+      can do in a real match!
+    - Do you need me to polish your clubs? I'll do it for free because of what you've
+      done for us!
+    - Looking sharp, cowboy! What are you up to?
+    - Have you seen some black golf balls somewhere? I saw them once outside, and
+      they are beautiful! Don't know where they came from.
+    - People have been getting their clubs polished and repaired. They can feel they
+      will soon be playing minigolf again!

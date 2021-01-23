@@ -54,46 +54,51 @@ public abstract class AbstractInventory : MonoBehaviour
 
     abstract protected void Update();
 
-    abstract protected bool doRaycast(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
+    abstract protected bool doRaycastPickBall(out RaycastHit[] hits, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
+
+    abstract protected bool doRaycastPlaceBall(out RaycastHit raycastHit, float interactionDistance = DEFAULT_INTERACTION_DISTANCE);
 
     protected void tryPickupBall()
     {
         // Pick ball from ground
-        if (doRaycast(out RaycastHit raycastHit))
+        if (doRaycastPickBall(out RaycastHit[] raycastHits))
         {
-            Placeholder ball = raycastHit.collider.GetComponent<Placeholder>();
-            GoldenBallPlaceholder goldenBall = raycastHit.collider.GetComponent<GoldenBallPlaceholder>();
-
-            if (!ball && !goldenBall) return;
-
-            if (ball)
+            foreach(RaycastHit hit in raycastHits)
             {
-                if (raycasting)
+                Placeholder ball = hit.collider.GetComponent<Placeholder>();
+                GoldenBallPlaceholder goldenBall = hit.collider.GetComponent<GoldenBallPlaceholder>();
+
+                if (!ball && !goldenBall) continue;
+
+                if (ball)
                 {
-                    // Place ball on the ground
-                    CancelRaycast(false);
+                    if (raycasting)
+                    {
+                        // Place ball on the ground
+                        CancelRaycast(false);
+                    }
+                    else
+                    {
+                        // Pick ball and add it to inventory
+                        ball.gameObject.SetActive(false);
+                        addBall();
+                        var count = (int)gm.GetGameStatus("ballsCollected") + 1;
+                        gm.SetGameStatus("ballsCollected", count);
+                    }
+                    return;
                 }
-                else
+                if (goldenBall)
                 {
-                    // Pick ball and add it to inventory
-                    ball.gameObject.SetActive(false);
+                    goldenBall.gameObject.SetActive(false);
                     addBall();
-                    var count = (int)gm.GetGameStatus("ballsCollected") + 1;
-                    gm.SetGameStatus("ballsCollected", count);
+                    gm.AddGoldenBall();
+                    if (gm.HaveCollectedAllGoldenBalls())
+                    {
+                        giantBall.GetComponent<MeshRenderer>().enabled = true;
+                        giantBall.GetComponent<MeshCollider>().enabled = true;
+                    }
+                    return;
                 }
-                return;
-            }
-            if (goldenBall)
-            {
-                goldenBall.gameObject.SetActive(false);
-                addBall();
-                gm.AddGoldenBall();
-                if (gm.HaveCollectedAllGoldenBalls())
-                {
-                    giantBall.GetComponent<MeshRenderer>().enabled = true;
-                    giantBall.GetComponent<MeshCollider>().enabled = true;
-                }
-                return;
             }
         }
     }
@@ -174,7 +179,7 @@ public abstract class AbstractInventory : MonoBehaviour
 
     protected bool CanPlaceBallHere()
     {
-        if (doRaycast(out RaycastHit raycastHit))
+        if (doRaycastPlaceBall(out RaycastHit raycastHit))
         {
             return raycastHit.collider.GetComponent<GolfBallPlaceableArea>() != null;
 
@@ -184,7 +189,7 @@ public abstract class AbstractInventory : MonoBehaviour
 
     protected virtual void RaycastBallHere()
     {
-        if (doRaycast(out RaycastHit raycastHit))
+        if (doRaycastPlaceBall(out RaycastHit raycastHit))
         {
             var placeableArea = raycastHit.collider.GetComponent<GolfBallPlaceableArea>();
             if (placeableArea)
