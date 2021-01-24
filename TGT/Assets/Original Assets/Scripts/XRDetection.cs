@@ -35,7 +35,6 @@ public class XRDetection : MonoBehaviour
         	PCPlayerController.SetActive(false);
             XRDialogCanvas.SetActive(true);
 			GameObject.Find("XRCanvas").GetComponent<Canvas>().worldCamera = UICamera;
-            GameObject.Find("Help").SetActive(false);
 			XRReady.Invoke(true);
         	isXR = true;
         }
