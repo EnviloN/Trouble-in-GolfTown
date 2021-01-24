@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour {
+public class SceneLoader : MonoBehaviour
+{
     public Animator transition;
     public Animator XRTransition;
     public float transitionTime = 1f;
@@ -18,7 +19,8 @@ public class SceneLoader : MonoBehaviour {
     private XRDetection detection;
     private bool start;
 
-    private void Start() {
+    private void Start()
+    {
         dm = FindObjectOfType<DialogueManager>();
         GM = FindObjectOfType<GameManager>();
         pauser = gameObject.GetComponent<PauseGame>();
@@ -29,14 +31,16 @@ public class SceneLoader : MonoBehaviour {
     }
 
     private void Update()
-    {}
+    { }
 
-    private static void LoadSceneAdditively(string sceneName) {
+    private static void LoadSceneAdditively(string sceneName)
+    {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
 
-    private void LoadIntroScene() {
+    private void LoadIntroScene()
+    {
         audioSource.volume = 0;
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
@@ -52,7 +56,8 @@ public class SceneLoader : MonoBehaviour {
     }
 
 
-    public void StartGame() {
+    public void StartGame()
+    {
         if (start && !GM.debugMode)
         {
             start = false;
@@ -61,10 +66,11 @@ public class SceneLoader : MonoBehaviour {
         pauser.HideMenu();
         pauser.Resume();
         audioSource.volume = 1;
- 
+
     }
 
-    public void LoadMainScene() {
+    public void LoadMainScene()
+    {
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
         LoadSceneAdditively("Dock");
@@ -75,20 +81,24 @@ public class SceneLoader : MonoBehaviour {
         LoadSceneAdditively("Towers");
     }
 
-    private void LoadSaloonScene() {
+    private void LoadSaloonScene()
+    {
         SceneManager.LoadScene("SaloonInterior", LoadSceneMode.Single);
     }
-    private void LoadChurchScene() {
+    private void LoadChurchScene()
+    {
         SceneManager.LoadScene("ChurchInterior", LoadSceneMode.Single);
     }
 
-    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false) {
+    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false)
+    {
 
-        if (mute == false) {
+        if (mute == false)
+        {
             audioSource.clip = doorOpeningSound;
             audioSource.Play();
         }
-        
+
         transition.SetTrigger("Start");
         if (detection.isXR)
         {
@@ -105,7 +115,8 @@ public class SceneLoader : MonoBehaviour {
         {
             player.transform.position = warpPos;
         }
-        switch (sceneName) {
+        switch (sceneName)
+        {
             case "World":
                 LoadMainScene();
                 break;
@@ -125,11 +136,30 @@ public class SceneLoader : MonoBehaviour {
         }
 
         transition.SetTrigger("End");
-        if (mute == false) {
+        if (mute == false)
+        {
             audioSource.clip = doorClosingSound;
             audioSource.Play();
         }
-        
+
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("End");
+        }
+    }
+
+    public void BlackFadeIn()
+    {
+        transition.SetTrigger("Start");
+        if (detection.isXR)
+        {
+            XRTransition.SetTrigger("Start");
+        }
+    }
+
+    public void BlackFadeOut()
+    {
+        transition.SetTrigger("End");
         if (detection.isXR)
         {
             XRTransition.SetTrigger("End");

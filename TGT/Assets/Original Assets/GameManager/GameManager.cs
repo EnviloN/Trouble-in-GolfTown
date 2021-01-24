@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        
         // Use constants on MinigolfCourseIdMap when referencing courseIds
         holeTriggered.AddListener(courseId =>
         {
@@ -84,8 +85,8 @@ public class GameManager : MonoBehaviour {
                 gameStatus.gameEnd = 1;
                 magnateObject.GetComponent<MagnateHitEventHandler>().hideMagnate();
                 // Pause, open end menu, play explosion and music
-
-
+                GameObject scene_loader = GameObject.Find("SceneLoader");
+                scene_loader.GetComponent<PauseGame>().PauseEnd();
 
             }
 

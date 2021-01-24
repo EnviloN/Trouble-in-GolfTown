@@ -19,6 +19,8 @@ public class PauseGame : MonoBehaviour
     public GameObject main_menu;
     public GameObject settings_menu;
     public GameObject help_menu;
+    public GameObject end_menu;
+    public AudioClip victory_explosion;
 
     public GameObject MusicPlayer;
     public float audioFadeOut = 1.0f;
@@ -153,6 +155,7 @@ public class PauseGame : MonoBehaviour
         main_menu.SetActive(false);
         settings_menu.SetActive(false);
         help_menu.SetActive(false);
+        end_menu.SetActive(false);
     }
 
     public void Pause()
@@ -186,6 +189,30 @@ public class PauseGame : MonoBehaviour
             SetLongRaycast(false);
             SetVisibleHands(false);
         }
+    }
+
+    public void PauseEnd()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<FreezeMovement>().Freeze();
+        if (isXR)
+        {
+            SetLongRaycast(true);
+            SetVisibleHands(true);
+        }
+
+        canvas.SetActive(true);
+        end_menu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        PositionCanvas();
+
+        //fadein music
+        StartCoroutine(ExplosionAndAudioFadeIn(MusicPlayer.GetComponent<AudioSource>(), audioFadeOut, victory_explosion));
+        isPaused = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
     }
 
     void SetLongRaycast(bool value) {
@@ -247,6 +274,32 @@ public class PauseGame : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
         }
         
+        audioSource.volume = 0.5f;
+    }
+
+    public IEnumerator ExplosionAndAudioFadeIn(AudioSource audioSource, float FadeTime, AudioClip explosion)
+    {
+        AudioClip music = audioSource.clip;
+        //play explosion
+        audioSource.clip = explosion;
+        audioSource.volume = 0.6f;
+        audioSource.loop = false;
+        audioSource.Play();
+        yield return new WaitWhile(() => audioSource.isPlaying);
+
+        audioSource.clip = music;
+        audioSource.Play();
+        float startVolume = 0.5f;
+        audioSource.volume = 0f;
+        audioSource.loop = true;
+
+        while (audioSource.volume < 0.5f)
+        {
+            audioSource.volume += startVolume * Time.fixedUnscaledDeltaTime / FadeTime;
+
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+
         audioSource.volume = 0.5f;
     }
 }
