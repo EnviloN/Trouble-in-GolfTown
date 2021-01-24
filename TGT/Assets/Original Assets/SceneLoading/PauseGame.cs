@@ -117,12 +117,6 @@ public class PauseGame : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-            
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Debug.Log("Game presumably ended.");
-                Application.Quit();
-            }
         }
     }
 
