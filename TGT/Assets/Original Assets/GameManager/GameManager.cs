@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour {
                 gameStatus.quest1Stage = 8;
             }
 
+            player = GameObject.FindGameObjectWithTag("Player");
             gameStatus.ballsCollected = player.GetComponent<AbstractInventory>().numOfBalls;
 
             dialogueManager.UpdateGraphs();

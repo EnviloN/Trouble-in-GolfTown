@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15934b83a49bca64dadd7ade61c9a5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkIfGrounded: {fileID: 832204692}
+  checkIfGrounded: {fileID: 765878784}
   audioSource: {fileID: 765878786}
   dirtClips:
   - {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
@@ -3372,7 +3372,7 @@ MonoBehaviour:
   doorOpeningSound: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
   doorClosingSound: {fileID: 8300000, guid: dee1c92d1a13f4459b070de962777e98, type: 3}
   DoorIconAnimator: {fileID: 16634070}
-  XRDoorIcon: {fileID: 0}
+  XRDoorIcon: {fileID: 777669763}
   XRDialogCanvas: {fileID: 777669756}
 --- !u!114 &770247068
 MonoBehaviour:
@@ -3728,6 +3728,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceCamera: {fileID: 0}
+--- !u!1 &777669763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6551013736885827509, guid: 994acf8f5502601488f9b9a0b5e7066e,
+    type: 3}
+  m_PrefabInstance: {fileID: 777669755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &813445030
 GameObject:
   m_ObjectHideFlags: 0
