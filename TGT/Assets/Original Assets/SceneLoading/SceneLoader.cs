@@ -10,6 +10,10 @@ public class SceneLoader : MonoBehaviour {
     public AudioClip doorOpeningSound;
     public AudioClip doorClosingSound;
 
+    public Animator DoorIconAnimator;
+    public GameObject XRDoorIcon;
+    public GameObject XRDialogCanvas;
+
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
@@ -17,6 +21,7 @@ public class SceneLoader : MonoBehaviour {
     private GameManager GM;
     private XRDetection detection;
     private bool start;
+    private bool loading;
 
     private void Start() {
         dm = FindObjectOfType<DialogueManager>();
@@ -25,16 +30,13 @@ public class SceneLoader : MonoBehaviour {
         audioSource = gameObject.GetComponent<AudioSource>();
         detection = FindObjectOfType<XRDetection>();
         start = true;
+        loading = false;
         LoadIntroScene();
     }
-
-    private void Update()
-    {}
 
     private static void LoadSceneAdditively(string sceneName) {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
-
 
     private void LoadIntroScene() {
         audioSource.volume = 0;
@@ -51,7 +53,6 @@ public class SceneLoader : MonoBehaviour {
         pauser.DisplayMainMenu();
     }
 
-
     public void StartGame() {
         if (start && !GM.debugMode)
         {
@@ -61,7 +62,6 @@ public class SceneLoader : MonoBehaviour {
         pauser.HideMenu();
         pauser.Resume();
         audioSource.volume = 1;
- 
     }
 
     public void LoadMainScene() {
@@ -78,11 +78,14 @@ public class SceneLoader : MonoBehaviour {
     private void LoadSaloonScene() {
         SceneManager.LoadScene("SaloonInterior", LoadSceneMode.Single);
     }
+
     private void LoadChurchScene() {
         SceneManager.LoadScene("ChurchInterior", LoadSceneMode.Single);
     }
 
     public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false) {
+    	loading = true;
+    	HideInteractability();
 
         if (mute == false) {
             audioSource.clip = doorOpeningSound;
@@ -133,6 +136,36 @@ public class SceneLoader : MonoBehaviour {
         if (detection.isXR)
         {
             XRTransition.SetTrigger("End");
+        }
+
+        loading = false;
+    }
+
+    public void DisplayInteractability(SceneGate sceneGate)
+    {
+        if (!loading)
+        {
+            if (detection.isXR)
+            {
+                XRDoorIcon.SetActive(true);
+                XRDialogCanvas.GetComponent<Canvas>().transform.position = sceneGate.transform.position + Vector3.up + sceneGate.transform.right * (-0.65f);
+            }
+            else
+            {
+                DoorIconAnimator.SetBool("isVisible", true);
+            }
+        }
+    }
+
+    public void HideInteractability()
+    {
+        if (detection.isXR)
+        {
+            XRDoorIcon.SetActive(false);
+        }
+        else
+        {
+            DoorIconAnimator.SetBool("isVisible", false);
         }
     }
 }

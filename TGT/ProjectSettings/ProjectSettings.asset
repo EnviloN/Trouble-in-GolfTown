@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: TGT
+  companyName: "FIT \u010CVUT"
+  productName: Trouble in Golf Town
   defaultCursor: {fileID: 2800000, guid: 53b257961144dd64b80235297b4564f3, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -148,6 +148,7 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6754379874320303041, guid: f87fa0fb842c8574aa1a275291a00f41, type: 2}
   - {fileID: 11400000, guid: df97d908b033df44dabdcbf81dc6f30b, type: 2}
   metroInputSource: 0
@@ -191,7 +192,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.fitcvut.tgt
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 23

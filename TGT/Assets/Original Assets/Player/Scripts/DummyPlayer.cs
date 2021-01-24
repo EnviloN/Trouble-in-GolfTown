@@ -10,6 +10,7 @@ public class DummyPlayer : MonoBehaviour
 
     private DialogueManager dm;
     private AbstractInventory inventory;
+    private SceneLoader sceneLoader;
 
     private Talkative talkative;
     private SceneGate sceneGate;
@@ -19,6 +20,7 @@ public class DummyPlayer : MonoBehaviour
     {
         dm = FindObjectOfType<DialogueManager>();
         inventory = FindObjectOfType<AbstractInventory>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
         interactions.rightTriggerButtonPress.AddListener(pressed => XRButtonPress(pressed));
         talkative = null;
         sceneGate = null;
@@ -31,6 +33,7 @@ public class DummyPlayer : MonoBehaviour
 
         // Check if player is looking at talkative NPC
         dm.HideInteractability();
+        sceneLoader.HideInteractability();
         if (Physics.Raycast(ray, out var simpleHit, interactionRayDistance))
         {
             talkative = simpleHit.collider.GetComponent<Talkative>();
@@ -38,7 +41,6 @@ public class DummyPlayer : MonoBehaviour
             {
                 dm.DisplayInteractability(talkative);
 
-                // if interact Key is pressed
                 if (Input.GetKeyDown(interactKey))
                 {
                     talkative.TriggerDialogue();
@@ -48,6 +50,8 @@ public class DummyPlayer : MonoBehaviour
             sceneGate = simpleHit.collider.GetComponent<SceneGate>();
             if (sceneGate)
             {
+                sceneLoader.DisplayInteractability(sceneGate);
+
                 if (Input.GetKeyDown(interactKey))
                 {
                     sceneGate.LoadScene();
