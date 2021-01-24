@@ -1084,6 +1084,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1134513023205410, guid: afc78ae17d5637e47834b329300d6e9a, type: 3}
+      propertyPath: m_TagString
+      value: Structure
+      objectReference: {fileID: 0}
     - target: {fileID: 1404303191809006, guid: afc78ae17d5637e47834b329300d6e9a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -3127,7 +3131,7 @@ GameObject:
   - component: {fileID: 713554584}
   m_Layer: 0
   m_Name: Main floor
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4495,6 +4499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dr. Quinn
       objectReference: {fileID: 0}
+    - target: {fileID: 699479653693175084, guid: 5f49b90f67aa69242b924a7b1af59741,
+        type: 3}
+      propertyPath: m_TagString
+      value: DrQuinn
+      objectReference: {fileID: 0}
     - target: {fileID: 701453503447470310, guid: 5f49b90f67aa69242b924a7b1af59741,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -4925,8 +4934,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.8, z: 0.3}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.6, y: 1.717905, z: 0.3}
+  m_Center: {x: -0, y: 0.9343209, z: 0}
+--- !u!114 &966910664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966910662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e91362f3c0194cb94aa69d56180c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  dialogueGraph: {fileID: 11400000, guid: b89d5dd8601fa504d8e9ca17b631900f, type: 2}
+--- !u!114 &966910665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966910662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630cc16d62bee544ca2f409772873425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &971957521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5115,7 +5150,7 @@ GameObject:
   - component: {fileID: 1013085065}
   m_Layer: 0
   m_Name: Entrance
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -6061,6 +6096,7 @@ MonoBehaviour:
     type: 3}
   goldenBallPrefab: {fileID: 8301507646652354823, guid: c361a6fa055c9394587e9d107960494b,
     type: 3}
+  spawnGoldenBalls: 0
 --- !u!4 &1215052530
 Transform:
   m_ObjectHideFlags: 0

@@ -13,12 +13,15 @@ public class Talkative : MonoBehaviour
 
     private DummyPlayer player;
     private DialogueManager dm;
+    private Animator animator;
 
     private bool isTalking;
+
     private void Start()
     {
         player = FindObjectOfType<DummyPlayer>(); // Find reference to player
         dm = FindObjectOfType<DialogueManager>(); // Find reference to dialogue manager
+        animator = GetComponent<Animator>();      // Get reference to animator
         isTalking = false;
 
         Node startNode = null;
@@ -29,14 +32,15 @@ public class Talkative : MonoBehaviour
             }
         }
         dialogueGraph.Current = startNode as DialogueNode;
-
         dialogueGraph.gameStatus = dm.gameStatus;
+
+        RetrieveStatus();
     }
 
     private void Update()
     {
         float distance = Vector3.Distance(player.transform.position, this.transform.position);
-        if (distance > radius && isTalking)
+        if (distance > radius && isTalking || (animator && !dm.IsDialogueActive()))
         {
             EndDialogue();
         }
@@ -56,10 +60,14 @@ public class Talkative : MonoBehaviour
         {
             dm.DisplayNextSentence(); // if a dialogue is already active, nest sentence is displayed
         }
-        else
-        {
+        else {
+            if (animator != null && animator.GetBool("NeedsAttention"))
+                animator.SetBool("NeedsAttention", false);
+
             if (dialogueGraph.Current != null) {
                 isTalking = true;
+                if (animator != null)
+                    animator.SetBool("isTalking", isTalking);
                 dm.StartDialogue(dialogueGraph.CharacterName, dialogueGraph.Current.dialogue);
             }
         }
@@ -69,6 +77,20 @@ public class Talkative : MonoBehaviour
     public void EndDialogue()
     {
         isTalking = false;
+        if (animator != null)
+            animator.SetBool("isTalking", isTalking);
         dm.EndDialogue();
+    }
+    public void RetrieveStatus() {
+        var guid = dm.getOrInsertCurrentGUID(dialogueGraph.CharacterName, dialogueGraph.Current.GUID);
+        if (guid == dialogueGraph.Current.GUID)
+            return;
+        foreach (var node in dialogueGraph.nodes) {
+            var dialogueNode = (DialogueNode) node;
+            if (dialogueNode.GUID == guid) {
+                dialogueGraph.Current = dialogueNode;
+                return;
+            }
+        }
     }
 }
