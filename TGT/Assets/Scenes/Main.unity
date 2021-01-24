@@ -672,7 +672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 20}
+  m_AnchoredPosition: {x: -104.3, y: 11}
   m_SizeDelta: {x: 35, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162840272
@@ -2064,7 +2064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -157.4, y: 17.7}
+  m_AnchoredPosition: {x: -157.4, y: 20}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &519877397
@@ -2127,7 +2127,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 13
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2763,7 +2763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -136.2, y: 66.6}
+  m_AnchoredPosition: {x: -136.2, y: 68}
   m_SizeDelta: {x: 10, y: 25}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &728572281
@@ -2898,7 +2898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150.5, y: 65.4}
+  m_AnchoredPosition: {x: -150.5, y: 68}
   m_SizeDelta: {x: 10, y: 25}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &737454375
@@ -6835,7 +6835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c678073755f0744b9d28ce60d131d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
 --- !u!114 &1904069662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8068,7 +8068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.9, y: 16.3}
+  m_AnchoredPosition: {x: -161.9, y: 20}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112002153
@@ -8090,13 +8090,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- press P to pause or resume the game,  Esc to quit -\n\nmove around with
-    WASD keys\n- change camera rotation with cursor -\n- use shift to run and space
-    to jump -\n\nE  is the main ACTION key\n- open doors,  grab objects, confirm
-    action -\n\nuse keys 123 or mouse scroll to change between\n empty hands and
-    golf clubs \n\nuse Q key to choose where to place a golfball\n- aim on golfball
-    with a aim dot -\n- press left mouse button to hit -\n- hold  button longer to
-    add strength to hit -\n\n"
+  m_text: "<b>WASD</b> - Movement\n<b>Mouse</b> - Camera \n<b>Shift</b> - Sprint\n<b>Space</b>
+    - Jump\n<b>E</b> - Action key (pickup, open, talk, confirm ball placement)\n<b>Q</b>
+    - Start ball placement\n<b>P</b> - Pause game\n<b>Left Mouse Button</b> - Hit
+    ball (hold to increase power)\n<b>Mouse Wheel</b> - Club selection (or use Num.
+    1, 2, 3)\n\n<b>Ball placement</b>\n- Look on the ground and press <b>Q</b> to
+    initiate ball placement\n- Place the ball by pressing <b>E</b> or cancel with
+    <b>Q</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34df7240afc36af4ebe05561480d8726, type: 2}
   m_sharedMaterial: {fileID: 683214664546497495, guid: 34df7240afc36af4ebe05561480d8726,
@@ -8137,7 +8137,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 13
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
