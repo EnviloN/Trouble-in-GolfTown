@@ -11,6 +11,10 @@ public class SceneLoader : MonoBehaviour
     public AudioClip doorOpeningSound;
     public AudioClip doorClosingSound;
 
+    public Animator DoorIconAnimator;
+    public GameObject XRDoorIcon;
+    public GameObject XRDialogCanvas;
+
     private GameObject player;
     private DialogueManager dm;
     private PauseGame pauser;
@@ -18,6 +22,7 @@ public class SceneLoader : MonoBehaviour
     private GameManager GM;
     private XRDetection detection;
     private bool start;
+    private bool loading;
 
     private void Start()
     {
@@ -27,20 +32,16 @@ public class SceneLoader : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         detection = FindObjectOfType<XRDetection>();
         start = true;
+        loading = false;
         LoadIntroScene();
     }
 
-    private void Update()
-    { }
 
-    private static void LoadSceneAdditively(string sceneName)
-    {
+    private static void LoadSceneAdditively(string sceneName) {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
-
-    private void LoadIntroScene()
-    {
+    private void LoadIntroScene() {
         audioSource.volume = 0;
         SceneManager.LoadScene("World", LoadSceneMode.Single);
         LoadSceneAdditively("Town");
@@ -56,8 +57,7 @@ public class SceneLoader : MonoBehaviour
     }
 
 
-    public void StartGame()
-    {
+    public void StartGame() {
         if (start && !GM.debugMode)
         {
             start = false;
@@ -66,7 +66,6 @@ public class SceneLoader : MonoBehaviour
         pauser.HideMenu();
         pauser.Resume();
         audioSource.volume = 1;
-
     }
 
     public void LoadMainScene()
@@ -85,20 +84,20 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("SaloonInterior", LoadSceneMode.Single);
     }
-    private void LoadChurchScene()
-    {
+
+    private void LoadChurchScene() {
         SceneManager.LoadScene("ChurchInterior", LoadSceneMode.Single);
     }
 
-    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false)
-    {
+    public IEnumerator LoadScene(string sceneName, Vector3 warpPos, bool mute = false) {
+    	loading = true;
+    	HideInteractability();
 
-        if (mute == false)
-        {
+        if (mute == false) {
             audioSource.clip = doorOpeningSound;
             audioSource.Play();
         }
-
+        
         transition.SetTrigger("Start");
         if (detection.isXR)
         {
@@ -136,15 +135,44 @@ public class SceneLoader : MonoBehaviour
         }
 
         transition.SetTrigger("End");
-        if (mute == false)
-        {
+        if (mute == false) {
             audioSource.clip = doorClosingSound;
             audioSource.Play();
         }
-
+        
         if (detection.isXR)
         {
             XRTransition.SetTrigger("End");
+        }
+
+        loading = false;
+    }
+
+    public void DisplayInteractability(SceneGate sceneGate)
+    {
+        if (!loading)
+        {
+            if (detection.isXR)
+            {
+                XRDoorIcon.SetActive(true);
+                XRDialogCanvas.GetComponent<Canvas>().transform.position = sceneGate.transform.position + Vector3.up + sceneGate.transform.right * (-0.65f);
+            }
+            else
+            {
+                DoorIconAnimator.SetBool("isVisible", true);
+            }
+        }
+    }
+
+    public void HideInteractability()
+    {
+        if (detection.isXR)
+        {
+            XRDoorIcon.SetActive(false);
+        }
+        else
+        {
+            DoorIconAnimator.SetBool("isVisible", false);
         }
     }
 

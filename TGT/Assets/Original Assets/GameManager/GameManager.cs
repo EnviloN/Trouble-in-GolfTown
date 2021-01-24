@@ -66,14 +66,14 @@ public class GameManager : MonoBehaviour {
 
         towerHitTriggered.AddListener(towerObject =>
         {
-            Desctructible destructible = towerObject.GetComponent<Desctructible>();
-            if (destructible != null)
-            {
-                destructible.destroyThisTower();
-                gameStatus.numOfTowersDestroyed++;
-                if (!destroyedTowers.Contains(destructible.towerId))
-                {
-                    destroyedTowers.Add(destructible.towerId);
+            if (gameStatus.quest2Stage == 4 || debugMode) {
+                Desctructible destructible = towerObject.GetComponent<Desctructible>();
+                if (destructible != null) {
+                    destructible.destroyThisTower();
+                    gameStatus.numOfTowersDestroyed++;
+                    if (!destroyedTowers.Contains(destructible.towerId)) {
+                        destroyedTowers.Add(destructible.towerId);
+                    }
                 }
             }
         });
