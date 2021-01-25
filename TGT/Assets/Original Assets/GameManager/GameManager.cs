@@ -108,21 +108,17 @@ public class GameManager : MonoBehaviour {
             player.GetComponent<AbstractInventory>().have5IronClub = true;
         }
         
-        if (framesToUpdateGraphs <= 0) {
-            // Hot fix of the story, can be fixed in dialogues
-            if (gameStatus.quest1Talked == 3) {
-                gameStatus.quest1Talked += 1;
-                gameStatus.quest1Stage = 8;
-            }
-
-            player = GameObject.FindGameObjectWithTag("Player");
-            gameStatus.ballsCollected = player.GetComponent<AbstractInventory>().numOfBalls;
-
-            dialogueManager.UpdateGraphs();
-            framesToUpdateGraphs = 1f;
+        // Hot fix of the story, can be fixed in dialogues
+        if (gameStatus.quest1Talked == 3) {
+            gameStatus.quest1Talked += 1;
+            gameStatus.quest1Stage = 8;
         }
 
-        framesToUpdateGraphs -= Time.deltaTime;
+        player = GameObject.FindGameObjectWithTag("Player");
+        gameStatus.ballsCollected = player.GetComponent<AbstractInventory>().numOfBalls;
+
+        dialogueManager.UpdateGraphs();
+        framesToUpdateGraphs = 1f;
     }
 
     public void SetGameStatus(string property, object value) {
