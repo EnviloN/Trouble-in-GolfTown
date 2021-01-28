@@ -1,11 +1,24 @@
 [Go Up](../README.md)
 
 # Mechanics
-[TODO]
+
 This section is about how to play minigolf and how our inventory system works.
 
 ## Minigolf
 
+### VR player
+
+We used internal mechanics of collision detection between club and ball in VR to play minigolf. We just had to tweak surface materials.
+
+<img src="./img/mechanics/VR_playing_minigolf.jpg" height="600">
+
+### PC player
+
+For PC we had to implement very different logic, because the player does not have anything to swing with on the keyboard. So we decided to use player position and duration of press of mouse button to trigger force on the ball.
+
+From the start, we had intended to have PC playing only for debugging (because only two members of our team had compatible VR headsets). But in the end we tried to make it possible to finish the game even on PC.
+
+[TODO Honza: playing minigolf on PC]
 
 ## Inventory
 
@@ -17,16 +30,14 @@ For PC player, the number of balls in his inventory is displayed in top right co
 
 [TODO Honza: picture of UI when placing ball (PC player)]
 
-[TODO Dominik: picture of placing down ball in VR]
+<img src="./img/mechanics/VR_placing_ball.jpg" height="600">
 
 ### Clubs
 
 For the clubs, we didn't have time to properly think about how to display which club is in player's inventory. So we didn't do it. Player will have to try iterate through to find out, which clubs he has in inventory.
 
-[TODO Honza: picture of club in hand (PC player)]
-
-[TODO Dominik: picture of club levitating in front of player (VR)]
+<img src="./img/mechanics/VR_levitating_club.jpg" height="600">
 
 For PC player, we implemented that the club is levitating beside the player, when he has it in hand. This indicates, that he can play minigolf. It is simpler for VR player, he just spawns the club in front of him and grabs it.
 
-[TODO Dominik: picture of club in hand (VR)]
+[TODO Honza: picture of club in hand (PC player)]
