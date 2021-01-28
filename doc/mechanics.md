@@ -3,7 +3,7 @@
 # Mechanics
 [TODO]
 
-## Mini golf
+## Minigolf
 
 
 ## Inventory

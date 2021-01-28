@@ -27,7 +27,7 @@ Whenever player pauses game, menu music slowly fades in and then fades out again
 
 ### Environment sounds
 - Sounds of sea
-- Birds start singing when close to trees
-- Tumbleweeds in town are rustling perioadically
-- Horses periodically snort when player is close, and horses in enclosure make sound when walking.
+- Birds start singing when player is close to trees
+- Tumbleweeds in town are rustling periodically
+- Horses snort when player is close, and horses in enclosure make sound when walking.
 
