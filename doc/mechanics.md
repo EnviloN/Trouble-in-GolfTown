@@ -18,7 +18,7 @@ For PC we had to implement very different logic, because the player does not hav
 
 From the start, we had intended to have PC playing only for debugging (because only two members of our team had compatible VR headsets). But in the end we tried to make it possible to finish the game even on PC.
 
-[TODO Honza: playing minigolf on PC]
+<img src="./img/mechanics/PC_playing_minigolf.png" height="600">
 
 ## Inventory
 
@@ -28,7 +28,7 @@ We tried to minimize differences between VR and PC gameplay, so we implemented t
 
 For PC player, the number of balls in his inventory is displayed in top right corner of the screen. As we soon found out, this cannot be used for VR player. So we implemented basic sign that is displayed above the ball when placing it on the ground.
 
-[TODO Honza: picture of UI when placing ball (PC player)]
+<img src="./img/mechanics/PC_placing_ball.png" height="600">
 
 <img src="./img/mechanics/VR_placing_ball.jpg" height="600">
 
@@ -40,4 +40,4 @@ For the clubs, we didn't have time to properly think about how to display which 
 
 For PC player, we implemented that the club is levitating beside the player, when he has it in hand. This indicates, that he can play minigolf. It is simpler for VR player, he just spawns the club in front of him and grabs it.
 
-[TODO Honza: picture of club in hand (PC player)]
+<img src="./img/mechanics/PC_club_in_hand.jpg" height="600">
