@@ -2,6 +2,13 @@
 
 # Sound
 
+Existing sound categories:
+ - MX - music in menu, gramophone music in Saloon 
+ - BG - birds chirping, sea waves 
+ - FOL - footsteps
+ - SFX - golf balls, towers, horses and NPCs
+
+
 Each sound source is linked to an audio group in sound mixer:
  ![](./img/sound/audio_mixer.png) 
 

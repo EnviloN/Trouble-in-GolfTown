@@ -5,7 +5,7 @@ This page is more of an overview of the semestral project requirements and how t
 ## Gameplay mechanics
 
 Player can now finally play minigolf, use inventory, chat with NPCs and listen to the sound effects around.  
-There are two golf clubs available in the game, putter, which the player gets from Dr.Quinn, and 5-Iron club for shooting golfballs high in the air which can be acquired from Dixxi. Our [main characters](../main_characters.md) and multiple minor characters react to player and can participate in a dialog. We also added menu with volume settings and help section, where the player can find controls and such.
+There are two golf clubs available in the game, putter, which the player is gifted by Dr.Quinn, and 5-Iron club for shooting golfballs high in the air which can be acquired from Dixxi, the Saloon lady. Our [main characters](../main_characters.md) and multiple minor characters react to player and can participate in a dialog. We also added menu with volume settings and help section, where the player can find controls and such.
 
 ![](../img/main_characters/dr_quinn.png)
 
