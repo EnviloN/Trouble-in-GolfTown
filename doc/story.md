@@ -5,5 +5,3 @@
 #### Pages:
 - [Lore](lore.md)
 - [Quests](quests.md)
-
-[TODO]

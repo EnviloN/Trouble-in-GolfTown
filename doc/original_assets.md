@@ -9,7 +9,7 @@ We have created two golf clubs and a golf ball model.
 ![help](./img/assets/golf_ball.png)  
 ![help](./img/assets/putter.png) ![help](./img/assets/5iron.png)
 
-## Hores
+## Horse
 We have created our own low-poly horse model.
 
 ![help](./img/assets/horse.png)

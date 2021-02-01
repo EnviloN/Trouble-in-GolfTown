@@ -14,9 +14,7 @@ The destruction of the the tower is animated as explosion of the Tower prefab wi
 <img src="./img/animations/towers/explosion.gif" height="300">
 
 
-
-Right now, the explosion of all towers is triggered at once, by pressing the D key. For future use, all of the placed towers contain box collider for detecting collision with a golf ball.
-
+All of the placed towers contain box collider for detecting collision with a golf ball. Once the player acquires the special golf balls, he can finally attempt to destroy the towers with his skills.
 
 <img src="./img/animations/towers/towers_colliders.png" height="300">
 

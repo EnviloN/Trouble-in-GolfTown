@@ -7,5 +7,3 @@
     - [3rd party assets](3party_assets.md)
     - [Original assets](original_assets.md)
 - [Animations](animations.md)
-
-[TODO]
